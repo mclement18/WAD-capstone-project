@@ -7,7 +7,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "email is requiered" do
-    user = User.new password: 'password'
+    user = User.new email: '', password: 'password'
     refute user.valid?
   end
 
@@ -18,7 +18,10 @@ class UserTest < ActiveSupport::TestCase
 
   test "password is encrypted" do
     User.create! email: 'user@email.com', password: 'password'
-    refute_equal User.last.password, 'password'
+    user = User.last
+    refute user.password.present?
+    assert user.password_digest.present?
+    refute_equal user.password_digest, 'password'
   end
 
   test "email must be valid" do
