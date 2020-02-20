@@ -130,7 +130,7 @@ class TripTest < ActiveSupport::TestCase
                        region: 'VD',
                        city: 'Lausanne',
                        user: users(:one)
-    assert_equal trip.categories, 'city_cultural'
+    assert_equal trip.categories, 'city__cultural'
   end
 
   test "categories attribute is computed on update" do
