@@ -8,7 +8,41 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header>
+    <div class="content-wrapper">
+      <div class="logo">
+        <%= link_to root_path do %>
+          <span>WhereToGo</span>
+        <% end %>
+      </div>
+
+      <form action="" class="search-box">
+
+      </form>
+
+      <nav class="global-nav">
+        <ul>
+          <li><a href="#">Log In</a></li>
+          <li><a href="#">Sign Up</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
   <body>
-    <%= yield %>
+    <div class="content-wrapper">
+      <%= yield %>
+    </div>
   </body>
+
+  <footer>
+    <div class="content-wrapper">
+      <div class="logo">
+
+      </div>
+      <div class="locales">
+
+      </div>
+    </div>
+  </footer>
 </html>
