@@ -17,5 +17,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to root_url
+    assert session[:user_id].present?
   end
 end
