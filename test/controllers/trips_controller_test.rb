@@ -14,7 +14,7 @@ class TripsControllerTest < ActionDispatch::IntegrationTest
   test "get index with a simple search" do
     get trips_url, params: { q: 'Trip one' }
     assert :success
-    assert_select 'h1', 'Trip one'
+    assert_select 'h1', 'Results for "Trip one"'
   end
 
   test "get new" do

@@ -1,5 +1,9 @@
 <div class="main-title">
-  <h1>All trips</h1>
+  <% if @queries.present? %>
+    <h1>Results for "<%= @queries.join(' ') %>"</h1>
+  <% else %>
+    <h1>All trips</h1>
+  <% end %>
 </div>
 
 <% if @trips.any? %>
