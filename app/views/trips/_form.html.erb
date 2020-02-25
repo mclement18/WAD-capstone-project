@@ -1,0 +1,37 @@
+<%= form_for trip do |form| %>
+  <div class="input-group">
+    <%= form.label :title, class: 'input-label' %>
+    <%= form.text_field :title, class: 'input-field', placeholder: 'e.g. From Lima to Cusco' %>
+  </div>
+  <div class="input-group">
+    <%= form.label :description, class: 'input-label' %>
+    <%= form.text_area :description, class: 'input-field', placeholder: 'max 500 characters' %>
+  </div>
+  <div class="input-group">
+    <%= form.label :category_1, class: 'input-label' %>
+    <%= form.select :category_1, category_1_options(trip.category_1), {}, class: 'input-field' %>
+  </div>
+  <div class="input-group">
+    <%= form.label :category_2, class: 'input-label' %>
+    <%= form.select :category_2, category_2_options(trip.category_2), {}, class: 'input-field' %>
+  </div>
+  <div class="input-group">
+    <%= form.label :continent, class: 'input-label' %>
+    <%= form.select :continent, continent_options(trip.continent), {}, class: 'input-field' %>
+  </div>
+  <div class="input-group">
+    <%= form.label :country, class: 'input-label' %>
+    <%= form.select :country, country_options(trip.country), {}, class: 'input-field' %>
+  </div>
+  <div class="input-group">
+    <%= form.label :region, class: 'input-label' %>
+    <%= form.select :region, region_options(trip.country, trip.region), {}, class: 'input-field' %>
+  </div>
+  <div class="input-group">
+    <%= form.label :city, class: 'input-label' %>
+    <%= form.select :city, city_options(trip.city), {}, class: 'input-field' %>
+  </div>
+  <div class="prompt">
+    <%= form.submit class: 'btn' %>
+  </div>
+<% end %>

@@ -1,4 +1,6 @@
 class TripsController < ApplicationController
+  before_action :set_trip, only: [:show, :edit, :update]
+  
   def index
     if params[:q].present?
       @queries = params[:q].strip.split(' ')
@@ -9,7 +11,6 @@ class TripsController < ApplicationController
   end
 
   def show
-    @trip = Trip.find(params[:id])
   end
 
   def new
@@ -28,9 +29,16 @@ class TripsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   private
 
   def trip_params
     params.require(:trip).permit(:title, :description, :category_1, :category_2, :continent, :country, :region, :city, :image)
+  end
+
+  def set_trip
+    @trip = Trip.find(params[:id])
   end
 end
