@@ -6,6 +6,7 @@ one:
   image: MyString
   categories: city__cultural
   location: Europe__CH__BE__Bern
+  user: one
 
 two:
   title: A second journey
@@ -13,6 +14,7 @@ two:
   image: MyString
   categories: road__advanturous
   location: Europe__CH__GR__
+  user: one
 
 three:
   title: A third one
@@ -20,4 +22,5 @@ three:
   image: MyString
   categories: international__relaxing
   location: Europe__CH__VD__Montricher
+  user: one
     

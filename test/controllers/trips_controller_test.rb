@@ -51,6 +51,8 @@ class TripsControllerTest < ActionDispatch::IntegrationTest
     patch trip_url(@trip), params: { trip: { title: 'New title',
                                              description: 'New description' } }
     assert_redirected_to trip_url(@trip)
+    follow_redirect!
+    assert_response :success
     assert_select 'h1', 'New title'
     assert_select 'p.description', 'New description'
   end

@@ -22,7 +22,7 @@ class TripsController < ApplicationController
     @trip.user = User.first
     respond_to do |format|
       if @trip.save
-        format.html { redirect_to @trip, notice: 'Trip successfully created' }
+        format.html { redirect_to @trip, notice: 'Trip successfully created!' }
       else
         format.html { render :new }
       end
@@ -30,6 +30,16 @@ class TripsController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @trip.update(trip_params)
+        format.html { redirect_to @trip, notice: 'Trip successfully updated!' }
+      else
+        format.html { render :edit }
+      end
+    end
   end
 
   private
