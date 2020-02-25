@@ -11,6 +11,21 @@ class Trip < ApplicationRecord
   after_find :deserialize_categories, :deserialize_location
   after_validation :serialize_categories, :serialize_location
 
+  scope :title_contains,              -> (terms) { where(Trip.arel_table[:title].matches_any(terms.map { |term| "%#{term}%" })) }
+  scope :description_contains,        -> (terms) { where(Trip.arel_table[:description].matches_any(terms.map { |term| "%#{term}%" })) }
+  scope :title_or_description_search, -> (terms) { title_contains(terms)
+                                                     .or(description_contains(terms)) }
+  scope :categories_contains,         -> (terms) { where(Trip.arel_table[:categories].matches_any(terms.map { |term| "%#{term}%" })) }
+  scope :location_contains,           -> (terms) { where(Trip.arel_table[:location].matches_any(terms.map { |term| "%#{term}%" })) }
+  scope :global_search,               -> (terms) { title_or_description_search(terms)
+                                                     .or(categories_contains(terms))
+                                                     .or(location_contains(terms)) }
+  scope :filtered_search,             -> (terms, 
+                                          categories_terms,
+                                          location_terms) { title_or_description_search(terms)
+                                                              .categories_contains(categories_terms)
+                                                              .location_contains(location_terms) }
+
   private
 
   def serialize_location

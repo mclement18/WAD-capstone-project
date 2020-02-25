@@ -8,8 +8,16 @@ one:
   location: Europe__CH__BE__Bern
 
 two:
-  title: Trip two
-  description: This is trip two
+  title: A second journey
+  description: Trip two description
   image: MyString
   categories: road__advanturous
   location: Europe__CH__GR__
+
+three:
+  title: A third one
+  description: Its descritpion
+  image: MyString
+  categories: international__relaxing
+  location: Europe__CH__VD__Montricher
+    

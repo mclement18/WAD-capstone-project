@@ -247,4 +247,94 @@ class TripTest < ActiveSupport::TestCase
                           user: users(:one)
     refute other_trip.valid?
   end
+
+  test "title_contains search records by titles one query" do
+    terms = ['One']
+    trips = Trip.title_contains(terms)
+    assert_equal trips.length, 2
+  end
+
+  test "title_contains search records by titles two queries" do
+    terms = ['One', 'second']
+    trips = Trip.title_contains(terms)
+    assert_equal trips.length, 3
+  end
+
+  test "description_contains search records by descriptions one query" do
+    terms = ['One']
+    trips = Trip.description_contains(terms)
+    assert_equal trips.length, 1
+  end
+
+  test "description_contains search records by descriptions two queries" do
+    terms = ['One', 'two']
+    trips = Trip.description_contains(terms)
+    assert_equal trips.length, 2
+  end
+
+  test "title_or_description_search search records by title or descriptions" do
+    terms = ['One', 'two']
+    trips = Trip.title_or_description_search(terms)
+    assert_equal trips.length, 3
+  end
+
+  test "categories_contains search records by categories one query" do
+    terms = ['city']
+    trips = Trip.categories_contains(terms)
+    assert_equal trips.length, 1
+  end
+
+  test "categories_contains search records by categories two queries" do
+    terms = ['city', 'road']
+    trips = Trip.categories_contains(terms)
+    assert_equal trips.length, 2
+  end
+
+  test "categories_contains search records by categories three queries" do
+    terms = ['city', 'road', 'relaxing']
+    trips = Trip.categories_contains(terms)
+    assert_equal trips.length, 3
+  end
+
+  test "location_contains search records by location one query" do
+    terms = ['Europe']
+    trips = Trip.location_contains(terms)
+    assert_equal trips.length, 3
+  end
+
+  test "location_contains search records by location two queries" do
+    terms = ['VD', 'GR']
+    trips = Trip.location_contains(terms)
+    assert_equal trips.length, 2
+  end
+
+  test "global_search search records by title, description, categories and location" do
+    terms = ['VD', 'city', 'journey']
+    trips = Trip.global_search(terms)
+    assert_equal trips.length, 3
+  end
+
+  test "filtered_search search by title and description with categories filters" do
+    terms = ['one']
+    categories_terms = ['city']
+    location_terms = ['']
+    trips = Trip.filtered_search(terms, categories_terms, location_terms)
+    assert_equal trips.length, 1
+  end
+
+  test "filtered_search search by title and description with location filters" do
+    terms = ['one']
+    categories_terms = ['']
+    location_terms = ['VD']
+    trips = Trip.filtered_search(terms, categories_terms, location_terms)
+    assert_equal trips.length, 1
+  end
+
+  test "filtered_search search by title and description with categories and location filters" do
+    terms = ['one', 'description']
+    categories_terms = ['advanturous']
+    location_terms = ['CH']
+    trips = Trip.filtered_search(terms, categories_terms, location_terms)
+    assert_equal trips.length, 1
+  end
 end
