@@ -1,0 +1,15 @@
+<div class="main-title">
+  <h1>All trips</h1>
+</div>
+
+<% if @trips.any? %>
+  <ul class="card-list">
+    <%= @trips.each do |trip| %>
+      <li>
+        <h3><%= trip.title %></h3>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="not-found">No trip found.</p>
+<% end %>

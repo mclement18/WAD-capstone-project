@@ -8,6 +8,7 @@ class TripsControllerTest < ActionDispatch::IntegrationTest
   test "get index" do
     get trips_url
     assert :success
+    assert_select 'h3', @trip.title
   end
 
   test "get index with a simple search" do
