@@ -52,3 +52,9 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# carmen gem to get countries and subregions lists with translation
+gem 'carmen'
+
+# city-state to get a list of cities around the world
+gem 'city-state'
