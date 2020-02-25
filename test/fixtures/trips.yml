@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  description: MyText
+  title: Trip one
+  description: This is trip one
   image: MyString
-  categories: MyString
-  location: MyString
+  categories: city__cultural
+  location: Europe__CH__BE__Bern
 
 two:
-  title: MyString
-  description: MyText
+  title: Trip two
+  description: This is trip two
   image: MyString
-  categories: MyString
-  location: MyString
+  categories: road__advanturous
+  location: Europe__CH__GR__
