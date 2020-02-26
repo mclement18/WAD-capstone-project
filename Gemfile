@@ -57,4 +57,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'carmen'
 
 # city-state to get a list of cities around the world
-gem 'city-state'
+gem 'city-state', '~> 0.0.13'

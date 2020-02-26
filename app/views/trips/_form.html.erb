@@ -29,7 +29,8 @@
   </div>
   <div class="input-group">
     <%= form.label :city, class: 'input-label' %>
-    <%= form.select :city, city_options(trip.city), {}, class: 'input-field' %>
+    <%= form.select :city, city_options(trip.country, trip.region, trip.city), {}, class: 'input-field' %>
+    <button type="button">Manual entry</button>
   </div>
   <div class="prompt">
     <%= form.submit class: 'btn' %>
