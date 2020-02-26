@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show, :edit, :update]
+  before_action :ensure_authenticated, only: [:new, :create, :edit, :update]
+  before_action :set_trip,             only: [:show, :edit, :update]
   
   def index
     if params[:q].present?
