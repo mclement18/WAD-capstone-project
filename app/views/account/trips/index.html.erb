@@ -1,0 +1,15 @@
+<div class="main-title">
+  <h1>Your Trips</h1>
+</div>
+
+<% if @trips.any? %>
+  <ul class="card-list">
+    <% @trips.each do |trip| %>
+      <li>
+        <h3><%= trip.title %></h3>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="not-found">You did not created any trip yet.</p>
+<% end %>

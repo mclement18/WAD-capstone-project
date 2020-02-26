@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   patch 'account', to: 'account#update'
   get 'account/edit', to: 'account#edit', as: 'edit_account'
   
+  namespace :account do
+    resources :trips, only: [:index]
+  end
+  
   resources :users
 
   resources :trips

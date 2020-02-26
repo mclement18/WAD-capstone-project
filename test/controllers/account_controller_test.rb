@@ -21,4 +21,9 @@ class AccountControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select '.name', 'New name'
   end
+
+  test "get account/trips#index" do
+    get account_trips_url
+    assert_response :success
+  end
 end
