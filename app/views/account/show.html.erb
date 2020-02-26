@@ -1,0 +1,22 @@
+<div class="main-title">
+  <h1>Your profile</h1>
+  <%= link_to 'Edit Profile', edit_account_path %>
+</div>
+
+<p class="user-info">
+  <div>
+    <h3 class="name"><%= current_user.name %></h3>
+    <h3 class="email"><%= current_user.email %></h3>
+  </div>
+  <div class="avatar">
+  </div>
+</div>
+
+<div class="user-stat">
+  <ul>
+    <li>Trips created:</li>
+    <li>Trips to do:</li>
+    <li>Trips done:</li>
+    <li>Comments:</li>
+  </ul>
+</div>

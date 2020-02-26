@@ -1,0 +1,26 @@
+<div class="main-title">
+  <h1>Update your account</h1>
+</div>
+
+<%= form_for(current_user, url: account_path) do |form| %>
+  <div class="input-group">
+    <%= form.label :email, class: 'input-label' %>
+    <%= form.email_field :email, class: 'input-field', placeholder: 'e.g. peterparker@oscorp.com' %>
+  </div>
+  <div class="input-group">
+    <%= form.label :password, class: 'input-label' %>
+    <%= form.password_field :password, class: 'input-field' %>
+  </div>
+  <div class="input-group">
+    <%= form.label :name, class: 'input-label' %>
+    <%= form.text_field :name, class: 'input-field' %>
+  </div>
+  <div class="input-group">
+    <%= form.label :avatar, class: 'input-label' %>
+    <%= form.file_field :avatar, class: 'input-field', accept: '.jpg, .jpeg, .gif, .png' %>
+  </div>
+  <div class="prompt">
+    <%= form.submit 'Update' %>
+  </div>
+<% end %>
+

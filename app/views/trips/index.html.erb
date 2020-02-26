@@ -8,7 +8,7 @@
 
 <% if @trips.any? %>
   <ul class="card-list">
-    <%= @trips.each do |trip| %>
+    <% @trips.each do |trip| %>
       <li>
         <h3><%= trip.title %></h3>
       </li>
