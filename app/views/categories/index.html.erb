@@ -1,0 +1,19 @@
+<div class="main-title">
+  <% if @queries.present? %>
+    <h1><%= @category.capitalize %> Trips that match "<%= @queries.join(' ') %>"</h1>
+  <% else %>
+    <h1>All <%= @category.capitalize %> Trips</h1>
+  <% end %>
+</div>
+
+<% if @trips.any? %>
+  <ul class="card-list">
+    <% @trips.each do |trip| %>
+      <li>
+        <h3><%= trip.title %></h3>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="not-found">No trip found.</p>
+<% end %>

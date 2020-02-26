@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   resources :users
 
   resources :trips
+
+  get 'categories/:category', to: 'categories#index', as: 'categories'
 end
