@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200220204051) do
+ActiveRecord::Schema.define(version: 20200227161515) do
+
+  create_table "stages", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "image"
+    t.integer "number"
+    t.string "travel_type"
+    t.text "directions"
+    t.string "address"
+    t.integer "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_stages_on_trip_id"
+  end
 
   create_table "trips", force: :cascade do |t|
     t.string "title"
