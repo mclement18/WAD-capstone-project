@@ -2,6 +2,7 @@ class Trip < ApplicationRecord
   attr_accessor :continent, :country, :region, :city, :category_1, :category_2
   
   belongs_to :user
+  has_many   :stages, -> { order(number: :asc) }
 
   validates :title, presence: true, length: { maximum: 75 }
   validates :description, presence: true, length: { maximum: 500 }
