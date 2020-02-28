@@ -1,21 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  description: MyText
+  title: First stage
+  description: This is the staring point
   image: MyString
   number: 1
-  travel_type: MyString
+  travel_type: transit
   directions: MyText
-  coordinates: MyString
+  address: MyString
   trip: one
 
 two:
-  title: MyString
-  description: MyText
+  title: Second stage
+  description: A nice place to stop
   image: MyString
-  number: 1
-  travel_type: MyString
+  number: 2
+  travel_type: bicycling
   directions: MyText
-  coordinates: MyString
-  trip: two
+  address: MyString
+  trip: one
