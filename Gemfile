@@ -58,3 +58,9 @@ gem 'carmen'
 
 # city-state to get a list of cities around the world
 gem 'city-state', '~> 0.0.13'
+
+# Use Figaro to store keys and secrets in environment variables
+gem 'figaro'
+
+# Methods to use Google Maps APIs
+gem 'google_maps_service'
