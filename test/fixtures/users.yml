@@ -4,10 +4,10 @@ one:
   email: one@wheretogo.com
   password_digest: <%= BCrypt::Password.create('testpassword') %>
   name: One
-  role: admin
+  role: registered
 
 two:
   email: two@wheretogo.com
   password_digest: <%= BCrypt::Password.create('testpassword') %>
   name: Two
-  role: registered
+  role: admin

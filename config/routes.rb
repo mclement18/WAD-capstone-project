@@ -13,12 +13,15 @@ Rails.application.routes.draw do
   get 'account/edit', to: 'account#edit', as: 'edit_account'
   
   namespace :account do
-    resources :trips, only: [:index]
+    resources :trips, only: :index
   end
   
   resources :users
 
-  resources :trips
+  patch 'trips/:trip_id/stages', to: 'stages#reorder', as: 'reorder_trip_stages'
+  resources :trips do
+    resources :stages
+  end
 
   get 'categories/:category', to: 'categories#index', as: 'categories'
 end

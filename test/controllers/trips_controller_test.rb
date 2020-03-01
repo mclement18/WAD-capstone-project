@@ -18,14 +18,14 @@ class TripsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "get new" do
-    sign_in_as('two@wheretogo.com')
+    sign_in_as('one@wheretogo.com')
 
     get new_trip_url
     assert_response :success
   end
 
   test "create new trip" do
-    sign_in_as('two@wheretogo.com')
+    sign_in_as('one@wheretogo.com')
     
     assert_difference('Trip.count') do
       post trips_url, params: { trip: { title: 'New trip',
@@ -47,14 +47,14 @@ class TripsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "get edit" do
-    sign_in_as('two@wheretogo.com')
+    sign_in_as('one@wheretogo.com')
     
     get edit_trip_url(@trip)
     assert_response :success
   end
 
   test "update a trip" do
-    sign_in_as('two@wheretogo.com')
+    sign_in_as('one@wheretogo.com')
 
     patch trip_url(@trip), params: { trip: { title: 'New title',
                                              description: 'New description' } }
