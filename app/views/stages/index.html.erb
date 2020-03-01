@@ -1,0 +1,27 @@
+<div class="main-title">
+  <h1>Stages of trip: <%= @trip.title %></h1>
+</div>
+
+<h2 class="subtitle">Reorder stages by dragging them. Don't forget to control the travel type!</h2>
+
+<% if @stages.any? %>
+  <%= form_tag reorder_trip_stages_path(@trip), class: 'drag-drop-form' do %>
+    <% @stages.each do |stage| %>
+      <div class="draggable-field">
+        <div class="input-group">
+          <%= label_tag "trip_stages_stage_#{stage.number}_stage_id", "Stage #{stage.number}", class: 'input-label' %>
+          <%= hidden_field_tag "trip[stages][stage_#{stage.number}][stage_id]", stage.id %>
+          <span class="draggable-field-title"><%= stage.title %></span>
+        </div>
+        <div class="input-group">
+          <% unless is_first_stage?(stage) %>
+            <%= label_tag "trip_stages_stage_#{stage.number}_travel_type", 'Travel type', class: 'input-label' %>
+            <%= select_tag "trip[stages][stage_#{stage.number}][travel_type]", travel_type_options(stage.travel_type), class: 'input-field' %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+  <p class="not-found">This trip has no stages...</p>
+<% end %>
