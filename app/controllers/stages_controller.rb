@@ -6,6 +6,10 @@ class StagesController < ApplicationController
     @stages = @trip.stages
   end
 
+  def new
+    @stage = Stage.new
+  end
+
   private
 
   def load_trip

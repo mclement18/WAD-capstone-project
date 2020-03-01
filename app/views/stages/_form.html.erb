@@ -1,0 +1,31 @@
+<%= form_for [trip, stage] do |form| %>
+  <% if new_stage %>
+    <%= form.hidden_field :number, value: trip.stages.length + 1 %>
+  <% end %>
+  <div class="input-group">
+    <%= form.label :title, class: 'input-label' %>
+    <%= form.text_field :title, class: 'input-field', placeholder: 'e.g. The Machu Picchu' %>
+  </div>
+  <div class="input-group">
+    <%= form.label :description, class: 'input-label' %>
+    <%= form.text_area :description, class: 'input-field', placeholder: 'max 500 characters' %>
+  </div>
+  <div class="input-group">
+    <%= form.label :travel_type, class: 'input-label' %>
+    <%= form.select :travel_type, travel_type_options(stage.travel_type), {}, class: 'input-field' %>
+  </div>
+  <div class="input-group">
+    <%= form.label :address, class: 'input-label' %>
+    <%= form.text_field :address, class: 'input-field', placeholder: 'Type your address...' %>
+  </div>
+  <iframe
+    width="600"
+    height="450"
+    frameborder="0" style="border:0"
+    src="https://www.google.com/maps/embed/v1/place?key=<%= ENV["GOOGLE_API_CLIENT_KEY"] %>&q=<%= url_encode(map_query(stage.address)) %>"
+    allowfullscreen>
+  </iframe>
+  <div class="prompt">
+    <%= form.submit class: 'btn' %>
+  </div>
+<% end %>

@@ -6,4 +6,12 @@ module StagesHelper
   def is_first_stage?(stage)
     stage.number == 1
   end
+
+  def map_query(address)
+    if address
+      address
+    else
+      'Everest'
+    end
+  end
 end
