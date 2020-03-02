@@ -11,9 +11,6 @@ class Stage < ApplicationRecord
   before_update :update_directions!
   after_save :update_next_stage_directions!
 
-  scope :find_most_recent_by_trip_and_number, -> (trip_id, number) { order(updated_at: :desc)
-                                                                      .find_by(trip_id: trip_id, number: number) }
-
   def set_directions!(start_address = nil)
     if start_address
       self.directions = Gmaps.directions( start_address, address, mode: travel_type, alternatives: false)[0].to_json
@@ -30,7 +27,7 @@ class Stage < ApplicationRecord
     if @next_stage.present?
       return @next_stage
     end
-    @next_stage = Stage.find_most_recent_by_trip_and_number(trip_id, number + 1)
+    @next_stage = Stage.order(updated_at: :desc) .find_by(trip_id: trip_id, number: number + 1)
     @next_stage ||= 'None'
   end
   
@@ -38,7 +35,7 @@ class Stage < ApplicationRecord
     if @previous_stage.present?
       return @previous_stage
     end
-    @previous_stage = Stage.find_most_recent_by_trip_and_number(trip_id, number - 1) unless number == 1
+    @previous_stage = Stage.order(updated_at: :desc) .find_by(trip_id: trip_id, number: number - 1) unless number == 1
     @previous_stage ||= 'None'
   end
 
