@@ -27,6 +27,9 @@ class StagesController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
   private
 
   def load_trip
