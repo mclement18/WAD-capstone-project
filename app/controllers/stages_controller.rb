@@ -30,6 +30,16 @@ class StagesController < ApplicationController
   def edit
   end
 
+  def update
+    respond_to do |format|
+      if @stage.update stage_params
+        format.html { redirect_to trip_stage_path(@trip, @stage), notice: 'Stage successfully updated' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
   private
 
   def load_trip

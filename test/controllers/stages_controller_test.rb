@@ -68,9 +68,10 @@ class StagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "update stage" do
-    patch trip_stage_url(@trip, @stage), params: { stage: { title: 'New title', descritpion: 'New description' } }
+    patch trip_stage_url(@trip, @stage), params: { stage: { title: 'New title', description: 'New description' } }
     assert_redirected_to trip_stage_url(@trip, @stage)
     follow_redirect!
+    assert_response :success
     assert_select 'h1', 'New title'
     assert_select '.description', 'New description'
   end
