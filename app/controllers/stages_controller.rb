@@ -10,9 +10,26 @@ class StagesController < ApplicationController
     @stage = Stage.new
   end
 
+  def create
+    @stage = Stage.new stage_params
+    @stage.number = @trip.stages.length + 1
+    @stage.trip = @trip
+    respond_to do |format|
+      if @stage.save
+        format.html { redirect_to trip_stage_path(@trip, @stage), notice: 'Stage successfully created!' }
+      else
+        format.html { render :new }
+      end
+    end
+  end
+
   private
 
   def load_trip
     @trip = Trip.find(params[:trip_id])
+  end
+
+  def stage_params
+    params.require(:stage).permit(:title, :description, :travel_type, :address, :image)
   end
 end

@@ -45,11 +45,13 @@ class StagesControllerTest < ActionDispatch::IntegrationTest
 
   test "create a stage" do
     assert_different('Stage.count') do
-      post trip_stages_url(@trip), params: { stage: { title: 'New title',
-                                                 description: 'New description',
-                                                 number: 1,
-                                                 travel_type: 'driving',
-                                                 address: 'there' } }
+      post trip_stages_url(@trip), params: { stage: {
+                                               title: 'New title',
+                                               description: 'New description',
+                                               travel_type: 'driving',
+                                               address: 'Montreux' 
+                                             } 
+                                           }
     end
     assert_redirected_to trip_stage_url(@trip, Stage.last)
   end
