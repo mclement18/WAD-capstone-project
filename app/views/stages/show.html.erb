@@ -1,0 +1,26 @@
+<div class="main-title">
+  <h1><%= @stage.title %></h1>
+  <h2>From trip: <%= @trip.title %></h2>
+</div>
+
+<div class="media">
+  <div class="image">
+
+  </div>
+
+  <div class="map">
+
+  </div>
+</div>
+
+<div class="info">
+  <p class="description">
+    <%= @stage.description %>
+  </p>
+</div>
+
+<div class="stage-nave">
+  <%= link_to 'Previous Stage', trip_stage_path(@trip, @stage.previous_stage) %>
+  <%= link_to 'Edit Stage', edit_trip_stage_path(@trip, @stage) %>
+  <%= link_to 'Next Stage', trip_stage_path(@trip, @stage.next_stage) %>
+</div>

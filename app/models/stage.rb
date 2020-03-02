@@ -11,13 +11,32 @@ class Stage < ApplicationRecord
   before_update :update_directions!
   after_save :update_next_stage_directions!
 
-  def set_directions!(previous_stage=nil)
-    if number == 1
-      self.directions = "None"
+  def set_directions!(start_address = nil)
+    if start_address
+      self.directions = Gmaps.directions( start_address, address, mode: travel_type, alternatives: false)[0].to_json
     else
-      previous_stage ||= trip.stages[number - 2]
-      self.directions = Gmaps.directions( previous_stage.address, address, mode: travel_type, alternatives: false)[0].to_json
+      if previous_stage == 'None'
+        self.directions = 'None'
+      else
+        self.directions = Gmaps.directions( previous_stage.address, address, mode: travel_type, alternatives: false)[0].to_json
+      end
     end
+  end
+
+  def next_stage
+    if @next_stage.present?
+      return @next_stage
+    end
+    @next_stage = Stage.find_by(trip_id: trip_id, number: number + 1)
+    @next_stage ||= 'None'
+  end
+  
+  def previous_stage
+    if @previous_stage.present?
+      return @previous_stage
+    end
+    @previous_stage = Stage.find_by(trip_id: trip_id, number: number - 1) unless number == 1
+    @previous_stage ||= 'None'
   end
 
   private
@@ -30,16 +49,8 @@ class Stage < ApplicationRecord
 
   def update_next_stage_directions!
     if next_stage != 'None' && saved_change_to_address?
-      next_stage.set_directions!(self)
+      next_stage.set_directions!(self.address)
       next_stage.save
     end
-  end
-
-  def next_stage
-    if @next_stage.present?
-      return @next_stage
-    end
-    @next_stage = trip.stages[number]
-    @next_stage ||= 'None'
   end
 end

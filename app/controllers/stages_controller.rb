@@ -1,6 +1,7 @@
 class StagesController < ApplicationController
   before_action :ensure_authenticated
   before_action :load_trip
+  before_action :set_stage, only: [:show, :edit, :update]
   
   def index
     @stages = @trip.stages
@@ -23,10 +24,17 @@ class StagesController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
 
   def load_trip
     @trip = Trip.find(params[:trip_id])
+  end
+
+  def set_stage
+    @stage = Stage.find(params[:id])
   end
 
   def stage_params
