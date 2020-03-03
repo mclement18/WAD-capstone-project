@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  body: MyText
+  body: First Trip comment
   user: one
   article: one
-  article_type: Article
+  article_type: Trip
 
 two:
-  body: MyText
-  user: two
-  article: two
-  article_type: Article
+  body: First Stage comment
+  user: one
+  article: one
+  article_type: Stage
