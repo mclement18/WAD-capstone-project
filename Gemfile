@@ -64,3 +64,6 @@ gem 'figaro'
 
 # Methods to use Google Maps APIs
 gem 'google_maps_service'
+
+# Use carrierwave for image upload
+gem 'carrierwave'

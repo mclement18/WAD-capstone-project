@@ -5,9 +5,11 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true, email: true
   validates :role, inclusion: { in: %w(admin registered) }
-
+  
   after_initialize :default_role!
   before_validation :downcase_email
+
+  mount_uploader :avatar, AvatarUploader
 
   private
 
