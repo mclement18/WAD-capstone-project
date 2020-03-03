@@ -27,6 +27,8 @@ class Trip < ApplicationRecord
                                                               .categories_contains(categories_terms)
                                                               .location_contains(location_terms) }
 
+  mount_uploader :image, ImageUploader
+                                                                                                                       
   private
 
   def serialize_location

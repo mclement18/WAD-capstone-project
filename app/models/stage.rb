@@ -11,6 +11,8 @@ class Stage < ApplicationRecord
   before_update :update_directions!
   after_save :update_next_stage_directions!
 
+  mount_uploader :image, ImageUploader
+
   def set_directions!(start_address = nil)
     if start_address
       self.directions = Gmaps.directions( start_address, address, mode: travel_type, alternatives: false)[0].to_json
