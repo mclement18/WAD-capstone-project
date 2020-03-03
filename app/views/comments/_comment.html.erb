@@ -1,0 +1,13 @@
+<div data-user-id="<%= comment.user_id %>" class="media comment">
+  <div class="media-image">
+    <%= image_tag comment.user.avatar_url, class: 'avatar' %>
+  </div>
+  <div class="media-content">
+    <div class="media-title">
+      <h3 class="comment-user"><%= comment.user.name %> <time datetime="<%= comment.created_at.strftime("%FT%T")%>"><%= time_ago_in_words(comment.created_at) %></time></h3>
+    </div>
+    <div class="media-body">
+      <p class="comment-body"><%= comment.body %></p>
+    </div>
+  </div>
+</div>

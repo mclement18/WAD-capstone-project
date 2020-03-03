@@ -18,9 +18,18 @@ Rails.application.routes.draw do
   
   resources :users
 
+  concern :commentable do
+    resources :comments
+  end
+
   patch 'trips/:trip_id/stages', to: 'stages#reorder', as: 'reorder_trip_stages'
   resources :trips do
     resources :stages
+    concerns :commentable
+  end
+
+  scope 'stages/:stage_id', as: 'stage' do
+    concerns :commentable
   end
 
   get 'categories/:category', to: 'categories#index', as: 'categories'

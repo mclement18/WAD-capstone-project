@@ -17,3 +17,5 @@
     <%= @trip.description %>
   </p>
 </div>
+
+<%= render partial: 'comments/comments', locals: { article: @trip } %>

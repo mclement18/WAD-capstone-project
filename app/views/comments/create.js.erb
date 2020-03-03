@@ -1,0 +1,4 @@
+<% if @comment_was_saved %>
+  document.getElementById('comments').insertAdjacentHTML('afterbegin', '<%=j render @comment %>');
+  document.getElementById('new_comment').outerHTML = '<%=j render 'comments/new', article: @article %>';
+<% end %>
