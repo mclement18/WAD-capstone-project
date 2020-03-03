@@ -3,6 +3,7 @@ class Trip < ApplicationRecord
   
   belongs_to :user
   has_many   :stages, -> { order(number: :asc) }
+  has_many   :comments, as: :article
 
   validates :title, presence: true, length: { maximum: 75 }
   validates :description, presence: true, length: { maximum: 500 }

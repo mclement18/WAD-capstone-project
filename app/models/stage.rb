@@ -1,5 +1,6 @@
 class Stage < ApplicationRecord
   belongs_to :trip
+  has_many   :comments, as: :article
 
   validates :title, presence: true, length: { maximum: 75 }
   validates :description, presence: true, length: { maximum: 500 }
