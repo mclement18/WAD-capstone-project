@@ -66,7 +66,7 @@ gem 'city-state', '~> 0.0.13'
 gem 'figaro'
 
 # Methods to use Google Maps APIs
-gem 'google_maps_service'
+gem 'googlemaps-services'
 
 # Use carrierwave for image upload
 gem 'carrierwave'

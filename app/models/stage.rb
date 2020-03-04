@@ -16,12 +16,12 @@ class Stage < ApplicationRecord
 
   def set_directions!(start_address = nil)
     if start_address
-      self.directions = Gmaps.directions( start_address, address, mode: travel_type, alternatives: false)[0].to_json
+      self.directions = GmapsDirections.query( origin: start_address, destination: address, mode: travel_type, alternatives: false)[0].to_json
     else
       if previous_stage == 'None'
         self.directions = 'None'
       else
-        self.directions = Gmaps.directions( previous_stage.address, address, mode: travel_type, alternatives: false)[0].to_json
+        self.directions = GmapsDirections.query( origin: previous_stage.address, destination: address, mode: travel_type, alternatives: false)[0].to_json
       end
     end
   end
