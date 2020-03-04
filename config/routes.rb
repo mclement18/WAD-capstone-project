@@ -33,4 +33,6 @@ Rails.application.routes.draw do
   end
 
   get 'categories/:category', to: 'categories#index', as: 'categories'
+
+  mount ActionCable.server => '/cable'
 end

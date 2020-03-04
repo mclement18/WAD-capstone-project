@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
     if @current_user.present?
       return @current_user
     end
-    @current_user = User.find(session[:user_id])
+    @current_user = User.find(session[:user_id]) if logged_in?
   end
 end
