@@ -4,6 +4,10 @@ class Trip < ApplicationRecord
   belongs_to :user
   has_many   :stages, -> { order(number: :asc) }
   has_many   :comments, -> { order(created_at: :desc) }, as: :article
+  has_many   :to_dos
+  has_many   :dreamers, -> { where('status = ?', 'to-do') }, through: :to_dos, source: :user
+  has_many   :travelers, -> { where('status = ?', 'in-progress') }, through: :to_dos, source: :user
+  has_many   :veterans, -> { where('status = ?', 'done') }, through: :to_dos, source: :user
 
   validates :title, presence: true, length: { maximum: 75 }
   validates :description, presence: true, length: { maximum: 500 }

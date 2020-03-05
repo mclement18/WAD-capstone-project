@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   has_many :trips
+  has_many :to_dos
+  has_many :dreams, -> { where('status = ?', 'to-do') }, through: :to_dos, source: :trip
+  has_many :travels, -> { where('status = ?', 'in-progress') }, through: :to_dos, source: :trip
+  has_many :success, -> { where('status = ?', 'done') }, through: :to_dos, source: :trip
   
   has_secure_password
 
