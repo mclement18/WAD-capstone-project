@@ -1,0 +1,22 @@
+<div class="main-title">
+  <h1>Edit User</h1>
+</div>
+
+<%= form_for(@user) do |form| %>
+  <div class="input-group">
+    <%= form.label :name, class: 'input-label' %>
+    <%= form.text_field :name, class: 'input-field' %>
+  </div>
+  <div class="input-group">
+    <%= form.label :avatar, class: 'input-label' %>
+    <%= form.file_field :avatar, class: 'input-field', accept: '.jpg, .jpeg, .gif, .png' %>
+  </div>
+  <div class="input-group">
+    <%= form.label :role, class: 'input-label' %>
+    <%= form.select :role, %w(registered admin), {}, class: 'input-field' %>
+  </div>
+  <div class="prompt">
+    <%= form.submit %>
+  </div>
+<% end %>
+
