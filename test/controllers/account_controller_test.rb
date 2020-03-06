@@ -26,4 +26,19 @@ class AccountControllerTest < ActionDispatch::IntegrationTest
     get account_trips_url
     assert_response :success
   end
+
+  test "get account/to_dos#dreams" do
+    get account_todolist_url
+    assert_response :success
+  end
+
+  test "get account/to_dos#travels" do
+    get account_travels_url
+    assert_response :success
+  end
+
+  test "get account/to_dos#success" do
+    get account_success_url
+    assert_response :success
+  end
 end

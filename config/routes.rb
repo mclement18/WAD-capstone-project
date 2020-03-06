@@ -14,9 +14,14 @@ Rails.application.routes.draw do
   
   namespace :account do
     resources :trips, only: :index
+    get 'todolist', to: 'to_dos#dreams'
+    get 'travels', to: 'to_dos#travels'
+    get 'success', to: 'to_dos#success'
   end
   
-  resources :users
+  resources :users do
+    resources :to_dos, only: [:create, :update, :destroy]
+  end
 
   concern :commentable do
     resources :comments
