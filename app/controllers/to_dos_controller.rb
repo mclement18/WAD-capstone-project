@@ -15,7 +15,19 @@ class ToDosController < ApplicationController
   end
 
   def update
-    
+    respond_to do |format|
+      if @todo.update_status(params[:transition])
+        @todo.save
+        case @todo.status
+        when 'in-progress' then flash.now.notice = 'Trip added to your current Trips!'
+        when 'done'        then flash.now.notice = 'Trip added to your completed Trips!'
+        when 'cancel'      then flash.now.notice = 'Trip moved back to your To Do List.'
+        end
+      else
+        flash.now.alert = 'Unable to update to do status. Wrong transition...'
+      end
+      format.js
+    end
   end
 
   def destroy
