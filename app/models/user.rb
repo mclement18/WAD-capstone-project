@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :trips
+  has_many :trips, -> { active }
   has_many :to_dos
   has_many :dreams, -> { where('status = ?', 'to-do') }, through: :to_dos, source: :trip
   has_many :travels, -> { where('status = ?', 'in-progress') }, through: :to_dos, source: :trip
@@ -26,11 +26,7 @@ class User < ApplicationRecord
     self.password = 'deleted'
     self.role = 'registered'
     self.remove_avatar!
-    if self.save
-      true
-    else
-      false
-    end
+    self.save
   end
   
   private

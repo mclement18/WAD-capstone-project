@@ -13,10 +13,13 @@ class Trip < ApplicationRecord
   validates :description, presence: true, length: { maximum: 500 }
   validates :category_1, inclusion: { in: %w(city road international) }
   validates :category_2, inclusion: { in: %w(relaxing cultural advanturous) }
+  validates :status, inclusion: { in: %w(active deleted) }
 
+  after_initialize :initial_status!
   after_find :deserialize_categories, :deserialize_location
   after_validation :serialize_categories, :serialize_location
 
+  scope :active,                      -> { where('status = ?', 'active') }
   scope :title_contains,              -> (terms) { where(Trip.arel_table[:title].matches_any(terms.map { |term| "%#{term}%" })) }
   scope :description_contains,        -> (terms) { where(Trip.arel_table[:description].matches_any(terms.map { |term| "%#{term}%" })) }
   scope :title_or_description_search, -> (terms) { title_contains(terms)
@@ -34,6 +37,15 @@ class Trip < ApplicationRecord
 
   mount_uploader :image, ImageUploader
                                                                                                                        
+  def soft_delete_if_needed
+    if self.to_dos.any?
+      self.status = 'deleted'
+      self.save
+    else
+      self.destroy
+    end  
+  end
+  
   private
 
   def serialize_location
@@ -56,5 +68,9 @@ class Trip < ApplicationRecord
     categories_array = categories.split('__')
     self.category_1 = categories_array[0]
     self.category_2 = categories_array[1]
+  end
+
+  def initial_status!
+    self.status ||= 'active'
   end
 end

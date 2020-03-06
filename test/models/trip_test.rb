@@ -337,4 +337,35 @@ class TripTest < ActiveSupport::TestCase
     trips = Trip.filtered_search(terms, categories_terms, location_terms)
     assert_equal trips.length, 1
   end
+
+  test "trip status is active by default" do
+    trip = Trip.create! title: "Trip's title",
+                        description: "The trip's description",
+                        category_1: 'city',
+                        category_2: 'cultural',
+                        continent: 'Europe',
+                        country: 'CH',
+                        region: 'VD',
+                        city: 'Lausanne',
+                        user: users(:one)
+    assert_equal trip.status, 'active'
+  end
+
+  test "trip is soft deleted if present in a user's to do list" do
+    trip = trips(:two)
+    assert trip.to_dos.any?
+    assert trip.soft_delete_if_needed
+    trip = Trip.find(trip.id)
+    assert_equal trip.status, 'deleted'
+    assert_equal users(:two).trips.count, 1
+  end
+
+  test "trip is destroyed if not present in any to do list" do
+    trip = trips(:one)
+    refute trip.to_dos.any?
+    assert_difference('Trip.count', -1) do
+      assert trip.soft_delete_if_needed
+    end
+    assert trip.destroyed?
+  end
 end

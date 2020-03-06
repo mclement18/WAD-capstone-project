@@ -6,6 +6,7 @@ one:
   categories: city__cultural
   location: Europe__CH__BE__Bern
   user: one
+  status: active
 
 two:
   title: A second journey
@@ -13,6 +14,7 @@ two:
   categories: road__advanturous
   location: Europe__CH__GR__
   user: two
+  status: active
 
 three:
   title: A third one
@@ -20,4 +22,5 @@ three:
   categories: international__relaxing
   location: Europe__CH__VD__Montricher
   user: two
+  status: active
     
