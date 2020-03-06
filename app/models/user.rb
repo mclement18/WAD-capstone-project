@@ -9,12 +9,30 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true, email: true
   validates :role, inclusion: { in: %w(admin registered) }
+  validates :status, inclusion: { in: %w(active deleted) }
   
-  after_initialize :default_role!
+  after_initialize  :default_role!
+  after_initialize  :initial_status!
   before_validation :downcase_email
+
+  scope :active, -> { where('status = ?', 'active') }
 
   mount_uploader :avatar, AvatarUploader
 
+  def soft_delete
+    self.status = 'deleted'
+    self.email = "deleted#{SecureRandom.hex}@email.com"
+    self.name = 'Deleted User'
+    self.password = 'deleted'
+    self.role = 'registered'
+    self.remove_avatar!
+    if self.save
+      true
+    else
+      false
+    end
+  end
+  
   private
 
   def downcase_email
@@ -23,5 +41,9 @@ class User < ApplicationRecord
 
   def default_role!
     self.role ||= 'registered'
+  end
+
+  def initial_status!
+    self.status ||= 'active'
   end
 end
