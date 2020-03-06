@@ -31,7 +31,14 @@ class ToDosController < ApplicationController
   end
 
   def destroy
-    
+    respond_to do |format|
+      if @todo.destroy
+        flash.now.notice = 'Trip successfully removed from your list!'
+      else
+        flash.now.alert = 'Unable to remove trip from your list.'
+      end
+      format.js
+    end
   end
 
   private
