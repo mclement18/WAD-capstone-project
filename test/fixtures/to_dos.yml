@@ -2,10 +2,8 @@
 
 one:
   user: one
-  trip: one
-  status: MyString
+  trip: two
 
 two:
   user: two
   trip: two
-  status: MyString
