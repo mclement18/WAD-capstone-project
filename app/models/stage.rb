@@ -1,4 +1,6 @@
 class Stage < ApplicationRecord
+  attr_accessor :update_next_stage_directions
+  
   belongs_to :trip
   has_many   :comments, -> { order(created_at: :desc) }, as: :article
 
@@ -9,8 +11,8 @@ class Stage < ApplicationRecord
   validates :address, presence: true
 
   before_create :set_directions!
-  before_update :update_directions!
-  after_save :update_next_stage_directions!
+  before_update :update_directions!, unless: :will_save_change_to_directions?
+  after_update_commit :update_next_stage_directions!, if: :update_next_stage_directions?
 
   mount_uploader :image, ImageUploader
 
@@ -42,12 +44,24 @@ class Stage < ApplicationRecord
     @previous_stage ||= 'None'
   end
 
+  def update_next_stage_directions
+    if @update_next_stage_directions.nil?
+      true
+    else
+      @update_next_stage_directions
+    end
+  end
+
   private
 
   def update_directions!
     if will_save_change_to_number? || will_save_change_to_address? || will_save_change_to_travel_type?
       set_directions!
     end
+  end
+
+  def update_next_stage_directions?
+    update_next_stage_directions
   end
 
   def update_next_stage_directions!

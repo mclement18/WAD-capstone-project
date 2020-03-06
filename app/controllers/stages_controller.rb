@@ -61,6 +61,7 @@ class StagesController < ApplicationController
 
   def reorder_stages(stages, trip_id)
     update_next = false
+    previous_address = nil
 
     1.upto(stages.keys.length) do |i|
       stage = Stage.find_by(id: stages["stage_#{i}".to_sym][:stage_id], trip_id: trip_id)
@@ -71,13 +72,16 @@ class StagesController < ApplicationController
       stage.travel_type = stage.travel_type_change_to_be_saved[1] unless stage.validate(:travel_type)
 
       if stage.will_save_change_to_number?
+        stage.set_directions!(previous_address)
         update_next = true
       else
-        stage.set_directions! if !stage.will_save_change_to_travel_type? && update_next
+        stage.set_directions!(previous_address) if !stage.will_save_change_to_travel_type? && update_next
         update_next = false
       end
 
+      stage.update_next_stage_directions = false
       stage.save
+      previous_address = stage.address
     end
   end
 
