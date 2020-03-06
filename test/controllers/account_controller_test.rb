@@ -41,4 +41,12 @@ class AccountControllerTest < ActionDispatch::IntegrationTest
     get account_success_url
     assert_response :success
   end
+
+  test "delete account" do
+    assert_changes('User.find(users(:two).id).status', from: 'active', to: 'deleted') do
+      delete account_url
+    end
+    assert_redirected_to root_url
+    refute session[:user_id].present?
+  end
 end

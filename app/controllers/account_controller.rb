@@ -17,6 +17,17 @@ class AccountController < ApplicationController
     end
   end
 
+  def destroy
+    respond_to do |format|
+      if current_user.soft_delete
+        session.delete(:user_id) 
+        format.html { redirect_to root_path, notice: 'Account successfuly deleted!' }
+      else
+        format.html { redirect_to users_path, alert: 'Unable to delete account.' }
+      end
+    end
+  end
+
   private
 
   def account_params

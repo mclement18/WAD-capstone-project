@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get 'account', to: 'account#show'
   patch 'account', to: 'account#update'
+  delete 'account', to: 'account#destroy'
   get 'account/edit', to: 'account#edit', as: 'edit_account'
   
   namespace :account do
