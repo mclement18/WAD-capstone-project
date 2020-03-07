@@ -2,7 +2,7 @@ class StagesController < ApplicationController
   before_action :ensure_authenticated
   before_action :load_trip
   before_action :ensure_valid_stage_ids, only: :reorder
-  before_action :set_stage, only: [:show, :edit, :update]
+  before_action :set_stage, only: [:show, :edit, :update, :destroy]
   
   def index
     @stages = @trip.stages
@@ -45,6 +45,16 @@ class StagesController < ApplicationController
         format.html { redirect_to trip_stage_path(@trip, @stage), notice: 'Stage successfully updated' }
       else
         format.html { render :edit }
+      end
+    end
+  end
+
+  def destroy
+    respond_to do |format|
+      if @stage.delete_from(@trip)
+        format.html { redirect_to trip_path(@trip), notice: 'Stage successfully deleted!' }
+      else
+        format.html { redirect_to trip_stage_path(@trip, @stage), alert: 'Unable to delete stage.' }
       end
     end
   end

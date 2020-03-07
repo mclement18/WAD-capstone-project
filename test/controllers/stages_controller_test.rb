@@ -75,4 +75,12 @@ class StagesControllerTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'New title'
     assert_select '.description', 'New description'
   end
+
+  test "delete a stage" do
+    @stage_3 = stages(:three)
+    assert_difference('Stage.count', -1) do
+      delete trip_stage_url(@trip, @stage_3)
+    end
+    assert_redirected_to trip_url(@trip)
+  end
 end

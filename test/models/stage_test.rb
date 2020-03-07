@@ -169,14 +169,6 @@ class StageTest < ActiveSupport::TestCase
     assert JSON.parse(stage.directions)['legs'][0]['start_address'].include? stages(:three).address
   end
 
-  test "directions is updated if number attribute is changed" do
-    stage = stages(:two)
-    refute_equal stage.directions, 'None'
-    stage.update! number: 1
-    stage = Stage.find(stage.id)
-    assert_equal stage.directions, 'None'
-  end
-
   test "directions is updated if travel_type attribute is changed" do
     stage = stages(:two)
     previous_directions = stage.directions
@@ -195,5 +187,35 @@ class StageTest < ActiveSupport::TestCase
     stage_3 = Stage.find(stage_3.id)
     refute_equal stage_2.directions, stage_2_previous_directions
     refute_equal stage_3.directions, stage_3_previous_directions
+  end
+
+  test "delete a stage that has next stages" do
+    trip = trips(:one)
+    assert_equal trip.stages.count, 3
+
+    stage_2 = trip.stages.second
+    stage_3 = trip.stages.last
+
+    assert_equal stage_2.number, 2
+    assert_equal stage_3.number, 3
+
+    assert stage_2.delete_from(trip)
+    assert stage_2.destroyed?
+    assert_equal trip.stages.count, 2
+    
+    new_stage_2 = trip.stages.second
+    assert_equal new_stage_2.number, 2
+    assert_equal new_stage_2.id, stage_3.id
+  end
+
+  test "delete a stage that has no next stage" do
+    trip = trips(:one)
+    assert_equal trip.stages.count, 3
+    stage = trip.stages.last
+
+    assert stage.delete_from(stage.trip)
+    assert stage.destroyed?
+
+    assert_equal trip.stages.count, 2
   end
 end
