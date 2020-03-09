@@ -1,7 +1,10 @@
 class CommentsController < ApplicationController
+  include RoleHelper
+  
   before_action :ensure_authenticated
   before_action :load_article
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_to_edit_comment, only: [:edit, :update, :destroy]
 
   def create
     @comment = Comment.new(comment_params)
@@ -55,6 +58,10 @@ class CommentsController < ApplicationController
 
   def set_comment
     @comment = Comment.find(params[:id])
+  end
+
+  def authorize_to_edit_comment
+    render 'application/not_allowed.js.erb' unless can_edit?(@comment)
   end
 
   def comment_params
