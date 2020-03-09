@@ -2,8 +2,8 @@ class Trip < ApplicationRecord
   attr_accessor :continent, :country, :region, :city, :category_1, :category_2
   
   belongs_to :user
-  has_many   :stages, -> { order(number: :asc) }
-  has_many   :comments, -> { load_users_and_articles.ordered_by_most_recent }, as: :article
+  has_many   :stages, -> { order(number: :asc) }, dependent: :destroy
+  has_many   :comments, -> { load_users_and_articles.ordered_by_most_recent }, as: :article, dependent: :destroy
   has_many   :to_dos
   has_many   :dreamers, -> { where('status = ?', 'to-do') }, through: :to_dos, source: :user
   has_many   :travelers, -> { where('status = ?', 'in-progress') }, through: :to_dos, source: :user

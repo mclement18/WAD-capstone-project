@@ -64,4 +64,13 @@ class TripsControllerTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'New title'
     assert_select 'p.description', 'New description'
   end
+
+  test "delete a trip" do
+    sign_in_as('one@wheretogo.com')
+
+    assert_difference('Trip.count', -1) do
+      delete trip_url(@trip)
+    end
+    assert_redirected_to account_trips_path
+  end
 end

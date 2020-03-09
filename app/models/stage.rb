@@ -2,7 +2,7 @@ class Stage < ApplicationRecord
   attr_accessor :update_next_stage_directions
   
   belongs_to :trip
-  has_many   :comments, -> { load_users_and_articles.ordered_by_most_recent }, as: :article
+  has_many   :comments, -> { load_users_and_articles.ordered_by_most_recent }, as: :article, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 75 }
   validates :description, presence: true, length: { maximum: 500 }
