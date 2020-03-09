@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  before_action :ensure_authenticated, only: :destroy
+  before_action :ensure_not_authenticated, only: [:new, :create]
+  
   def new
   end
 
@@ -20,5 +23,11 @@ class SessionsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'Successfully logged out!' }
     end
+  end
+
+  private
+
+  def ensure_not_authenticated
+    redirect_to account_path, notice: 'You are already logged in.' if logged_in?
   end
 end
