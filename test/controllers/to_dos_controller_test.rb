@@ -28,4 +28,11 @@ class ToDosControllerTest < ActionDispatch::IntegrationTest
     end
     assert_response :success
   end
+
+  test "unauthorized action" do
+    assert_no_difference('ToDo.count') do
+      delete user_to_do_url(@user, to_dos(:two)), xhr: true
+    end
+    assert_response :success
+  end
 end

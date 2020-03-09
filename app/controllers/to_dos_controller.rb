@@ -1,6 +1,9 @@
 class ToDosController < ApplicationController
+  include RoleHelper
+  
   before_action :ensure_authenticated
   before_action :set_todo, only: [:update, :destroy]
+  before_action :authorize_to_edit_todo, only: [:update, :destroy]
   
   def create
     @todo = ToDo.new user: current_user, trip_id: params[:trip_id]
@@ -45,5 +48,9 @@ class ToDosController < ApplicationController
 
   def set_todo
     @todo = ToDo.find(params[:id])
+  end
+
+  def authorize_to_edit_todo
+    render 'application/not_allowed.js.erb' unless can_edit?(@todo)
   end
 end
