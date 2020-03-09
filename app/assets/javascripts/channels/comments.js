@@ -12,20 +12,28 @@ App.comments = App.cable.subscriptions.create("CommentsChannel", {
 
   received: function(data) {
     if (!this.userIsCurrentUser(data.user_id)) {
-      this.collection().insertAdjacentHTML('afterbegin', data.comment);
+      switch (data.action) {
+        case 'create':
+          Comments.insertComment(data.comment);
+        break;
+        case 'update':
+          Comments.replaceComment(data.comment_id, data.comment);
+          break;
+        case 'delete':
+          Comments.removeComment(data.comment_id);
+          break;
+      }
     }
   },
 
   userIsCurrentUser: function(user_id) {
-    console.log(typeof user_id);
-    console.log(typeof document.querySelector('meta[name=current-user]').id);
     return user_id === Number(document.querySelector('meta[name=current-user]').id);
   },
 
   followCurrentArticle: function() {
     if (this.collection()) {
-      articleType = this.collection().getAttribute('data-article-type');
-      articleId = this.collection().getAttribute('data-article-id');
+      const articleType = this.collection().getAttribute('data-article-type');
+      const articleId = this.collection().getAttribute('data-article-id');
       this.perform('follow', { article_type: articleType, article_id: articleId });
     } else {
       this.perform('unfollow')
