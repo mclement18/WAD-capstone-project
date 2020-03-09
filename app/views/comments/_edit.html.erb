@@ -1,0 +1,20 @@
+<%= form_for [article, comment], html: { id: "comment_id_#{comment.id}", class: 'media comment comment-form' }, data: { 'user-id' => comment.user_id } , remote: true do |form| %>
+  <div class="media-image">
+    <%= image_tag comment.user.avatar_url, class: 'avatar' %>
+  </div>
+  <div class="media-content">
+    <div class="media-title">
+      <h3 class="comment-user"><%= comment.user.name %> <time datetime="<%= comment.created_at.strftime("%FT%T")%>"><%= time_ago_in_words(comment.created_at) %></time></h3>
+    </div>
+    <div class="media-body">
+      <%= form.text_area :body, class: 'input-field' %>
+    </div>
+  </div>
+  <div class="prompt">
+    <%= form.submit class: 'btn' %>
+  </div>
+  <div class="media-action">
+    <%= link_to 'cancel', comment_path(comment), class: 'link media-btn', remote: true, method: :get %>
+    <%= link_to 'delete', comment_path(comment), class: 'link media-btn', remote: true, method: :delete %>
+  </div>
+<% end %>

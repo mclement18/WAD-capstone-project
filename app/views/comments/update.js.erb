@@ -1,0 +1,5 @@
+<% unless @comment.errors.any? %>
+  Comments.replaceComment('<%= @comment.id %>', '<%=j render @comment %>');
+<% end %>
+
+// alert/notice

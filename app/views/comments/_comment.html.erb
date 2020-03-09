@@ -1,4 +1,4 @@
-<div data-user-id="<%= comment.user_id %>" class="media comment">
+<div id="comment_id_<%= comment.id %>" data-user-id="<%= comment.user_id %>" class="media comment">
   <div class="media-image">
     <%= image_tag comment.user.avatar_url, class: 'avatar' %>
   </div>
@@ -8,6 +8,10 @@
     </div>
     <div class="media-body">
       <p class="comment-body"><%= comment.body %></p>
+    </div>
+    <div class="media-action">
+      <%= link_to 'edit', edit_comment_path(comment), class: 'link media-btn', remote: true, method: :get %>
+      <%= link_to 'delete', comment_path(comment), class: 'link media-btn', remote: true, method: :delete %>
     </div>
   </div>
 </div>
