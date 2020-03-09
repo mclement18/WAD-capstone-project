@@ -3,7 +3,7 @@ class Trip < ApplicationRecord
   
   belongs_to :user
   has_many   :stages, -> { order(number: :asc) }
-  has_many   :comments, -> { order(created_at: :desc) }, as: :article
+  has_many   :comments, -> { load_users_and_articles.ordered_by_most_recent }, as: :article
   has_many   :to_dos
   has_many   :dreamers, -> { where('status = ?', 'to-do') }, through: :to_dos, source: :user
   has_many   :travelers, -> { where('status = ?', 'in-progress') }, through: :to_dos, source: :user

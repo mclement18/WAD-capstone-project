@@ -35,6 +35,17 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    respond_to do |format|
+      if @comment.destroy
+        flash.now.notice = 'Comment successfully deleted!'
+      else
+        flash.now.alert = 'Unable to delete comment.'
+      end
+      format.js
+    end
+  end
+
   private
 
   def load_article
