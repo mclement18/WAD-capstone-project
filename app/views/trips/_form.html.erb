@@ -25,7 +25,7 @@
   </div>
   <div class="input-group">
     <%= form.label :region, class: 'input-label' %>
-    <%= form.select :region, region_options(trip.country, trip.region), {}, class: 'input-field' %>
+    <%= form.select :region, region_options(trip.country, trip.region), {}, class: 'input-field', 'data-country': trip.country  %>
   </div>
   <div class="input-group">
     <%= form.label :city, class: 'input-label' %>
