@@ -1,8 +1,12 @@
 class StagesController < ApplicationController
+  include RoleHelper
+  
   before_action :ensure_authenticated
   before_action :load_trip
-  before_action :ensure_valid_stage_ids, only: :reorder
   before_action :set_stage, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_to_edit_stage, only: [:edit, :update, :destroy]
+  before_action :authorize_to_reorder_stages, only: [:reorder]
+  before_action :ensure_valid_stage_ids, only: :reorder
   
   def index
     @stages = @trip.stages
@@ -67,6 +71,14 @@ class StagesController < ApplicationController
 
   def set_stage
     @stage = Stage.find(params[:id])
+  end
+
+  def authorize_to_edit_stage
+    redirect_to trip_stage_path(@trip, @stage) unless can_edit?(@trip)
+  end
+
+  def authorize_to_reorder_stages
+    redirect_to trip_path(@trip) unless can_edit?(@trip)
   end
 
   def reorder_stages(stages, trip_id)
