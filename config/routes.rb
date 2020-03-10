@@ -40,5 +40,10 @@ Rails.application.routes.draw do
 
   get 'categories/:category', to: 'categories#index', as: 'categories'
 
+  scope 'locationselect' do
+    get 'regions', to: 'location_select#regions'
+    get 'cities', to: 'location_select#cities'
+  end
+
   mount ActionCable.server => '/cable'
 end

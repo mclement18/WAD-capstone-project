@@ -1,0 +1,2 @@
+module LocationSelectHelper
+end
