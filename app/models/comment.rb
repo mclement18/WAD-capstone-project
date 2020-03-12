@@ -6,7 +6,7 @@ class Comment < ApplicationRecord
 
   after_create_commit { CommentRelayJob.perform_later(self, 'create') }
   after_update_commit { CommentRelayJob.perform_later(self, 'update') }
-  after_destroy_commit { CommentDeleteJob.perform_later(self.id, self.article_id, self.article_type) }
+  after_destroy_commit { CommentDeleteJob.perform_later(self.id, self.article_id, self.article_type, self.user_id) }
 
   scope :ordered_by_most_recent,  -> { order(created_at: :desc) }
   scope :load_users_and_articles, -> { includes(:user, :article) }

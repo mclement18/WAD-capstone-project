@@ -2,4 +2,6 @@
 // find and replace add to todo list button
 <% end %>
 
-// display alert or notification
+<% if flash.any? %>
+  Alert.render('<%=j render 'alert_and_notice', alert: flash.alert, notice: flash.notice %>')
+<% end %>

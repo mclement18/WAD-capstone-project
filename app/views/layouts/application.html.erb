@@ -9,48 +9,56 @@
     <meta name="current-user" id="<%= current_user.try(:id) %>">
   </head>
 
-  <header>
-    <div class="content-wrapper">
-      <div class="logo">
-        <%= link_to root_path do %>
-          <span>WhereToGo</span>
-        <% end %>
-      </div>
+  <body>
+  
+    <header>
+      <div class="content-wrapper">
+        <div class="logo">
+          <%= link_to root_path do %>
+            <span>WhereToGo</span>
+          <% end %>
+        </div>
 
-      <%= form_tag trips_path, method: :get, class: 'search-box' do %>
-        <div class="input-group">
-          <%= label_tag 'q', 'Search', class: 'input-label' %>
-          <%= text_field_tag 'q', nil, class: 'input-field', placeholder: 'e.g. mountain trip' %>
-        </div>
-        <div class="prompt">
-          <%= button_tag 'Search', name: nil, class: 'btn' %>
-        </div>
+        <%= form_tag trips_path, method: :get, class: 'search-box' do %>
+          <div class="input-group">
+            <%= label_tag 'q', 'Search', class: 'input-label' %>
+            <%= text_field_tag 'q', nil, class: 'input-field', placeholder: 'e.g. mountain trip' %>
+          </div>
+          <div class="prompt">
+            <%= button_tag 'Search', name: nil, class: 'btn' %>
+          </div>
+        <% end %>
+
+        <nav class="global-nav">
+          <ul>
+            <li><%= link_to 'All trips', trips_path %></li>
+            <li><%= link_to 'Log In', login_path %></li>
+            <li><%= link_to 'Sign Up', signup_path %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="alert-insertion">
+      <% if alert || notice %>
+        <%= render partial: 'alert_and_notice', locals: { notice: notice, alert: alert } %>
       <% end %>
 
-      <nav class="global-nav">
-        <ul>
-          <li><%= link_to 'All trips', trips_path %></li>
-          <li><%= link_to 'Log In', login_path %></li>
-          <li><%= link_to 'Sign Up', signup_path %></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  
-  <body>
-    <div class="content-wrapper">
-      <%= yield %>
-    </div>
+      <div class="content-wrapper">
+        <%= yield %>
+      </div>
+    </main>
+
+    <footer>
+      <div class="content-wrapper">
+        <div class="logo">
+
+        </div>
+        <div class="locales">
+
+        </div>
+      </div>
+    </footer>
+
   </body>
-
-  <footer>
-    <div class="content-wrapper">
-      <div class="logo">
-
-      </div>
-      <div class="locales">
-
-      </div>
-    </div>
-  </footer>
 </html>

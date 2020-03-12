@@ -2,4 +2,6 @@
 // Change remove todo button or remove trip from page
 <% end %>
 
-// display alert or notice
+<% if flash.any? %>
+  Alert.render('<%=j render 'alert_and_notice', alert: flash.alert, notice: flash.notice %>')
+<% end %>

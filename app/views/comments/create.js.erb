@@ -3,4 +3,6 @@
   Comments.resetCommentForm('<%=j render 'comments/new', article: @article %>');
 <% end %>
 
-// alert/notice
+<% if flash.any? %>
+  Alert.render('<%=j render 'alert_and_notice', alert: flash.alert, notice: flash.notice %>');
+<% end %>

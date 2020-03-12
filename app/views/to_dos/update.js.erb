@@ -2,4 +2,6 @@
 // Remove trip from page
 <% end %>
 
-// Display notice or alert message
+<% if flash.any? %>
+  Alert.render('<%=j render 'alert_and_notice', alert: flash.alert, notice: flash.notice %>')
+<% end %>
