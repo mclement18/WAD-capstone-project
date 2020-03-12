@@ -3,6 +3,9 @@
 </div>
 
 <%= form_for(current_user, url: account_path) do |form| %>
+
+  <%= render partial: 'model_errors', locals: { model: current_user } %>
+  
   <div class="input-group">
     <%= form.label :email, class: 'input-label' %>
     <%= form.email_field :email, class: 'input-field', placeholder: 'e.g. peterparker@oscorp.com' %>

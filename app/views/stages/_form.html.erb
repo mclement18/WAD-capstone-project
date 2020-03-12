@@ -1,4 +1,7 @@
 <%= form_for [trip, stage] do |form| %>
+
+  <%= render partial: 'model_errors', locals: { model: stage } %>
+
   <div class="input-group">
     <%= form.label :title, class: 'input-label' %>
     <%= form.text_field :title, class: 'input-field', placeholder: 'e.g. The Machu Picchu' %>
