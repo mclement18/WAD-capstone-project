@@ -20,7 +20,10 @@ Alert.render = function(alert) {
 };
 
 Alert.dismiss = function(id) {
-  this.getMain().removeChild(this.getAlert(id));
+  const alert = this.getAlert(id);
+  if (alert) {
+    this.getMain().removeChild(alert);
+  }
 };
 
 Alert.autoDismiss = function(id) {
@@ -30,11 +33,8 @@ Alert.autoDismiss = function(id) {
 };
 
 Alert.addDismissActionToButton = function(alert) {
-  alert.addEventListener('click', event => {
-    const target = event.target;
-    if (target.tagName === 'BUTTON') {
-      this.dismiss(alert.id)
-    }
+  alert.lastElementChild.addEventListener('click', () => {
+    this.dismiss(alert.id)
   });
 };
 
