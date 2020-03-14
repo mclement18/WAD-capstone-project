@@ -10,6 +10,15 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ *
  *= require_self
  */
+
+@import 'normailze-css-v8.0.1/normalize-8.0.1';
+@import 'partials/varaibles';
+@import 'partials/mixins';
+@import 'partials/base';
+@import 'partials/helpers';
+@import 'partials/typography';
+@import 'partials/header';
+@import 'partials/logo';

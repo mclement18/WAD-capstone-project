@@ -1,0 +1,19 @@
+.global-header {
+  padding: $base-margin 0;
+  background: $brown-4;
+  margin: 0 0 $base-margin * 3;
+  .content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .search-box {
+    margin: 0 0 0 auto;
+  }
+
+  .global-nav {
+    margin: 0 0 0 $base-margin;
+  }
+}
