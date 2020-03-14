@@ -1,0 +1,76 @@
+.btn {
+  display: flex;
+  align-items: center;
+  
+  font-size: 1.3rem;
+  line-height: 1;
+  background: $white;
+  color: $black;
+
+  padding: $base-margin * 0.75;
+  margin: 0;
+
+  border: 1px solid $brown-4;
+  border-radius: 3px;
+
+  box-sizing: border-box;
+
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+
+  cursor: pointer;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    background-color: $brown-4;
+    color: $green;
+    
+    .icon {
+      fill: $green;
+    }
+  }
+
+  .icon {
+    margin: 0 5px 0 0;
+  }
+}
+
+.btn--primary {
+  background: $green;
+  color: $white;
+  border: 1px solid $green;
+  
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: darken($green, 20);
+    border-color: darken($green, 10);
+    color: $white;
+    
+    .icon {
+      fill: $white;
+    }
+  }
+
+  .icon {
+    fill: $white;
+  }
+}
+
+// .btn--secondary {                       // Additional JS script to change button text
+//   &:hover,
+//   &:active,
+//   &:focus {
+//     background: $secondary-color;
+//     color: $white;
+//     border: 1px solid $secondary-color;
+//     color: $white;
+
+//     .icon {
+//       fill: $white;
+//     }
+//   }
+// }

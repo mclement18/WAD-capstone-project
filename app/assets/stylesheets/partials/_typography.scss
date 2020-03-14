@@ -74,7 +74,7 @@ h6,
   color: $brown-1;
 }
 
-p, ul, ol, span, label {
+p, ul, ol, span, label, input {
   @extend %base-typo;
   font-size: 1.5em;
 }

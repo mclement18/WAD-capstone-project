@@ -1,0 +1,13 @@
+.search-box {
+  .input-group__field {
+    border-radius: 3px 0 0 3px;
+    border: 1px solid $white;
+      &:hover, &:focus {
+      border: 1px solid $green;
+    } 
+  }
+  
+  .btn {
+    border-radius: 0 3px 3px 0;
+  } 
+}

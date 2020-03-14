@@ -1,0 +1,26 @@
+.input-group{
+
+}
+
+.input-group__row {
+  display: flex;
+}
+
+.input-group__label {
+
+}
+
+.input-group__field {
+  line-height: 1;
+  color: $brown-1;
+  padding: $base-margin * 0.75;
+  margin: 0;
+  border: 1px solid $brown-4;
+  border-radius: 3px;
+  box-sizing: border-box;
+  width: 100;
+
+  &:hover, &:focus {
+    border: 1px solid $brown-3;
+  }
+}

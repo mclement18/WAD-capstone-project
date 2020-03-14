@@ -23,11 +23,11 @@
 
         <%= form_tag trips_path, method: :get, class: 'search-box' do %>
           <div class="input-group">
-            <%= label_tag 'q', 'Search', class: 'input-label' %>
-            <%= text_field_tag 'q', nil, class: 'input-field', placeholder: 'e.g. mountain trip' %>
-          </div>
-          <div class="prompt">
-            <%= button_tag 'Search', name: nil, class: 'btn' %>
+            <%= label_tag 'q', 'Search', class: 'input-group__label sr-only' %>
+            <div class="input-group__row">
+              <%= text_field_tag 'q', nil, class: 'input-group__field', placeholder: 'e.g. mountain trip' %>
+              <%= button_tag 'Search', name: nil, class: 'btn btn--primary' %>
+            </div>
           </div>
         <% end %>
 
