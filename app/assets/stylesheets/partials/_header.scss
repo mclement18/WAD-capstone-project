@@ -2,18 +2,36 @@
   padding: $base-margin 0;
   background: $brown-4;
   margin: 0 0 $base-margin * 3;
+  
   .content-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    @include tablet {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
   }
 
+  .logo {
+    margin: 0 0 $base-margin;
+    @include tablet {
+      margin: 0 $base-margin 0 0;
+    }
+  }
+  
   .search-box {
-    margin: 0 0 0 auto;
+    margin: 0 0 $base-margin;
+    max-width: 500px;
+    @include tablet {
+      margin: 0 0 0 auto;
+    }
+    @include desktop {
+      flex: 1 0 auto;
+    }
   }
 
   .global-nav {
-    margin: 0 0 0 $base-margin;
+    @include tablet {
+      margin: 0 0 0 $base-margin;
+    }
   }
 }

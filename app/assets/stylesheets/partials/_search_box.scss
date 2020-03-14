@@ -1,5 +1,6 @@
 .search-box {
   .input-group__field {
+    flex: 0 1 auto;
     border-radius: 3px 0 0 3px;
     border: 1px solid $white;
       &:hover, &:focus {
@@ -8,6 +9,7 @@
   }
   
   .btn {
+    flex: 0 0 auto;
     border-radius: 0 3px 3px 0;
   } 
 }

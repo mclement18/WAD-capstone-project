@@ -1,4 +1,5 @@
 .logo {
+  line-height: 1;
   a {
     text-decoration: none;
   }
@@ -7,6 +8,7 @@
     font-weight: bolder;
     font-size: 3rem;
     color: $black;
+    margin: 0;
   }
   em {
     font-style: normal;
