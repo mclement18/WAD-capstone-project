@@ -31,10 +31,13 @@
           </div>
         <% end %>
 
-        <% if logged_in? %>
-          <%= render partial: 'registered_user_nav' %>
-        <% else %>
+        <% case current_user_role
+           when 'anonymous' %>
           <%= render partial: 'anonymous_user_nav' %>
+        <% when 'registered' %>
+          <%= render partial: 'registered_user_nav' %>
+        <% when 'admin' %>
+          <%= render partial: 'admin_user_nav' %>
         <% end %>
       </div>
     </header>

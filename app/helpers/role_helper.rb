@@ -6,4 +6,12 @@ module RoleHelper
     else false
     end
   end
+
+  def current_user_role
+    if logged_in?
+      current_user.role
+    else
+      'anonymous'
+    end
+  end
 end

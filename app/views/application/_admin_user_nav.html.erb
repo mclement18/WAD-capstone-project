@@ -1,0 +1,18 @@
+<nav class="global-nav">
+  <ul class="bare-list">
+    <li><%= link_to 'All trips', trips_path, class: 'link link--nav' %></li>
+    <li><%= link_to 'Users', users_path, class: 'link link--nav' %></li>
+    <li><%= link_to 'Log Out', logout_path, class: 'link link--nav', method: :delete %></li>
+    <li class="global-nav--mobile"><%= link_to 'Account', account_path, class: 'link link--nav' %></li>
+    <li class="has-dropdown global-nav--tablet">
+      <%= image_tag current_user.avatar_url(:small), class: 'avatar avatar--small', alt: "#{current_user.name} avatar" %>
+      <ul class="bare-list dropdown">
+        <li><%= link_to 'Account', account_path, class: 'link link--nav' %></li>
+        <li><%= link_to 'My Trips', account_trips_path, class: 'link link--nav' %></li>
+        <li><%= link_to 'To Do List', account_todolist_path, class: 'link link--nav' %></li>
+        <li><%= link_to 'Current Travels', account_travels_path, class: 'link link--nav' %></li>
+        <li><%= link_to 'Completed Travels', account_success_path, class: 'link link--nav' %></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
