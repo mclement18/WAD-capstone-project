@@ -64,16 +64,16 @@ class UserTest < ActiveSupport::TestCase
     refute unvalid_role.valid?
   end
 
-  test "user status is active by default" do
+  test "user deleted is false by default" do
     user = User.create! email: 'user@email.com', password: 'password'
-    assert_equal user.status, 'active'
+    refute user.deleted
   end
 
   test "user is soft deleted" do
     user = User.create! email: 'user@email.com', password: 'password'
     assert user.soft_delete
     user = User.find(user.id)
-    assert_equal user.status, 'deleted'
+    assert user.deleted
     assert_equal user.name, 'Deleted User'
     refute_equal user.email, 'user@email.com'
   end

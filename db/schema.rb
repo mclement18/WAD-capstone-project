@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200306194244) do
+ActiveRecord::Schema.define(version: 20200316164131) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20200306194244) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.string "status"
+    t.boolean "deleted"
     t.index ["user_id"], name: "index_trips_on_user_id"
   end
 
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20200306194244) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "role"
-    t.string "status"
+    t.boolean "deleted"
   end
 
 end

@@ -5,11 +5,11 @@ one:
   password_digest: <%= BCrypt::Password.create('testpassword') %>
   name: One
   role: registered
-  status: active
+  deleted: f
 
 two:
   email: two@wheretogo.com
   password_digest: <%= BCrypt::Password.create('testpassword') %>
   name: Two
   role: admin
-  status: active
+  deleted: f

@@ -338,7 +338,7 @@ class TripTest < ActiveSupport::TestCase
     assert_equal trips.length, 1
   end
 
-  test "trip status is active by default" do
+  test "trip deleted is false by default" do
     trip = Trip.create! title: "Trip's title",
                         description: "The trip's description",
                         category_1: 'city',
@@ -348,7 +348,7 @@ class TripTest < ActiveSupport::TestCase
                         region: 'VD',
                         city: 'Lausanne',
                         user: users(:one)
-    assert_equal trip.status, 'active'
+    refute trip.deleted
   end
 
   test "trip is soft deleted if present in a user's to do list" do
@@ -356,7 +356,7 @@ class TripTest < ActiveSupport::TestCase
     assert trip.to_dos.any?
     assert trip.soft_delete_if_needed
     trip = Trip.find(trip.id)
-    assert_equal trip.status, 'deleted'
+    assert trip.deleted
     assert_equal users(:two).trips.count, 1
   end
 
