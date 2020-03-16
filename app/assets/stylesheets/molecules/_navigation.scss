@@ -1,9 +1,23 @@
 .global-nav {
-  ul {
+  > ul {
     display: flex;
+    align-items: center;
     margin: 0;
     > li:not(:last-child) {
       margin: 0 $base-margin 0 0;
+    }
+  }
+
+  &--mobile {
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &--tablet {
+    display: none;
+    @include tablet {
+      display: list-item;
     }
   }
 }

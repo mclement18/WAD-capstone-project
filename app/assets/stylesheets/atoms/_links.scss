@@ -9,4 +9,11 @@
   &:active {
     color: $brown-1;
   }
+
+  &--nav {
+    color: $black;
+    &:active {
+      color: $green;
+    }
+  }
 }

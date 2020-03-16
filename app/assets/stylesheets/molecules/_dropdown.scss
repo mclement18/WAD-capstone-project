@@ -1,0 +1,51 @@
+.has-dropdown {
+  position: relative;
+  
+  &:hover .dropdown,
+  &:focus .dropdown {
+    display: block;
+  }
+}
+
+.dropdown {
+  box-shadow: 0 2px 10px 1px $brown-3;
+  border: none;
+  
+  
+  display: none;
+  position: absolute;
+  top: 51px;
+  right: 0;
+  white-space: nowrap;
+
+  background: $white;
+  border-radius: 3px;
+  overflow: hidden;
+
+  font-size: 1em;
+  
+
+  &:hover,
+  &:focus {
+    display: block;
+  }
+
+  li {
+    border-bottom: 1px solid $brown-4;
+
+    &:last-child {
+      border: none;
+    }
+  }
+
+  a {
+    display: block;
+    padding: $base-margin * .5 $base-margin;
+
+    &:hover,
+    &:focus {
+      background-color: $brown-4;
+      text-decoration: none;
+    }
+  }
+}  

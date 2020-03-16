@@ -3,14 +3,12 @@
   <%= link_to 'Edit Profile', edit_account_path %>
 </div>
 
-<p class="user-info">
+<div class="user-info">
   <div>
     <h3 class="name"><%= current_user.name %></h3>
     <h3 class="email"><%= current_user.email %></h3>
   </div>
-  <div class="avatar">
-    <%= image_tag current_user.avatar_url %>
-  </div>
+  <%= image_tag current_user.avatar_url, class: 'avatar', alt: "#{current_user.name} avatar" %>
 </div>
 
 <div class="user-stat">
