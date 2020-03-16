@@ -2,7 +2,8 @@
   position: relative;
   
   &:hover .dropdown,
-  &:focus .dropdown {
+  &:focus .dropdown,
+  &:active .dropdown {
     display: block;
   }
 }
