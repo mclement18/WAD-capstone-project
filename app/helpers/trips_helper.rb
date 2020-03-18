@@ -8,7 +8,7 @@ module TripsHelper
   end
 
   def category_2_options(selected)
-    options_for_select [['None', ''], ['Relaxing', 'relaxing'], ['Advanturous', 'advanturous'], ['Cultural', 'cultural']], selected
+    options_for_select [['None', ''], ['Relaxing', 'relaxing'], ['Adventurous', 'adventurous'], ['Cultural', 'cultural']], selected
   end
 
   def continent_options(selected)

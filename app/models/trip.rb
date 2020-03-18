@@ -12,7 +12,7 @@ class Trip < ApplicationRecord
   validates :title, presence: true, length: { maximum: 75 }
   validates :description, presence: true, length: { maximum: 500 }
   validates :category_1, inclusion: { in: %w(city road international) }
-  validates :category_2, inclusion: { in: %w(relaxing cultural advanturous) }
+  validates :category_2, inclusion: { in: %w(relaxing cultural adventurous) }
   validates :deleted, inclusion: { in: [true, false] }
 
   after_initialize :initialize_deleted!

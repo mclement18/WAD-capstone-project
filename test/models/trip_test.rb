@@ -205,7 +205,7 @@ class TripTest < ActiveSupport::TestCase
     refute other_trip.valid?
   end
 
-  test "category_2 attribute can only be one of the following [relaxing, cultural, advanturous]" do
+  test "category_2 attribute can only be one of the following [relaxing, cultural, adventurous]" do
     relaxing_trip = Trip.new title: "Trip's title",
                              description: "The trip's description",
                              category_1: 'city',
@@ -226,16 +226,16 @@ class TripTest < ActiveSupport::TestCase
                              city: 'Lausanne',
                              user: users(:one)
     assert cultural_trip.valid?
-    advanturous_trip = Trip.new title: "Trip's title",
+    adventurous_trip = Trip.new title: "Trip's title",
                                 description: "The trip's description",
                                 category_1: 'city',
-                                category_2: 'advanturous',
+                                category_2: 'adventurous',
                                 continent: 'Europe',
                                 country: 'CH',
                                 region: 'VD',
                                 city: 'Lausanne',
                                 user: users(:one)
-    assert advanturous_trip.valid?
+    assert adventurous_trip.valid?
     other_trip = Trip.new title: "Trip's title",
                           description: "The trip's description",
                           category_1: 'city',
@@ -332,7 +332,7 @@ class TripTest < ActiveSupport::TestCase
 
   test "filtered_search search by title and description with categories and location filters" do
     terms = ['one', 'description']
-    categories_terms = ['advanturous']
+    categories_terms = ['adventurous']
     location_terms = ['CH']
     trips = Trip.filtered_search(terms, categories_terms, location_terms)
     assert_equal trips.length, 1

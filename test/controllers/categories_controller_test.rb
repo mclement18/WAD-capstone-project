@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
-  test "get advanturous trips" do
-    get categories_url('advanturous')
+  test "get adventurous trips" do
+    get categories_url('adventurous')
     assert_response :success
     assert_select 'h3', 'A second journey'
   end

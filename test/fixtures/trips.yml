@@ -11,7 +11,7 @@ one:
 two:
   title: A second journey
   description: Trip two description
-  categories: road__advanturous
+  categories: road__adventurous
   location: Europe__CH__GR__
   user: two
   deleted: f
