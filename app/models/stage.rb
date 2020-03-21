@@ -10,7 +10,7 @@ class Stage < ApplicationRecord
   validates :travel_type, presence: true, inclusion: { in: %w(driving walking bicycling transit None) }
   validates :address, presence: true
 
-  before_create :set_directions!
+  before_create :set_directions!, unless: :will_save_change_to_directions?
   before_update :update_directions!, unless: :will_save_change_to_directions?
   after_update_commit :update_next_stage_directions!, if: :update_next_stage_directions?
 
