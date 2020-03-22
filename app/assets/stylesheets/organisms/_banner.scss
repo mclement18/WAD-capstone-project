@@ -1,0 +1,36 @@
+.banner {
+  background: $brown-3 asset-url('banner.jpg') no-repeat 50% 50% / cover;
+  margin: 0 0 $base-margin * 3;
+
+  .global-header {
+    background: none;
+    border-bottom: 1px solid $black;
+  }
+
+  .logo {
+    text-shadow: 2px 2px 2px $black;
+  }
+
+  .search-box,
+  .avatar {
+    box-shadow: 2px 2px 2px $black;
+  }
+
+  .link--banner {
+    color: $white;
+    text-shadow: 1px 1px 1px $black;
+
+    &:active {
+      color: $green;
+    }
+  }
+ 
+  .main-title {
+    padding: $base-margin 0;
+    
+    h1 {
+      color: $white;
+      text-shadow: 2px 2px 2px $black;
+    }
+  }
+}

@@ -13,33 +13,37 @@
 
   <body>
   
-    <header class="global-header">
-      <div class="content-wrapper">
-        <div class="logo">
-          <%= link_to root_path do %>
-            <span>Where<em>To</em>Go</span>
+    <header class="<%= yield :banner %>">
+      <div class="global-header">
+        <div class="content-wrapper">
+          <div class="logo <%= yield :logo %>">
+            <%= link_to root_path do %>
+              <span>Where<em>To</em>Go</span>
+            <% end %>
+          </div>
+  
+          <%= form_tag trips_path, method: :get, class: 'search-box' do %>
+            <div class="input-group">
+              <%= label_tag 'q', 'Search', class: 'input-group__label sr-only' %>
+              <div class="input-group__row">
+                <%= text_field_tag 'q', nil, class: 'input-group__field', placeholder: 'e.g. mountain trip' %>
+                <%= button_tag 'Search', name: nil, class: 'btn btn--primary' %>
+              </div>
+            </div>
+          <% end %>
+  
+          <% case current_user_role
+             when 'anonymous' %>
+            <%= render partial: 'anonymous_user_nav' %>
+          <% when 'registered' %>
+            <%= render partial: 'registered_user_nav' %>
+          <% when 'admin' %>
+            <%= render partial: 'admin_user_nav' %>
           <% end %>
         </div>
-
-        <%= form_tag trips_path, method: :get, class: 'search-box' do %>
-          <div class="input-group">
-            <%= label_tag 'q', 'Search', class: 'input-group__label sr-only' %>
-            <div class="input-group__row">
-              <%= text_field_tag 'q', nil, class: 'input-group__field', placeholder: 'e.g. mountain trip' %>
-              <%= button_tag 'Search', name: nil, class: 'btn btn--primary' %>
-            </div>
-          </div>
-        <% end %>
-
-        <% case current_user_role
-           when 'anonymous' %>
-          <%= render partial: 'anonymous_user_nav' %>
-        <% when 'registered' %>
-          <%= render partial: 'registered_user_nav' %>
-        <% when 'admin' %>
-          <%= render partial: 'admin_user_nav' %>
-        <% end %>
       </div>
+
+      <%= yield :header %>
     </header>
 
     <main id="alert-insertion">

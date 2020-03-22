@@ -2,6 +2,10 @@
   max-width: 110rem;
   margin: 0 auto;
   padding: 0 1em;
+
+  @include tablet {
+    text-align: center;
+  }
 }
 
 .bare-list {

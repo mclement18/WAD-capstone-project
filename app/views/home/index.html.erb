@@ -1,6 +1,13 @@
-<div class="banner">
-  <h1>If you don't know where to go for your next vacation, you found the right place!</h1>
-</div>
+<% content_for :banner, 'banner' %>
+<% content_for :logo, 'logo--inverted' %>
+
+<% content_for :header do %>
+  <div class="content-wrapper">
+    <div class="main-title">
+      <h1>If you don't know where to go for your next vacation, you found the right place!</h1>
+    </div>
+  </div>
+<% end %>
 
 <div class="categories-search">
   <h2>You know what you want to do? Then brows the suggested trips by categories.</h2>
