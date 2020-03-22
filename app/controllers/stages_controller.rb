@@ -4,6 +4,7 @@ class StagesController < ApplicationController
   before_action :ensure_authenticated
   before_action :load_trip
   before_action :set_stage, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_trip_stage_association, only: [:show, :edit, :update, :destroy]
   before_action :authorize_to_edit_stage, only: [:edit, :update, :destroy]
   before_action :authorize_to_reorder_stages, only: [:reorder]
   before_action :ensure_valid_stage_ids, only: :reorder
@@ -71,6 +72,10 @@ class StagesController < ApplicationController
 
   def set_stage
     @stage = Stage.find(params[:id])
+  end
+
+  def ensure_trip_stage_association
+    redirect_to trip_path(@trip) unless @stage.trip_id == @trip.id
   end
 
   def authorize_to_edit_stage
