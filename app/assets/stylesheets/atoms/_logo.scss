@@ -14,4 +14,10 @@
     font-style: normal;
     color: $green;
   }
+
+  &--inverted {
+    span {
+      color: $brown-4;
+    }
+  }
 }

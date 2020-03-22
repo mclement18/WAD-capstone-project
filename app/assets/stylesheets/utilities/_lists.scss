@@ -1,0 +1,13 @@
+@mixin flex-list-horizontal {
+  display: flex;
+  align-items: center;
+
+  > li:not(:last-child) {
+    margin: 0 $base-margin 0 0;
+  }
+}
+
+ @mixin flex-list-horizontal-wrap {
+  @include flex-list-horizontal;
+  flex-wrap: wrap;
+}

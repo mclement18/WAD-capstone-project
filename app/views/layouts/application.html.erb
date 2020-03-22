@@ -52,14 +52,18 @@
       </div>
     </main>
 
-    <footer>
+    <footer class="global-footer">
       <div class="content-wrapper">
-        <div class="logo">
-
+        <div class="logo logo--inverted">
+          <%= link_to root_path do %>
+            <span>Where<em>To</em>Go</span>
+          <% end %>
         </div>
-        <div class="locales">
-
-        </div>
+        <ul class="locales bare-list">
+          <li><%= link_to 'en', '#', class: 'link link--foot' %></li>
+          <li><%= link_to 'fr', '#', class: 'link link--foot' %></li>
+        </ul>
+        <p class="copyright">&copy; Mathieu Clément</p>
       </div>
     </footer>
 

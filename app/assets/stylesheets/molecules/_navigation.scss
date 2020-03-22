@@ -1,11 +1,7 @@
 .global-nav {
   > ul {
-    display: flex;
-    align-items: center;
+    @include flex-list-horizontal;
     margin: 0;
-    > li:not(:last-child) {
-      margin: 0 $base-margin 0 0;
-    }
   }
 
   &--mobile {

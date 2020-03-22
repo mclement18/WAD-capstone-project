@@ -16,4 +16,14 @@
       color: $green;
     }
   }
+
+  &--foot {
+    color: $brown-3;
+    &:hover {
+      color: $green;
+    }
+    &:active {
+      color: $brown-2;
+    }
+  }
 }

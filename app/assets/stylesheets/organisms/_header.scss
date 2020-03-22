@@ -5,9 +5,7 @@
   
   .content-wrapper {
     @include tablet {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
+      @include flex-list-horizontal-wrap;
     }
   }
 
