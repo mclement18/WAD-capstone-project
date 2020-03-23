@@ -20,6 +20,7 @@ class Trip < ApplicationRecord
   after_validation :serialize_categories, :serialize_location
 
   scope :active,                      -> { where(deleted: false) }
+  scope :load_users,                  -> { includes(:user, :dreamers, :travelers, :veterans) }
   scope :title_contains,              -> (terms) { where(Trip.arel_table[:title].matches_any(terms.map { |term| "%#{term}%" })) }
   scope :description_contains,        -> (terms) { where(Trip.arel_table[:description].matches_any(terms.map { |term| "%#{term}%" })) }
   scope :title_or_description_search, -> (terms) { title_contains(terms)
