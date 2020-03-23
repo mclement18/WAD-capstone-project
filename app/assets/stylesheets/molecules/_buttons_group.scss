@@ -1,0 +1,13 @@
+.buttons-group {
+  display: flex;
+
+  > .btn,
+  .btn--form {
+    flex: 1 0 auto;
+    margin: 0 $base-margin 0 0;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}

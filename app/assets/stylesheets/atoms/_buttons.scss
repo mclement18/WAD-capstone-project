@@ -1,7 +1,4 @@
 .btn {
-  display: flex;
-  align-items: center;
-  
   font-size: 1.3rem;
   line-height: 1;
   background: $white;
@@ -60,17 +57,25 @@
   }
 }
 
-// .btn--secondary {                       // Additional JS script to change button text
-//   &:hover,
-//   &:active,
-//   &:focus {
-//     background: $secondary-color;
-//     color: $white;
-//     border: 1px solid $secondary-color;
-//     color: $white;
+.btn--secondary {
+  background: $red;
+  color: $white;
+  border: 1px solid $red;
 
-//     .icon {
-//       fill: $white;
-//     }
-//   }
-// }
+  &:hover,
+  &:active,
+  &:focus {
+    background: darken($red, 10);
+    color: $white;
+
+    .icon {
+      fill: $white;
+    }
+  }
+}
+
+.btn--form {
+  .btn {
+    width: 100%;
+  }
+}
