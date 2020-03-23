@@ -13,6 +13,8 @@
         <%= render partial: 'trip_card', locals: { trip: trip } %>
       <% end %>
     </ul>
+
+    <%= paginate @trips, window: 1 %>
   <% else %>
     <p class="not-found">No trip found.</p>
   <% end %>

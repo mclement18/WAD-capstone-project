@@ -70,3 +70,6 @@ gem 'googlemaps-services'
 
 # Use carrierwave for image upload
 gem 'carrierwave'
+
+# Use kanimari for pagination
+gem 'kaminari', '~> 1.2'

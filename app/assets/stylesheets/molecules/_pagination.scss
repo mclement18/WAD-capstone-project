@@ -1,0 +1,46 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  
+  .first, .prev,
+  .last, .next,
+  .page {
+    margin: 0 $base-margin * .5 0 0;
+    background: $green;
+    border: 2px solid darken($green, 20);
+    color: $white;
+    font-size: 1em;
+    
+    &:last-child {
+      margin: 0;
+    }
+
+    a {
+      display: block;
+      text-decoration: none;
+      color: $white;
+
+      &:hover {
+        text-decoration: underline;
+        background: darken($green, 20);
+      }
+    }
+
+    @include tablet {
+      font-size: 1.3em;
+    }
+
+    @include desktop {
+      font-size: 1.5em;
+    }
+  }
+
+  .gap, .current, a {
+    padding: .5em;
+  }
+
+  .current {
+    background: $brown-4;
+    color: $black;
+  }
+}
