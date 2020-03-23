@@ -1,0 +1,12 @@
+.not-found {
+  font-size: 2em;
+  color: $red;
+
+  @include tablet {
+    font-size: 2.2em;
+  }
+
+  @include desktop {
+    font-size: 2.6em;
+  }
+}

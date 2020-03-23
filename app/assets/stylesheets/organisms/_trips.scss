@@ -1,0 +1,13 @@
+.trips {
+  margin: 0 0 $base-margin * 4;
+
+  &__list {
+    @include tablet {
+      @include grid-2;
+    }
+  
+    @include desktop {
+      @include grid-3;
+    }
+  }
+}
