@@ -15,19 +15,86 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    background: rgba($black, $alpha: .2);
+    box-sizing: border-box;
+    width: 100%;
     padding: $line-height * 1em;
+    text-align: left;
   }
 
   &__title {
     margin: 0;
     font-size: 2em;
-    text-align: left;
     color: $white;
-    text-shadow: 1px 1px 1px $black;
+    text-shadow: 2px 2px 2px $black;
   }
 
+  &__subtitle {
+    margin: 0;
+    font-size: 1em;
+    color: $white;
+    text-shadow: 2px 2px 2px $black;
+  }
+
+  &__info {
+    @include flex-list-horizontal;
+
+    margin: 0;
+    font-size: 1em;
+    color: lighten($green, 15);
+    text-shadow: 1px 1px 1px $black;
+
+    li:not(:last-child) {
+      margin-right: $base-margin * .5;
+
+      &::after {
+        content: '';
+        margin-left: $base-margin * .5;
+        border-right: 2px solid $black;
+      }
+    }
+  }
+
+  &__tags {
+    @include flex-list-horizontal;
+    
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: $base-margin $base-margin;
+
+    .tag {
+      color: $white;
+      background: $green;
+      border: 2px solid darken($green, 25);
+    }
+  }
+  
   &__image {
     width: 100%;
     display: block;
+  }
+
+  &__footer {
+    .btn,
+    .btn--form {
+      margin: 0;
+    }
+    
+    .btn {
+      border-radius: 0;
+      border: none;
+    }
+
+    .btn--secondary {
+      background: $white;
+      color: $black;
+      &:hover,
+      &:active,
+      &:focus {
+        background: darken($red, 10);
+        color: $white;
+      }
+    }
   }
 }
