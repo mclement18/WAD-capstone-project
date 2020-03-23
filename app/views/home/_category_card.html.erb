@@ -1,0 +1,13 @@
+<li class="card">
+  <%= link_to categories_path(category), class: 'card__thumb' do %>
+    <%= image_set_tag "default_image_#{category}_thumb.jpg",
+                      { 
+                        "default_image_#{category}_thumb.jpg" => '300w',
+                        "default_image_#{category}.jpg" => '600w'
+                      },
+                      sizes: '100vw', alt: "#{category} image", class: 'card__image' %>
+    <div class="card__intro">
+      <h3 class="card__title"><%= category.capitalize %> Trip</h3>
+    </div>
+  <% end %>
+</li>

@@ -1,0 +1,33 @@
+.card {
+  box-shadow: 2px 2px 2px 2px $brown-2;
+  overflow: hidden;
+  border-radius: 4px;
+
+  margin: 0 0 $base-margin * 2;
+
+  &__thumb {
+    display: block;
+    position: relative;
+    text-decoration: none;
+  }
+
+  &__intro {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: $line-height * 1em;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 2em;
+    text-align: left;
+    color: $white;
+    text-shadow: 1px 1px 1px $black;
+  }
+
+  &__image {
+    width: 100%;
+    display: block;
+  }
+}

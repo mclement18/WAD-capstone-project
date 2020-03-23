@@ -1,0 +1,22 @@
+.categories {
+  margin: 0 0 $base-margin * 4;
+
+  h2 {
+    margin: 0 0 $base-margin * 3;
+    border-bottom: 1px solid $green;
+  }
+
+  &__list {
+    @include tablet {
+      @include grid-2;
+      
+      .card {
+        margin: 0 0 $base-margin;
+      }
+    }
+
+    @include desktop {
+      @include grid-3;
+    }
+  }
+}

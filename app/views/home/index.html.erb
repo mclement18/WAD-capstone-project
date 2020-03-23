@@ -9,14 +9,11 @@
   </div>
 <% end %>
 
-<div class="categories-search">
+<div class="categories">
   <h2>You know what you want to do? Then brows the suggested trips by categories.</h2>
-  <ul class="categories-list">
-    <li><a href="#" class="link">Relaxing</a></li>
-    <li><a href="#">Cultural</a></li>
-    <li><a href="#">Adventurous</a></li>
-    <li><a href="#">City trip</a></li>
-    <li><a href="#">Road trip</a></li>
-    <li><a href="#">International trip</a></li>
+  <ul class="categories__list bare-list">
+    <% %w(city road international relaxing cultural adventurous).each do |category| %>
+      <%= render partial: 'category_card',locals: { category: category } %>
+    <% end %>
   </ul>
 </div>

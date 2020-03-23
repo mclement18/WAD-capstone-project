@@ -11,3 +11,15 @@
   @include flex-list-horizontal;
   flex-wrap: wrap;
 }
+
+@mixin grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: $base-margin;
+}
+
+@mixin grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: $base-margin;
+}
