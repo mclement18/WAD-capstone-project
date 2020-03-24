@@ -1,0 +1,43 @@
+<li class="card">
+  <%= link_to trip_path(trip), class: 'card__thumb' do %>
+    <%= image_set_tag trip.image_url(:thumb),
+                      { 
+                        trip.image_url(:thumb) => '300w',
+                        trip.image_url => '600w'
+                      },
+                      sizes: '100vw', alt: "Trip #{trip.id} image", class: 'card__image' %>
+    <div class="card__intro">
+      <h3 class="card__title"><%= trip.title %></h3>
+      <h4 class="card__subtitle"><%= trip.category_1 %> / <%= trip.category_2 %></h4>
+      <ul class="card__info bare-list">
+        <li>Done <%= trip.veterans.length %></li>
+        <li>Doing <%= trip.travelers.length %></li>
+        <li>Planned <%= trip.dreamers.length %></li>
+      </ul>
+    </div>
+    <ul class="card__tags bare-list">
+      <li class="tag">Owner</li>
+      <% if trip.dreamers.include?(current_user) %>
+        <li class="tag">ToDo</li>
+      <% end %>
+      <% if trip.travelers.include?(current_user) %>
+        <li class="tag">Current Trip</li>
+      <% end %>
+      <% if trip.veterans.include?(current_user) %>
+        <li class="tag">Completed</li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="card__footer buttons-group">
+    <% if !is_a_current_user_todo?(trip) %>
+      <%= form_tag(user_to_dos_path(current_user), class: 'btn--form', remote: true) do %>
+        <%= hidden_field_tag :trip_id, trip.id %>
+        <%= button_tag 'Add ToDo', class: 'btn' %>
+      <% end %>
+    <% end %>
+    <%= link_to 'Edit Trip', edit_trip_path(trip), class: 'btn' %>
+    <%= form_tag(trip_path(trip), class: 'btn--form', method: :delete, remote: true) do %>
+      <%= button_tag 'Delete trip', class: 'btn btn--secondary' %>
+    <% end %>
+  </div>
+</li>

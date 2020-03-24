@@ -1,15 +1,20 @@
 <div class="main-title">
-  <h1>Your Trips</h1>
+  <div class="title">
+    <h1>Your Trips</h1>
+  </div>
+  <%= render partial: 'sub_nav', locals: { current: 'trips' } %>
 </div>
 
-<% if @trips.any? %>
-  <ul class="card-list">
-    <% @trips.each do |trip| %>
-      <li>
-        <h3><%= trip.title %></h3>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p class="not-found">You did not created any trip yet.</p>
-<% end %>
+<div class="trips">
+  <% if @trips.any? %>
+    <ul class="trips__list bare-list">
+      <% @trips.each do |trip| %>
+        <%= render partial: 'owner_trip_card', locals: { trip: trip } %>
+      <% end %>
+    </ul>
+
+    <%= paginate @trips, window: 1 %>
+  <% else %>
+    <p class="not-found">You did not created any trip yet.</p>
+  <% end %>
+</div>

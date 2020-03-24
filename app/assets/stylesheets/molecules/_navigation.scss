@@ -1,4 +1,5 @@
-.global-nav {
+.global-nav,
+.sub-nav {
   > ul {
     @include flex-list-horizontal;
     margin: 0;
@@ -15,5 +16,46 @@
     @include tablet {
       display: list-item;
     }
+  }
+}
+
+.sub-nav {
+  ul {
+    font-size: 1.2em;
+    align-items: stretch;
+    margin: 0 0 -2px;
+
+    @include tablet {
+      font-size: 1.4em;
+    }
+
+    @include desktop {
+      font-size: 1.5em;
+    }
+  }
+  
+  .link {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+
+    padding: 0 .2em .7em;
+    box-sizing: border-box;
+  }
+
+  .current {
+    border-bottom: 2px solid $black;
+    color: $black;
+
+    cursor: default;
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+  }
+
+  @include tablet {
+    margin: 0 $base-margin;
   }
 }

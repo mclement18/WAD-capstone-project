@@ -1,5 +1,8 @@
 <div class="main-title">
-  <h1><%= @title %></h1>
+  <div class="title">
+    <h1><%= @title %></h1>
+  </div>
+  <%= render partial: 'sub_nav', locals: { current: @current } %>
 </div>
 
 <% if @todos.any? %>

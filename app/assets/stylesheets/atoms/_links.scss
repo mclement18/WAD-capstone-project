@@ -17,6 +17,18 @@
     }
   }
 
+  &--subnav {
+    &:hover, &:focus {
+      color: $black;
+      border-bottom: 2px solid $black;
+    }
+
+    &:active {
+      color: $brown-2;
+      border-bottom: 2px solid $brown-2;
+    }
+  }
+
   &--foot {
     color: $brown-3;
     &:hover {
