@@ -1,0 +1,58 @@
+<li class="card">
+  <%= link_to trip_path(trip), class: 'card__thumb' do %>
+    <%= image_set_tag trip.image_url(:thumb),
+                      { 
+                        trip.image_url(:thumb) => '300w',
+                        trip.image_url => '600w'
+                      },
+                      sizes: '100vw', alt: "Trip #{trip.id} image", class: 'card__image' %>
+    <div class="card__intro">
+      <h3 class="card__title"><%= trip.title %></h3>
+      <h4 class="card__subtitle"><%= trip.category_1 %> / <%= trip.category_2 %></h4>
+      <ul class="card__info bare-list">
+        <li>Done <%= trip.veterans.length %></li>
+        <li>Doing <%= trip.travelers.length %></li>
+        <li>Planned <%= trip.dreamers.length %></li>
+      </ul>
+    </div>
+    <ul class="card__tags bare-list">
+      <% if trip.user == current_user %>
+        <li class="tag">Owner</li>
+      <% end %>
+      <% case current_page
+         when 'todolist' %>
+        <li class="tag">ToDo</li>
+      <% when 'travels' %>
+        <li class="tag">Curent</li>
+      <% when 'success' %>
+        <li class="tag">Completed</li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="card__footer buttons-group">
+    <% if current_page == 'todolist' %>
+      <%= form_tag(user_to_do_path(current_user, current_user_to_do(trip.id)), class: 'btn--form', method: :patch, remote: true) do %>
+        <%= hidden_field_tag :trip_id, trip.id %>
+        <%= hidden_field_tag :transition, 'traveling' %>
+        <%= button_tag 'Start', class: 'btn' %>
+      <% end %>
+    <% end %>
+    <% if current_page == 'travels' %>
+      <%= form_tag(user_to_do_path(current_user, current_user_to_do(trip.id)), class: 'btn--form', method: :patch, remote: true) do %>
+        <%= hidden_field_tag :trip_id, trip.id %>
+        <%= hidden_field_tag :transition, 'arrived' %>
+        <%= button_tag 'Finish', class: 'btn' %>
+      <% end %>
+    <% end %>
+    <% if current_page == 'travels' || current_page == 'success' %>
+      <%= form_tag(user_to_do_path(current_user, current_user_to_do(trip.id)), class: 'btn--form', method: :patch, remote: true) do %>
+        <%= hidden_field_tag :trip_id, trip.id %>
+        <%= hidden_field_tag :transition, 'cancel' %>
+        <%= button_tag 'ToDo', class: 'btn btn--secondary' %>
+      <% end %>
+    <% end %>
+    <%= form_tag(user_to_do_path(current_user, current_user_to_do(trip.id)), class: 'btn--form', method: :delete, remote: true) do %>
+      <%= button_tag 'Remove', class: 'btn btn--secondary' %>
+    <% end %>
+  </div>
+</li>

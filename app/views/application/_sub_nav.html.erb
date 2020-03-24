@@ -2,8 +2,8 @@
   <ul class="bare-list">
     <li><%= link_to 'Account', account_path, class: "link link--subnav #{is_current?(current, 'account')}" %></li>
     <li><%= link_to 'My Trips', account_trips_path, class: "link link--subnav #{is_current?(current, 'trips')}" %></li>
-    <li><%= link_to 'To Do List', account_todolist_path, class: "link link--subnav #{is_current?(current, 'todo')}" %></li>
+    <li><%= link_to 'To Do List', account_todolist_path, class: "link link--subnav #{is_current?(current, 'todolist')}" %></li>
     <li><%= link_to 'Current Travels', account_travels_path, class: "link link--subnav #{is_current?(current, 'travels')}" %></li>
-    <li><%= link_to 'Completed Travels', account_success_path, class: "link link--subnav #{is_current?(current, 'done')}" %></li>
+    <li><%= link_to 'Completed Travels', account_success_path, class: "link link--subnav #{is_current?(current, 'success')}" %></li>
   </ul>
 </div>

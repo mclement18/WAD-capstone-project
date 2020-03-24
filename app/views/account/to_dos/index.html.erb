@@ -2,17 +2,17 @@
   <div class="title">
     <h1><%= @title %></h1>
   </div>
-  <%= render partial: 'sub_nav', locals: { current: @current } %>
+  <%= render partial: 'sub_nav', locals: { current: @current_page } %>
 </div>
 
-<% if @todos.any? %>
-  <ul class="card-list">
-    <% @todos.each do |trip| %>
-      <li>
-        <h3><%= trip.title %></h3>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p class="not-found">You don't have any trip in your list.</p>
-<% end %>
+<div class="trips">
+  <% if @todos.any? %>
+    <ul class="trips__list bare-list">
+      <% @todos.each do |trip| %>
+        <%= render partial: 'todo_card', locals: { trip: trip, current_page: @current_page } %>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="not-found">You don't have any trip in your list.</p>
+  <% end %>
+</div>
