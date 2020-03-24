@@ -12,6 +12,8 @@
         <%= render partial: 'todo_card', locals: { trip: trip, current_page: @current_page } %>
       <% end %>
     </ul>
+
+    <%= paginate @todos, window: 1 %>
   <% else %>
     <p class="not-found">You don't have any trip in your list.</p>
   <% end %>
