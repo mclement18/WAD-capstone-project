@@ -3,7 +3,8 @@
 
   h2 {
     margin: 0 0 $base-margin * 3;
-    border-bottom: 1px solid $green;
+    padding: $base-margin 0;
+    border-bottom: 2px solid $green;
   }
 
   &__list {

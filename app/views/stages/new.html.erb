@@ -1,5 +1,7 @@
 <div class="main-title">
-  <h1>Create a Stage for trip: <%= @trip.title %></h1>
+  <div class="title">
+    <h1>Create a Stage for trip: <%= @trip.title %></h1>
+  </div>
 </div>
 
 <%= render partial: 'form', locals: { trip: @trip, stage: @stage } %>
