@@ -30,26 +30,14 @@
     </ul>
   <% end %>
   <div class="card__footer buttons-group">
-    <% if current_page == 'todolist' %>
-      <%= form_tag(user_to_do_path(current_user, current_user_to_do(trip.id)), class: 'btn--form', method: :patch, remote: true) do %>
-        <%= hidden_field_tag :trip_id, trip.id %>
-        <%= hidden_field_tag :transition, 'traveling' %>
-        <%= button_tag 'Start', class: 'btn' %>
-      <% end %>
-    <% end %>
-    <% if current_page == 'travels' %>
-      <%= form_tag(user_to_do_path(current_user, current_user_to_do(trip.id)), class: 'btn--form', method: :patch, remote: true) do %>
-        <%= hidden_field_tag :trip_id, trip.id %>
-        <%= hidden_field_tag :transition, 'arrived' %>
-        <%= button_tag 'Finish', class: 'btn' %>
-      <% end %>
-    <% end %>
-    <% if current_page == 'travels' || current_page == 'success' %>
-      <%= form_tag(user_to_do_path(current_user, current_user_to_do(trip.id)), class: 'btn--form', method: :patch, remote: true) do %>
-        <%= hidden_field_tag :trip_id, trip.id %>
-        <%= hidden_field_tag :transition, 'cancel' %>
-        <%= button_tag 'ToDo', class: 'btn btn--secondary' %>
-      <% end %>
+    <% case current_page
+       when 'todolist' %>
+      <%= render partial: 'update_todo_button', locals: { trip: trip, transition: 'traveling' } %>
+    <% when 'travels' %>
+      <%= render partial: 'update_todo_button', locals: { trip: trip, transition: 'arrived' } %>
+      <%= render partial: 'update_todo_button', locals: { trip: trip, transition: 'cancel' } %>
+    <% when 'success' %>
+      <%= render partial: 'update_todo_button', locals: { trip: trip, transition: 'cancel' } %>
     <% end %>
     <%= form_tag(user_to_do_path(current_user, current_user_to_do(trip.id)), class: 'btn--form', method: :delete, remote: true) do %>
       <%= button_tag 'Remove', class: 'btn btn--secondary' %>

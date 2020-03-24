@@ -18,4 +18,16 @@ module ToDosHelper
     end
     false
   end
+
+  def update_todo_button_name(transition)
+    case transition
+    when 'traveling' then 'Start'
+    when 'arrived'   then 'Finish'
+    when 'cancel'    then 'ToDo'
+    end
+  end
+
+  def update_todo_button_class(transition)
+    'btn--secondary' if transition == 'cancel'
+  end
 end
