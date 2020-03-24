@@ -79,6 +79,10 @@
     .btn,
     .btn--form {
       margin: 0;
+
+      &:nth-last-child(n+2) {
+        border-right: 1px solid $brown-3;
+      }
     }
     
     .btn {
