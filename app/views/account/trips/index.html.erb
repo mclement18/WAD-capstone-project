@@ -1,6 +1,7 @@
 <div class="main-title">
-  <div class="title">
+  <div class="title title--with-button">
     <h1>Your Trips</h1>
+    <%= link_to 'New Trip', new_trip_path, class: 'btn' %>
   </div>
   <%= render partial: 'sub_nav', locals: { current: 'trips' } %>
 </div>

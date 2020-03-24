@@ -1,7 +1,7 @@
 <div class="main-title">
-  <div class="title">
+  <div class="title title--with-button">
     <h1>Your profile</h1>
-    <%= link_to 'Edit Profile', edit_account_path %>
+    <%= link_to 'Edit', edit_account_path, class: 'btn' %>
   </div>
   <%= render partial: 'sub_nav', locals: { current: 'account' } %>
 </div>

@@ -4,6 +4,16 @@
 
   .title {
     padding: $base-margin 0;
+
+    &--with-button {
+      position: relative;
+
+      .btn {
+        position: absolute;
+        right: 0;
+        bottom: $base-margin;
+      }
+    }
   }
 
   h1 {
