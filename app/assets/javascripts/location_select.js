@@ -93,7 +93,7 @@ LocationSelect.buildCityInput = function() {
 LocationSelect.buildCitiesSelect = function() {
   const select = document.createElement('select');
   select.id = 'trip_city';
-  select.className = 'input-field';
+  select.className = 'input-field input-field--select';
   select.name = 'trip[city]';
   return select;
 };

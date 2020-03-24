@@ -1,42 +1,54 @@
-<%= form_for trip do |form| %>
+<%= form_for trip, html: { class: 'form' } do |form| %>
 
   <%= render partial: 'model_errors', locals: { model: trip } %>
 
-  <div class="input-group">
-    <%= form.label :title, class: 'input-label' %>
-    <%= form.text_field :title, class: 'input-field', placeholder: 'e.g. From Lima to Cusco' %>
-  </div>
-  <div class="input-group">
-    <%= form.label :description, class: 'input-label' %>
-    <%= form.text_area :description, class: 'input-field', placeholder: 'max 500 characters' %>
-  </div>
-  <div class="input-group">
-    <%= form.label :category_1, class: 'input-label' %>
-    <%= form.select :category_1, category_1_options(trip.category_1), {}, class: 'input-field' %>
-  </div>
-  <div class="input-group">
-    <%= form.label :category_2, class: 'input-label' %>
-    <%= form.select :category_2, category_2_options(trip.category_2), {}, class: 'input-field' %>
-  </div>
-  <div class="input-group">
-    <%= form.label :continent, class: 'input-label' %>
-    <%= form.select :continent, continent_options(trip.continent), {}, class: 'input-field' %>
-  </div>
-  <div class="input-group">
-    <%= form.label :country, class: 'input-label' %>
-    <%= form.select :country, country_options(trip.country), {}, class: 'input-field' %>
-  </div>
-  <div class="input-group">
-    <%= form.label :region, class: 'input-label' %>
-    <%= form.select :region, region_options(trip.country, trip.region), {}, class: 'input-field', 'data-country': trip.country  %>
-  </div>
-  <div class="input-group">
-    <%= form.label :city, class: 'input-label' %>
-    <%= form.select :city, city_options(trip.country, trip.region, trip.city), {}, class: 'input-field' %>
-    <%= button_tag 'Manual entry', type: 'button', class:'btn', id: 'city-input-change',
-      data: { select: 'Selection list', input: 'Manual entry', action: 'getInput' } %>
+  <div class="form__input">
+    <div class="input-group">
+      <%= form.label :title, class: 'input-label' %>
+      <%= form.text_field :title, class: 'input-field', placeholder: 'e.g. From Lima to Cusco' %>
+    </div>
+    <div class="input-group input-group--textarea">
+      <%= form.label :description, class: 'input-label' %>
+      <%= form.text_area :description, class: ' input-field input-field--textarea', maxlength: 500, placeholder: 'max 500 characters' %>
+    </div>
+    <div class="input-group">
+      <%= form.label :category_1, class: 'input-label' %>
+      <%= form.select :category_1, category_1_options(trip.category_1), {}, class: 'input-field input-field--select' %>
+    </div>
+    <div class="input-group">
+      <%= form.label :category_2, class: 'input-label' %>
+      <%= form.select :category_2, category_2_options(trip.category_2), {}, class: 'input-field input-field--select' %>
+    </div>
+    <div class="input-group">
+      <%= form.label :image, class: 'input-label' %>
+      <div class="input-file__container">
+        <%= form.file_field :image, class: 'input-file sr-only', accept: '.jpg, .jpeg, .gif, .png' %>
+        <label class="btn input-file__trigger" for="trip_image" id="fileTrigger">choose file</label>
+      </div>
+    </div>
+    <div class="input-group">
+      <%= form.label :continent, class: 'input-label' %>
+      <%= form.select :continent, continent_options(trip.continent), {}, class: 'input-field input-field--select' %>
+    </div>
+    <div class="input-group">
+      <%= form.label :country, class: 'input-label' %>
+      <%= form.select :country, country_options(trip.country), {}, class: 'input-field input-field--select' %>
+    </div>
+    <div class="input-group">
+      <%= form.label :region, class: 'input-label' %>
+      <%= form.select :region, region_options(trip.country, trip.region), {}, class: 'input-field input-field--select', 'data-country': trip.country  %>
+    </div>
+    <div class="input-group">
+      <%= form.label :city, class: 'input-label' %>
+      <div class="input-group__row">
+        <%= form.select :city, city_options(trip.country, trip.region, trip.city), {}, class: 'input-field input-field--select' %>
+        <%= button_tag 'Manual entry', type: 'button', class:'btn', id: 'city-input-change',
+          data: { select: 'Selection list', input: 'Manual entry', action: 'getInput' } %>
+      </div>
+    </div>
   </div>
   <div class="prompt">
-    <%= form.submit class: 'btn' %>
+    <%= link_to 'Cancel', trip_form_cancel_path(trip), class: 'link' %>
+    <%= form.submit class: 'btn btn--primary' %>
   </div>
 <% end %>

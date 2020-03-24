@@ -1,0 +1,12 @@
+.form {
+  margin: 0 auto $base-margin * 3;
+  max-width: 80rem;
+
+  .input-group {
+    margin: 0 0 $base-margin * 1.5;
+  }
+
+  &__input {
+    margin: 0 0 $base-margin * 2.5;
+  }
+}

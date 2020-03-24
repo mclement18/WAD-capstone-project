@@ -1,9 +1,17 @@
 .search-box {
-  .input-group__field {
+  .input-group {
+    display: block;
+    margin: 0;
+  }
+  
+  .input-field {
     flex: 0 1 auto;
+    margin: 0;
     border-radius: 3px 0 0 3px;
     border: 1px solid $white;
-      &:hover, &:focus {
+    box-shadow: none;
+
+    &:hover, &:focus {
       border: 1px solid $green;
     } 
   }
@@ -11,5 +19,6 @@
   .btn {
     flex: 0 0 auto;
     border-radius: 0 3px 3px 0;
+    box-shadow: none;
   } 
 }

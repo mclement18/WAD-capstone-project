@@ -91,14 +91,14 @@
     }
 
     .btn--secondary {
-      background: $white;
+      background: linear-gradient(to bottom, $white 0%, lighten($brown-4, 10) 100%);
       color: $black;
-      &:hover,
-      &:active,
-      &:focus {
-        background: darken($red, 10);
-        color: $white;
-      }
+      // &:hover,
+      // &:active,
+      // &:focus {
+      //   background: darken($red, 10);
+      //   color: $white;
+      // }
     }
   }
 }

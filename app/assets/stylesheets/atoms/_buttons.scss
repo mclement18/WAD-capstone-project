@@ -1,7 +1,7 @@
 .btn {
   font-size: 1.3rem;
   line-height: 1;
-  background: $white;
+  background: linear-gradient(to bottom, $white 0%, lighten($brown-4, 10) 100%);
   color: $black;
 
   padding: $base-margin * 0.75;
@@ -22,7 +22,7 @@
   &:active,
   &:focus {
     text-decoration: none;
-    background-color: $brown-4;
+    background: linear-gradient(to bottom, lighten($brown-4, 10) 0%, $brown-4 100%);
     color: $green;
     
     .icon {
@@ -35,16 +35,16 @@
   }
 }
 
-.btn--primary {
-  background: $green;
+.btn.btn--primary {
+  background: linear-gradient(to bottom, lighten($green, 10) 0%, $green 100%);
   color: $white;
   border: 1px solid $green;
   
   &:hover,
   &:active,
   &:focus {
-    background-color: darken($green, 20);
-    border-color: darken($green, 10);
+    background: linear-gradient(to bottom, $green 0%, darken($green, 20) 100%);
+    border-color: darken($green, 20);
     color: $white;
     
     .icon {
@@ -57,15 +57,16 @@
   }
 }
 
-.btn--secondary {
-  background: $red;
+.btn.btn--secondary {
+  background: linear-gradient(to bottom, lighten($red, 10) 0%, $red 100%);
   color: $white;
   border: 1px solid $red;
 
   &:hover,
   &:active,
   &:focus {
-    background: darken($red, 10);
+    background: linear-gradient(to bottom, $red 0%, darken($red, 10) 100%);
+    border-color: darken($red, 10);
     color: $white;
 
     .icon {

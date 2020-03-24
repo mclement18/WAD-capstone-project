@@ -1,26 +1,50 @@
-.input-group{
-
+.input-label {
+  display: block;
+  color: $black;
 }
 
-.input-group__row {
-  display: flex;
-}
-
-.input-group__label {
-
-}
-
-.input-group__field {
+.input-field {
   line-height: 1;
   color: $brown-1;
   padding: $base-margin * 0.75;
   margin: 0;
-  border: 1px solid $brown-4;
-  border-radius: 3px;
   box-sizing: border-box;
+  box-shadow: 0 5px 10px 1px $brown-4;
+  border: 1px solid $white;
+  // border: 1px solid $brown-4;
+  border-radius: 3px;
   width: 100%;
 
   &:hover, &:focus {
     border: 1px solid $brown-3;
+  }
+
+  &--textarea {
+    font-size: 1.5em;
+    height: $line-height * 6.1em;
+    resize: none;
+  }
+
+  &--select {
+    font-size: 1.5em;
+    border: 1px solid lighten($brown-4, 15);
+    background-image: asset-url('icons/arrow_down.svg'), linear-gradient(to bottom, $white 0%, lighten($brown-4, 15) 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+  }
+}
+
+.input-file {
+  &__container {
+    position: relative;
+  } 
+  
+  &__trigger {                  // New button, additional JS script to display selected file inside button
+    display: block;
+    width: 100%;
   }
 }
