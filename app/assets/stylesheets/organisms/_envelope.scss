@@ -24,5 +24,9 @@
       border: 1px solid $brown-2;
     }
   }
+
+  .btn {
+    grid-column: span 6 / 8;
+  }
 }
 

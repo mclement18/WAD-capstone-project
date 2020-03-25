@@ -2,18 +2,22 @@
 
   @include tablet {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     align-items: center;
   }
 
   .input-label {
-    grid-column: span 1;
+    grid-column: span 2;
     text-align: left;
+
+    @include tablet {
+      margin: 0;
+    }
   }
 
   .input-field,
   .input-file__container {
-    grid-column: span 3;
+    grid-column: span 6;
   }
 
   .btn {
@@ -26,7 +30,7 @@
 
   &__row {
     display: flex;
-    grid-column: span 3;
+    grid-column: span 6;
 
     .input-field {
       margin: 0 5px 0 0;
@@ -42,7 +46,7 @@
 .prompt {
 
   .link {
-    grid-column: span 1;
+    grid-column: span 2;
     text-align: left;
     font-size: 1.5em;
     // margin: 0 $base-margin 0 0;
@@ -50,22 +54,22 @@
   
   .btn {
     width: 100%;
-    grid-column: span 3;
+    grid-column: span 6;
     // flex: 1 0 auto;
   }
   
   @include tablet {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(8, 1fr);
 
     .btn {
-      grid-column: span 3 / 5;
+      grid-column: span 6 / 9;
     }
   }
 
   &--cancel {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     align-items: center;
   }
 }
