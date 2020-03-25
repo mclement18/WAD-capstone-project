@@ -1,11 +1,15 @@
 <% if model.errors.any? %>
   <div class="error" role="alert">
-    <p><%= model.errors.count %> error/s prohibited this from being saved:</p>
-
-    <ul>
-    <% model.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
+    <div class="error__box">
+      <div class="error__content">
+        <p class="error__title"><%= model.errors.count %> error/s prohibited this from being saved:</p>
+    
+        <ul class="error__list">
+        <% model.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
 <% end %>
