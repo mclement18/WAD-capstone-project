@@ -42,7 +42,8 @@
   }
 
   .input-field,
-  .envelope & .input-field {
+  .envelope & .input-field,
+  & + .btn {
     border: 1px solid $red;
 
     &:hover, &:focus {
