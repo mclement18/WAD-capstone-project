@@ -4,24 +4,30 @@
   </div>
 </div>
 
-<%= form_for(@user) do |form| %>
+<%= form_for(@user, html: { class: 'form' }) do |form| %>
 
   <%= render partial: 'model_errors', locals: { model: @user } %>
 
-  <div class="input-group">
-    <%= form.label :name, class: 'input-label' %>
-    <%= form.text_field :name, class: 'input-field' %>
+  <div class="form__input">
+    <div class="input-group">
+      <%= form.label :name, class: 'input-label' %>
+      <%= form.text_field :name, class: 'input-field' %>
+    </div>
+    <div class="input-group">
+      <%= form.label :avatar, class: 'input-label' %>
+      <div class="input-file__container">
+        <%= form.file_field :avatar, class: 'input-file sr-only', accept: '.jpg, .jpeg, .gif, .png, .pdf' %>
+        <label class="btn input-file__trigger" for="user_avatar" id="fileTrigger">choose file</label>
+      </div>
+    </div>
+    <div class="input-group">
+      <%= form.label :role, class: 'input-label' %>
+      <%= form.select :role, %w(registered admin), {}, class: 'input-field input-field--select' %>
+    </div>
   </div>
-  <div class="input-group">
-    <%= form.label :avatar, class: 'input-label' %>
-    <%= form.file_field :avatar, class: 'input-field', accept: '.jpg, .jpeg, .gif, .png' %>
-  </div>
-  <div class="input-group">
-    <%= form.label :role, class: 'input-label' %>
-    <%= form.select :role, %w(registered admin), {}, class: 'input-field' %>
-  </div>
-  <div class="prompt">
-    <%= form.submit %>
+  <div class="prompt prompt--cancel">
+    <%= link_to 'Cancel', users_path, class: 'link' %>
+    <%= form.submit class: 'btn btn--primary' %>
   </div>
 <% end %>
 

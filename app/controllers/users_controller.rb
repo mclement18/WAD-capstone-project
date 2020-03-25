@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :ensure_authenticated, only: [:index, :edit, :update, :destroy]
-  before_action :ensure_admin, only: [:index, :edit, :update, :destroy]
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :ensure_authenticated, only: [:index, :show, :edit, :update, :destroy]
+  before_action :ensure_admin, only: [:index, :show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.all.active
@@ -22,6 +22,10 @@ class UsersController < ApplicationController
         format.html { render :new }
       end
     end
+  end
+
+  def show
+    redirect_to edit_user_path(@user)
   end
 
   def edit
