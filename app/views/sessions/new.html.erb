@@ -1,19 +1,23 @@
-<div class="main-title">
-  <div class="title">
-    <h1>Log In</h1>
+<div class="envelope">
+  <div class="main-title">
+    <div class="title">
+      <h1>Log In</h1>
+    </div>
   </div>
+  
+  <%= form_tag login_path, class: 'form' do %>
+    <div class="form__input">
+      <div class="input-group">
+        <%= label_tag 'email', 'Email', class: 'input-label' %>
+        <%= email_field_tag 'email', nil, class: 'input-field', placeholder: 'e.g. peterparker@oscorp.com' %>
+      </div>
+      <div class="input-group">
+        <%= label_tag 'password', 'Password', class: 'input-label' %>
+        <%= password_field_tag 'password', nil, class: 'input-field' %>
+      </div>
+    </div>
+    <div class="prompt">
+      <%= button_tag 'Log in', class: 'btn btn--primary' %>
+    </div>
+  <% end %>
 </div>
-
-<%= form_tag login_path do %>
-   <div class="input-group">
-    <%= label_tag 'email', 'Email', class: 'input-label' %>
-    <%= email_field_tag 'email', nil, class: 'input-field', placeholder: 'e.g. peterparker@oscorp.com' %>
-  </div>
-  <div class="input-group">
-    <%= label_tag 'password', 'Password', class: 'input-label' %>
-    <%= password_field_tag 'password', nil, class: 'input-field' %>
-  </div>
-  <div class="prompt">
-    <%= button_tag 'Log in' %>
-  </div>
-<% end %>

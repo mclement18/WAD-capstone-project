@@ -1,0 +1,28 @@
+.envelope {
+  margin: 0 auto $base-margin * 4;
+  padding: $base-margin;
+  max-width: 470px;
+  // border: 1px solid $brown-4;
+  box-shadow: 0 5px 10px 1px $brown-4;
+  border-radius: 10px;
+  
+  h1 {
+    @include desktop {
+      font-size: 4em;
+    }
+  }
+
+  .form {
+    margin: 0;
+  }
+
+  .input-field {
+    border: 1px solid $brown-4;
+    box-shadow: none;
+
+    &:hover, &:focus {
+      border: 1px solid $brown-2;
+    }
+  }
+}
+
