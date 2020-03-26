@@ -8,9 +8,9 @@ class TripsController < ApplicationController
   def index
     if params[:q].present?
       @queries = params[:q].strip.split(' ')
-      @trips = Trip.active.load_users.global_search(@queries).page(params[:page]).per(9)
+      @trips = Trip.active.load_users.global_search(@queries).page(params[:page])
     else
-      @trips = Trip.active.load_users.page(params[:page]).per(9)
+      @trips = Trip.active.load_users.page(params[:page])
     end
   end
 

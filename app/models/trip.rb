@@ -38,6 +38,8 @@ class Trip < ApplicationRecord
 
   mount_uploader :image, ImageUploader
                                                                                                                        
+  paginates_per 9
+  
   def soft_delete_if_needed
     if self.to_dos.any?
       self.deleted = true
