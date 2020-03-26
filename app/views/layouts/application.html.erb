@@ -14,7 +14,7 @@
   <body>
   
     <header class="<%= yield :banner %>">
-      <div class="global-header">
+      <div class="global-header" id="alert-insertion">
         <div class="content-wrapper">
           <div class="logo <%= yield :logo %>">
             <%= link_to root_path do %>
@@ -43,14 +43,14 @@
         </div>
       </div>
 
-      <%= yield :header %>
-    </header>
-
-    <main id="alert-insertion">
       <% if alert || notice %>
         <%= render partial: 'alert_and_notice', locals: { notice: notice, alert: alert } %>
       <% end %>
 
+      <%= yield :header %>
+    </header>
+
+    <main>
       <div class="content-wrapper">
         <%= yield %>
       </div>

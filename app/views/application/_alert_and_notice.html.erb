@@ -1,15 +1,15 @@
 <% if notice %>
-<div id="<%= alert_id %>" class="alert notice" role="notice">
-  <p><%= notice %></p>
-  <button type="button" class="close">
+<div id="<%= alert_id %>" class="alert alert--notice" role="notice">
+  <span class="alert__text"><%= notice %></span>
+  <button type="button" class="alert__button">
     <span>&times;</span>
   </button>
 </div>
 <% end %>
 <% if alert %>
 <div id="<%= alert_id %>" class="alert" role="alert">
-  <p><%= alert %></p>
-  <button type="button" class="close">
+  <span class="alert__text"><%= alert %></span>
+  <button type="button" class="alert__button">
     <span>&times;</span>
   </button>
 </div>

@@ -1,0 +1,57 @@
+.alert {
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  
+  margin: 0;
+  padding: $base-margin $base-margin;
+
+  background: lighten($red, 46.5);
+  border: 3px solid $red;
+
+  color: $red;
+
+  & + & {
+    margin: -72.5px 0 0;
+  }
+
+  .global-header + & {
+    margin: -$base-margin * 3 0 0;
+  }
+
+  @include tablet {
+    padding: $base-margin $base-margin * 3;
+  }
+
+  &__text {
+    margin: 0;
+    font-weight: bold;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    
+    margin: 0 0 0 auto;
+    padding: 0;
+    border: none;
+    background: none;
+    color: $red;
+    font-size: 2em;
+    cursor: pointer;
+
+    span {
+      margin: 0;
+    }
+  }
+
+  &--notice {
+    background-color: lighten($green, 35);
+    border-color: $green;
+    color: $green;
+
+    .alert__button {
+      color: $green;
+    }
+  }
+}
