@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   before_action :ensure_authenticated, only: [:index, :show, :edit, :update, :destroy]
-  before_action :ensure_admin, only: [:index, :show, :edit, :update, :destroy]
+  before_action :ensure_admin, only: [:index, :edit, :update, :destroy]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all.active
+    @users = User.load_associated_ressources.active.page(params[:page])
   end
   
   def new
@@ -25,7 +25,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to edit_user_path(@user)
   end
 
   def edit

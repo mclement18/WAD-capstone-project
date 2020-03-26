@@ -11,9 +11,9 @@
   </div>
 <% end %>
 
-<div class="categories">
+<div class="categories cards">
   <h2>You know what you want to do? Then brows the suggested trips by categories.</h2>
-  <ul class="categories__list bare-list">
+  <ul class="cards__list bare-list">
     <% %w(city road international relaxing cultural adventurous).each do |category| %>
       <%= render partial: 'category_card',locals: { category: category } %>
     <% end %>

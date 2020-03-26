@@ -1,0 +1,32 @@
+<li class="card card--user">
+  <%= link_to user_path(user), class: 'card__thumb' do %>
+    <div class="card__avatar">
+    	<%= image_tag user.avatar_url, alt: "User #{user.id} avatar", class: 'card__image avatar' %>
+    </div>
+    <div class="card__intro">
+      <h3 class="card__title"><%= user.name %></h3>
+      <h4 class="card__subtitle"><%= user.email %></h4>
+      <ul class="card__info bare-list">
+        <li><%= user.trips.length %> trips created</li>
+        <li><%= user.success.length %> trips completed</li>
+        <li><%= user.travels.length %> current trips</li>
+        <li><%= user.dreams.length %> trips to do</li>
+        <li><%= user.comments.length %> comments leaved</li>
+      </ul>
+    </div>
+    <ul class="card__tags bare-list">
+      <% if user == current_user %>
+        <li class="tag">You</li>
+      <% end %>
+      <% if user.role == 'admin' %>
+        <li class="tag">Admin</li>
+      <% end %>
+    </ul>
+  <% end %>
+  <% if current_user.role == 'admin' %>
+    <div class="card__footer buttons-group">
+      <%= link_to 'Edit User', edit_user_path(user), class: 'btn' %>
+      <%= link_to 'Delete User', user_path(user), class: 'btn btn--secondary', method: :delete, remote: true %>
+    </div>
+  <% end %>
+</li>

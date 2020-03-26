@@ -4,10 +4,12 @@
   </div>
 </div>
 
-<ul class="card-list">
-  <% @users.each do |user| %>
-    <li>
-      <h3><%= user.name %></h3>
-    </li>
-  <% end %>
-</ul>
+<div class="cards">
+  <ul class="cards__list bare-list">
+    <% @users.each do |user| %>
+      <%= render partial: 'user_card', locals: { user: user } %>
+    <% end %>
+  </ul>
+
+  <%= paginate @users, window: 1 %>
+</div>

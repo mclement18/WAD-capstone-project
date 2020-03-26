@@ -1,104 +1,159 @@
 .card {
-  box-shadow: 2px 2px 2px 2px $brown-2;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  
+  box-shadow: 2px 2px 5px 3px $brown-4;
   overflow: hidden;
   border-radius: 4px;
 
   margin: 0 0 $base-margin * 2;
+}
 
-  &__thumb {
-    display: block;
-    position: relative;
-    text-decoration: none;
-  }
+.card__thumb {
+  display: block;
+  position: relative;
+  text-decoration: none;
 
-  &__intro {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background: rgba($black, $alpha: .2);
-    box-sizing: border-box;
-    width: 100%;
-    padding: $line-height * 1em;
-    text-align: left;
-  }
+  flex: 1 0 auto;
+}
 
-  &__title {
-    margin: 0;
-    font-size: 2em;
-    color: $white;
-    text-shadow: 2px 2px 2px $black;
-  }
+.card__image {
+  width: 100%;
+  display: block;
+}
 
-  &__subtitle {
-    margin: 0;
-    font-size: 1em;
-    color: $white;
-    text-shadow: 2px 2px 2px $black;
-  }
+.card__intro {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: rgba($black, $alpha: .2);
+  box-sizing: border-box;
+  width: 100%;
+  padding: $line-height * 1em;
+  text-align: left;
+}
 
-  &__info {
-    @include flex-list-horizontal;
+.card__title {
+  margin: 0;
+  font-size: 2em;
+  color: $white;
+  text-shadow: 2px 2px 2px $black;
+}
 
-    margin: 0;
-    font-size: 1em;
-    color: lighten($green, 15);
-    text-shadow: 1px 1px 1px $black;
+.card__subtitle {
+  margin: 0;
+  font-size: 1em;
+  color: $white;
+  text-shadow: 2px 2px 2px $black;
+}
 
-    li:not(:last-child) {
-      margin-right: $base-margin * .5;
+.card__info {
+  @include flex-list-horizontal;
 
-      &::after {
-        content: '';
-        margin-left: $base-margin * .5;
-        border-right: 2px solid $black;
-      }
+  margin: 0;
+  font-size: 1em;
+  color: lighten($green, 15);
+  text-shadow: 1px 1px 1px $black;
+
+  li:not(:last-child) {
+    margin-right: $base-margin * .5;
+
+    &::after {
+      content: '';
+      margin-left: $base-margin * .5;
+      border-right: 2px solid $black;
     }
   }
+}
 
-  &__tags {
-    @include flex-list-horizontal;
-    
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: $base-margin $base-margin;
+.card__tags {
+  @include flex-list-horizontal;
+  
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: $base-margin $base-margin;
 
-    .tag {
-      color: $white;
-      background: $green;
-      border: 2px solid darken($green, 25);
+  .tag {
+    color: $white;
+    background: $green;
+    border: 2px solid darken($green, 25);
+  }
+}
+
+.card__footer {
+  .btn,
+  .btn--form {
+    margin: 0;
+
+    .card:nth-last-child(n+2) {
+      border-right: 1px solid $brown-3;
     }
   }
   
-  &__image {
-    width: 100%;
-    display: block;
+  .btn {
+    border-radius: 0;
+    border: none;
   }
 
-  &__footer {
-    .btn,
-    .btn--form {
-      margin: 0;
+  .btn--secondary {
+    background: linear-gradient(to bottom, $white 0%, lighten($brown-4, 10) 100%);
+    color: $black;
+  }
+}
 
-      &:nth-last-child(n+2) {
-        border-right: 1px solid $brown-3;
-      }
-    }
+.card--user {
+  max-width: 340px;
+  margin: 0 auto $base-margin * 2;
+  
+  .card__thumb {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
     
-    .btn {
-      border-radius: 0;
-      border: none;
-    }
+    padding: $base-margin * 2 0 0;
+    background: linear-gradient(to bottom, $white 0%, $brown-4 35%, $brown-3 60%);
+  }
 
-    .btn--secondary {
-      background: linear-gradient(to bottom, $white 0%, lighten($brown-4, 10) 100%);
-      color: $black;
-      // &:hover,
-      // &:active,
-      // &:focus {
-      //   background: darken($red, 10);
-      //   color: $white;
-      // }
+  .card__avatar {
+    margin: 0 $base-margin * 2 $base-margin * 2;
+  }
+  
+  .card__image {
+    height: auto;
+    box-sizing: border-box;
+    border: 3px solid $green;
+  }
+  
+  .card__intro {
+    position: static;
+    background: $green;
+
+    flex: 1 0 auto;
+  }
+
+  .card__title {
+    text-shadow: none;
+  }
+
+  .card__subtitle {
+    margin: 0 0 5px;
+    text-shadow: none;
+  }
+
+  .card__info {
+    @include flex-list-horizontal-wrap;
+    text-shadow: none;
+
+    padding: 0 0 0 3px;
+    color: $black;
+    li:before {
+      content: '\2022';
+      padding: 10px 10px 10px 0;
+    }
+    li::after {
+      display: none;
     }
   }
 }

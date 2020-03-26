@@ -12,20 +12,14 @@
   flex-wrap: wrap;
 }
 
-@mixin grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: $base-margin;
-}
+@mixin card-grid {
+  @include tablet {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: $base-margin * 2;
+  }
 
-@mixin grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: $base-margin;
-}
-
-@mixin grid-4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: $base-margin;
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

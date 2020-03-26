@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :dreams, -> { where('status = ?', 'to-do') }, through: :to_dos, source: :trip
   has_many :travels, -> { where('status = ?', 'in-progress') }, through: :to_dos, source: :trip
   has_many :success, -> { where('status = ?', 'done') }, through: :to_dos, source: :trip
+  has_many :comments
   
   has_secure_password
 
@@ -15,9 +16,12 @@ class User < ApplicationRecord
   after_initialize  :initialize_deleted!
   before_validation :downcase_email
 
-  scope :active, -> { where(deleted: false) }
+  scope :active,                     -> { where(deleted: false) }
+  scope :load_associated_ressources, -> { includes(:trips, :dreams, :travels, :success, :comments) }
 
   mount_uploader :avatar, AvatarUploader
+
+  paginates_per 6
 
   def soft_delete
     self.deleted = true

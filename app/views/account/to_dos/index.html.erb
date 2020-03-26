@@ -5,9 +5,9 @@
   <%= render partial: 'sub_nav', locals: { current: @current_page } %>
 </div>
 
-<div class="trips">
+<div class="cards">
   <% if @todos.any? %>
-    <ul class="trips__list bare-list">
+    <ul class="cards__list bare-list">
       <% @todos.each do |trip| %>
         <%= render partial: 'todo_card', locals: { trip: trip, current_page: @current_page } %>
       <% end %>

@@ -1,0 +1,7 @@
+.cards {
+  margin: 0 0 $base-margin * 4;
+
+  &__list {
+    @include card-grid;
+  }
+}

@@ -8,9 +8,9 @@
   </div>
 </div>
 
-<div class="trips">
+<div class="cards">
   <% if @trips.any? %>
-    <ul class="trips__list bare-list">
+    <ul class="cards__list bare-list">
       <% @trips.each do |trip| %>
         <%= render partial: 'trip_card', locals: { trip: trip } %>
       <% end %>
