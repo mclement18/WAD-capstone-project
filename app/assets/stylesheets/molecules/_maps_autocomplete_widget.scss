@@ -1,0 +1,37 @@
+.pac-container {
+  font-family: 'Josefin Sans', Arial, Helvetica, sans-serif;
+
+  span {
+    font-size: 1.3rem;
+  }
+  
+  .pac-icon {
+    background: asset-url('icons/place_green.svg') center / 17px no-repeat;
+  }
+
+  .pac-item {
+    font-size: 1.3rem;
+    color: $brown-2;
+
+    &:hover {
+      background: lighten($brown-4, 20);
+    }
+  }
+
+  .pac-item-selected {
+    background: lighten($green, 35);
+
+    .pac-icon {
+      background-image: asset-url('icons/place_red.svg');
+    }
+  }
+
+  .pac-item-query {
+    font-size: 1.5rem;
+    color: $black;
+  }
+
+  .pac-matched {
+    font-size: 1.5rem;
+  }
+}

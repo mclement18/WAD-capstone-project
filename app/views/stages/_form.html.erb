@@ -1,31 +1,39 @@
-<%= form_for [trip, stage] do |form| %>
+<%= form_for [trip, stage], html: { class: 'form' } do |form| %>
 
   <%= render partial: 'model_errors', locals: { model: stage } %>
 
-  <div class="input-group">
-    <%= form.label :title, class: 'input-label' %>
-    <%= form.text_field :title, class: 'input-field', placeholder: 'e.g. The Machu Picchu' %>
-  </div>
-  <div class="input-group">
-    <%= form.label :description, class: 'input-label' %>
-    <%= form.text_area :description, class: 'input-field', placeholder: 'max 500 characters' %>
-  </div>
-  <div class="input-group">
-    <%= form.label :travel_type, class: 'input-label' %>
-    <%= form.select :travel_type, travel_type_options(stage.travel_type), {}, class: 'input-field' %>
-  </div>
-  <div class="input-group">
-    <%= form.label :address, class: 'input-label' %>
-    <%= form.text_field :address, class: 'input-field', placeholder: 'Type your address...' %>
+  <div class="form__input">
+    <div class="input-group">
+      <%= form.label :title, class: 'input-label' %>
+      <%= form.text_field :title, class: 'input-field', placeholder: 'e.g. The Machu Picchu' %>
+    </div>
+    <div class="input-group input-group--textarea">
+      <%= form.label :description, class: 'input-label' %>
+      <%= form.text_area :description, class: 'input-field input-field--textarea', maxlength: 500, placeholder: 'max 500 characters' %>
+    </div>
+    <div class="input-group">
+      <%= form.label :travel_type, class: 'input-label' %>
+      <%= form.select :travel_type, travel_type_options(stage.travel_type), {}, class: 'input-field input-field--select' %>
+    </div>
+    <div class="input-group">
+      <%= form.label :address, for: 'fake-field', class: 'input-label' %>
+      <%= form.text_field :address, id: 'fake-field', class: 'input-field', name: 'fake-field', data: { autocomplete: true }, placeholder: 'Type your address...' %>
+      <%= form.hidden_field :address %>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkdhzwNenZyu0q-Y54rGFDMyvj1HEWmAA&libraries=places&callback=initAutocomplete"
+        async defer ></script>
+    </div>
   </div>
   <iframe
+    id="staticMap"
+    class="form__map"
     width="600"
     height="450"
     frameborder="0" style="border:0"
     src="https://www.google.com/maps/embed/v1/place?key=<%= ENV["GOOGLE_API_CLIENT_KEY"] %>&q=<%= url_encode(map_query(stage.address)) %>"
     allowfullscreen>
   </iframe>
-  <div class="prompt">
-    <%= form.submit class: 'btn' %>
+  <div class="prompt prompt--cancel">
+    <%= link_to 'Cancel', stage_form_cancel_path(trip, stage), class: 'link' %>
+    <%= form.submit class: 'btn btn--primary' %>
   </div>
 <% end %>

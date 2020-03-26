@@ -11,7 +11,15 @@ module StagesHelper
     if address
       address
     else
-      'Everest'
+      'Machu Picchu, 08680, Peru'
+    end
+  end
+
+  def stage_form_cancel_path(trip, stage)
+    if stage.created_at
+      return trip_stage_path(trip, stage)
+    else
+      return trip_path(trip)
     end
   end
 end
