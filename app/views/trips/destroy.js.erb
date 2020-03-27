@@ -1,5 +1,5 @@
 <% if @trip.deleted || @trip.destroyed? %>
-  Trip.removeFromPage(<%= @trip.id %>)
+  Trip.removeFromPage(<%= @trip.id %>, 'You did not created any trip yet.')
 <% end %>
 
 <% if flash.any? %>
