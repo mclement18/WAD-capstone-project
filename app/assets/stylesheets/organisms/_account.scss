@@ -1,0 +1,96 @@
+.account {
+  margin: 0 auto $base-margin * 3;
+  max-width: 700px;
+  
+  .avatar {
+    margin: 0 auto $base-margin * 2;
+    border: 3px solid $green;
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+  }
+
+  @include tablet {
+    display: grid;
+    grid-template-columns: repeat(12, 1 / 12 * 100%);
+
+    .account__details {
+      grid-column: span 7;
+      text-align: left;
+      margin-right: $base-margin;
+    }
+
+    .avatar {
+      grid-column: span 5;
+    }
+
+    .account__stats {
+      grid-column: span 12;
+
+      .text {
+        grid-column: 3 / span 5;
+      }
+
+      .count {
+        grid-column: 10;
+      }
+    }
+  }
+}
+
+.account__details {
+  margin: 0 0 $base-margin * 2;
+  padding: $base-margin;
+  border: 2px solid $brown-2;
+  border-radius: 3px;
+
+  .email {
+    margin: 0 0 $base-margin * 2;
+    font-size: 1.7em;
+  }
+
+  .name-info {
+    display: block;
+    font-size: 1.2rem;
+    color: $brown-4;
+  }
+
+  .action {
+    @include flex-list-horizontal;
+  }
+}
+
+.account__stats {
+  color: $black;
+  
+  li {
+    display: grid;
+    grid-template-columns: repeat(12, 1 / 12 * 100%);
+
+    padding: $base-margin;
+    border-bottom: 1px solid $brown-3;
+
+    &:nth-child(2n+1) {
+      background: lighten($green, 30);
+    }
+    
+    &:nth-child(2n+0) {
+      background: lighten($brown-4, 20);
+    }
+  }
+
+  .text, .count {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  .text {
+    grid-column: span 7;
+    text-align: left;
+  }
+
+  .count {
+    grid-column: 11;
+    text-align: center;
+  }
+}

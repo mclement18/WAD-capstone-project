@@ -1,24 +1,33 @@
 <div class="main-title">
-  <div class="title title--with-button">
+  <div class="title">
     <h1>Your profile</h1>
-    <%= link_to 'Edit', edit_account_path, class: 'btn' %>
   </div>
   <%= render partial: 'sub_nav', locals: { current: 'account' } %>
 </div>
 
-<div class="user-info">
-  <div>
-    <h3 class="name"><%= current_user.name %></h3>
+<div class="account">
+  <div class="account__details">
+    <h2 class="name">
+      <%= current_user.name %>
+      <% if account_not_updated? %>
+        <span class="name-info">This user name was automatically generated. To change it update your account.</span>
+      <% end %>
+    </h2>
     <h3 class="email"><%= current_user.email %></h3>
+    <ul class="action bare-list">
+      <li><%= link_to 'Edit', edit_account_path, class: 'btn' %></li>
+      <% if current_user.role == 'admin' %>
+        <li class="tag">Admin</li>
+      <% end %>
+    </ul>
   </div>
   <%= image_tag current_user.avatar_url, class: 'avatar', alt: "#{current_user.name} avatar" %>
-</div>
-
-<div class="user-stat">
-  <ul>
-    <li>Trips created:</li>
-    <li>Trips to do:</li>
-    <li>Trips done:</li>
-    <li>Comments:</li>
+  
+  <ul class="account__stats">
+    <li><span class="text">Trips created:</span> <span class="count"><%= current_user.trips.count %></span></li>
+    <li><span class="text">Trips to do:</span> <span class="count"><%= current_user.dreams.count %></span></li>
+    <li><span class="text">Trips in progress:</span> <span class="count"><%= current_user.travels.count %></span></li>
+    <li><span class="text">Trips done:</span> <span class="count"><%= current_user.success.count %></span></li>
+    <li><span class="text">Comments:</span> <span class="count"><%= current_user.comments.count %></span></li>
   </ul>
 </div>
