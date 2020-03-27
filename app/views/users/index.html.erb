@@ -7,7 +7,7 @@
 <div class="cards">
   <ul class="cards__list bare-list">
     <% @users.each do |user| %>
-      <%= render partial: 'user_card', locals: { user: user } %>
+      <%= render partial: 'user_card', locals: { user: user, remote_delete: @remote_delete } %>
     <% end %>
   </ul>
 

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.load_associated_ressources.active.page(params[:page])
+    @remote_delete = true
   end
   
   def new
@@ -25,6 +26,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @remote_delete = false
   end
 
   def edit
@@ -48,9 +50,13 @@ class UsersController < ApplicationController
           format.html { redirect_to root_path, notice: 'You successfuly deleted your account!' }
         else
           format.html { redirect_to users_path, notice: 'User successfuly deleted!' }
+          flash.now.notice = 'User successfuly deleted!'
+          format.js
         end
       else
         format.html { redirect_to users_path, alert: 'Unable to delete user.' }
+        flash.now.alert = 'Unable to delete user.'
+        format.js
       end
     end
   end

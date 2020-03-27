@@ -1,0 +1,7 @@
+<% if @user.deleted || @user.destroyed? %>
+  User.removeFromPage(<%= @user.id %>)
+<% end %>
+
+<% if flash.any? %>
+  Alert.render('<%=j render 'alert_and_notice', alert: flash.alert, notice: flash.notice %>')
+<% end %>
