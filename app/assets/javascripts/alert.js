@@ -45,10 +45,12 @@ Alert.getAlertTop = function(id) {
 
 Alert.setWindowScrollingEvent = function(alertId, alertTop) {
   window.addEventListener('scroll', () =>{
-    if (window.scrollY >= alertTop) {
-      this.getAlert(alertId).style = 'position: fixed; top: 0; right: 0; left: 0; margin: 0';
-    } else {
-      this.getAlert(alertId).style = '';
+    if (this.getAlert(alertId)) {
+      if (window.scrollY >= alertTop) {
+        this.getAlert(alertId).style = 'position: fixed; top: 0; right: 0; left: 0; margin: 0';
+      } else {
+        this.getAlert(alertId).style = '';
+      }
     }
   });
 };
