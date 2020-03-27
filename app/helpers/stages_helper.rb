@@ -22,4 +22,16 @@ module StagesHelper
       return trip_path(trip)
     end
   end
+
+  def stage_nav_link(trip, stage)
+    if stage == 'None'
+      return '#'
+    else
+      return trip_stage_path(trip, stage)
+    end
+  end
+
+  def stage_nav_class(stage)
+    return 'btn--disabled' if stage == 'None'
+  end
 end

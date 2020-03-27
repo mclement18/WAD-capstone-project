@@ -80,3 +80,16 @@
     width: 100%;
   }
 }
+
+.btn--disabled {
+  background: lighten($brown-4, 22);
+  color: lighten($brown-4, 5);
+
+  cursor: not-allowed;
+
+  &:hover, &:focus,
+  &:active {
+    background: lighten($brown-4, 22);
+    color: lighten($brown-4, 5);
+  }
+}

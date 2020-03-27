@@ -1,30 +1,55 @@
 <div class="main-title">
   <div class="title">
+    <p class="gamma">Stage <%= @stage.number %> of trip: <%= @trip.title %></p>
     <h1><%= @stage.title %></h1>
   </div>
-  <h2>From trip: <%= @trip.title %></h2>
 </div>
 
-<div class="media">
-  <div class="image">
-    <%= image_tag @stage.image_url %>
+<div class="stage">
+  <div class="stage__media">
+    <%= image_tag @stage.image_url, class: 'image', id: 'stage-image' %>
+  
+    <div class="map" id="stage-map">
+  <iframe
+    id="staticMap"
+    width="100%"
+    height="100%"
+    frameborder="0" style="border:0"
+    src="https://www.google.com/maps/embed/v1/place?key=<%= ENV["GOOGLE_API_CLIENT_KEY"] %>&q=<%= url_encode(map_query(@stage.address)) %>"
+    allowfullscreen>
+  </iframe>
+    </div>
   </div>
+  
+  <div class="stage__info">
+    <div class="owner">
+      <span>Created by</span>
+      <%= link_to user_path(@trip.user), class: 'link link--user' do %>
+        <%= image_tag @trip.user.avatar_url(:small), class: 'avatar avatar--mini' %>
+        <span><%= @trip.user.name %></span>
+      <% end %>
+      <span>on <time datetime=<%= @trip.created_at.strftime("%FT%T") %>><%= @trip.created_at.strftime("%d %b '%y") %></time></span>
+    </div>
+  
+    <p class="description">
+      <%= raw @stage.description %>
+    </p>
 
-  <div class="map">
-
+    <ul class="details">
+      <li><span class="variable">Address:</span> <span class="value"><%= @stage.address %></span></li>
+      <li><span class="variable">Travel mode:</span> <span class="value"><%= @stage.travel_type.capitalize %></span></li>
+      <li><span class="variable">Stage number:</span> <span class="value"><%= @stage.number %></span></li>
+      <li><span class="variable">Comments:</span> <span class="value"><%= @stage.comments.length %></span></li>
+    </ul>
   </div>
-</div>
-
-<div class="info">
-  <p class="description">
-    <%= @stage.description %>
-  </p>
-</div>
-
-<div class="stage-nave">
-  <%= link_to 'Previous Stage', trip_stage_path(@trip, @stage.previous_stage) %>
-  <%= link_to 'Edit Stage', edit_trip_stage_path(@trip, @stage) %>
-  <%= link_to 'Next Stage', trip_stage_path(@trip, @stage.next_stage) %>
+  
+  <div class="stage__nav buttons-group">
+    <%= link_to 'Previous', stage_nav_link(@trip, @stage.previous_stage), class: "btn #{stage_nav_class(@stage.previous_stage)}" %>
+    <% if can_edit?(@trip) %>
+      <%= link_to 'Edit', edit_trip_stage_path(@trip, @stage), class: 'btn' %>
+    <% end %>
+    <%= link_to 'Next', stage_nav_link(@trip, @stage.next_stage), class: "btn #{stage_nav_class(@stage.next_stage)}" %>
+  </div>
 </div>
 
 <%= render partial: 'comments/comments', locals: { article: @stage } %>
