@@ -1,3 +1,8 @@
+<% content_for :meta_tag do %>
+  <meta name="stage-directions" value="<%= @stage.directions %>" />
+  <meta name="stage-travelMode" value="<%= @stage.travel_type %>" />
+<% end %>
+
 <div class="main-title">
   <div class="title">
     <p class="gamma">Stage <%= @stage.number %> of trip: <%= @trip.title %></p>
@@ -10,14 +15,9 @@
     <%= image_tag @stage.image_url, class: 'image', id: 'stage-image' %>
   
     <div class="map" id="stage-map">
-  <iframe
-    id="staticMap"
-    width="100%"
-    height="100%"
-    frameborder="0" style="border:0"
-    src="https://www.google.com/maps/embed/v1/place?key=<%= ENV["GOOGLE_API_CLIENT_KEY"] %>&q=<%= url_encode(map_query(@stage.address)) %>"
-    allowfullscreen>
-  </iframe>
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkdhzwNenZyu0q-Y54rGFDMyvj1HEWmAA&libraries=geometry&callback=initStageMap">
+      </script>
     </div>
   </div>
   

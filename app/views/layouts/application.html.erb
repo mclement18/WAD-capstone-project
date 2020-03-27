@@ -8,7 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <meta name="current-user" id="<%= current_user.try(:id) %>">
+    <meta name="current-user" id="<%= current_user.try(:id) %>" />
+    <%= yield :meta_tag %>
   </head>
 
   <body>
