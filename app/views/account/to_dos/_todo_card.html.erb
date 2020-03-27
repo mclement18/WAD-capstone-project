@@ -1,4 +1,4 @@
-<li class="card">
+<li class="card" id="trip-id-<%= trip.id %>">
   <%= link_to trip_path(trip), class: 'card__thumb' do %>
     <%= image_set_tag trip.image_url(:thumb),
                       { 
@@ -21,26 +21,24 @@
       <% end %>
       <% case current_page
          when 'todolist' %>
-        <li class="tag">ToDo</li>
+        <li class="tag" data-status="true">ToDo</li>
       <% when 'travels' %>
-        <li class="tag">Curent</li>
+        <li class="tag" data-status="true">Curent</li>
       <% when 'success' %>
-        <li class="tag">Completed</li>
+        <li class="tag" data-status="true">Completed</li>
       <% end %>
     </ul>
   <% end %>
   <div class="card__footer buttons-group">
     <% case current_page
        when 'todolist' %>
-      <%= render partial: 'update_todo_button', locals: { trip: trip, transition: 'traveling' } %>
+      <%= render partial: 'todo_update_button', locals: { trip: trip, transition: 'traveling' } %>
     <% when 'travels' %>
-      <%= render partial: 'update_todo_button', locals: { trip: trip, transition: 'arrived' } %>
-      <%= render partial: 'update_todo_button', locals: { trip: trip, transition: 'cancel' } %>
+      <%= render partial: 'todo_update_button', locals: { trip: trip, transition: 'arrived' } %>
+      <%= render partial: 'todo_update_button', locals: { trip: trip, transition: 'cancel' } %>
     <% when 'success' %>
-      <%= render partial: 'update_todo_button', locals: { trip: trip, transition: 'cancel' } %>
+      <%= render partial: 'todo_update_button', locals: { trip: trip, transition: 'cancel' } %>
     <% end %>
-    <%= form_tag(user_to_do_path(current_user, current_user_to_do(trip.id)), class: 'btn--form', method: :delete, remote: true) do %>
-      <%= button_tag 'Remove', class: 'btn btn--secondary' %>
-    <% end %>
+    <%= link_to 'Remove', user_to_do_path(current_user, current_user_to_do(trip.id)), class: 'btn btn--secondary', method: :delete, remote: true %>
   </div>
 </li>

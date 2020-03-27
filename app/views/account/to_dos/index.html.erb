@@ -7,7 +7,7 @@
 
 <div class="cards">
   <% if @todos.any? %>
-    <ul class="cards__list bare-list">
+    <ul class="cards__list bare-list" id="todo-list">
       <% @todos.each do |trip| %>
         <%= render partial: 'todo_card', locals: { trip: trip, current_page: @current_page } %>
       <% end %>

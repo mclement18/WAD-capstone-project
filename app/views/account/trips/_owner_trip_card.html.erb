@@ -18,13 +18,13 @@
     <ul class="card__tags bare-list">
       <li class="tag">Owner</li>
       <% if trip.dreamers.include?(current_user) %>
-        <li class="tag">ToDo</li>
+        <li class="tag" data-status="true">ToDo</li>
       <% end %>
       <% if trip.travelers.include?(current_user) %>
-        <li class="tag">Current Trip</li>
+        <li class="tag" data-status="true">Current Trip</li>
       <% end %>
       <% if trip.veterans.include?(current_user) %>
-        <li class="tag">Completed</li>
+        <li class="tag" data-status="true">Completed</li>
       <% end %>
     </ul>
   <% end %>

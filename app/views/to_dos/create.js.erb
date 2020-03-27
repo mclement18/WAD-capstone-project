@@ -1,5 +1,6 @@
-<% if @todo.errors.any? %>
-// find and replace add to todo list button
+<% unless @todo.errors.any? %>
+  ToDo.respond(<%= @todo.trip_id %>, 'todo-create',
+               '<%=j render partial: 'todo_delete_button', locals: { user: current_user, todo: @todo } %>')
 <% end %>
 
 <% if flash.any? %>
