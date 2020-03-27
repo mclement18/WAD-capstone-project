@@ -50,8 +50,12 @@ class TripsController < ApplicationController
     respond_to do |format|
       if @trip.soft_delete_if_needed
         format.html { redirect_to account_trips_path, notice: 'Trip successfully deleted!' }
+        flash.now.notice = 'Trip successfully deleted!'
+        format.js
       else
         format.html { redirect_to trip_path(@trip), alert: 'Unable to delete trip.' }
+        flash.now.alert = 'Unable to delete trip.'
+        format.js
       end
     end
   end

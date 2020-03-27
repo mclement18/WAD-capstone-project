@@ -1,4 +1,4 @@
-<li class="card">
+<li class="card" id="trip-id-<%= trip.id %>">
   <%= link_to trip_path(trip), class: 'card__thumb' do %>
     <%= image_set_tag trip.image_url(:thumb),
                       { 
@@ -36,8 +36,6 @@
       <% end %>
     <% end %>
     <%= link_to 'Edit Trip', edit_trip_path(trip), class: 'btn' %>
-    <%= form_tag(trip_path(trip), class: 'btn--form', method: :delete, remote: true) do %>
-      <%= button_tag 'Delete trip', class: 'btn btn--secondary' %>
-    <% end %>
+    <%= link_to 'Delete Trip', trip_path(trip), class: 'btn btn--secondary', method: :delete, remote: true %>
   </div>
 </li>
