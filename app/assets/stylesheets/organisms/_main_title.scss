@@ -5,6 +5,10 @@
   .title {
     padding: $base-margin 0;
 
+    p {
+      margin: 0 0 $base-margin * 2;
+    }
+
     &--with-button {
       position: relative;
 

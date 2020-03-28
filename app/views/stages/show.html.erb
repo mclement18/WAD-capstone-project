@@ -43,6 +43,7 @@
   
   <div class="stage__nav buttons-group">
     <%= link_to 'Previous', stage_nav_link(@trip, @stage.previous_stage), class: "btn #{stage_nav_class(@stage.previous_stage)}" %>
+    <%= link_to 'Trip', trip_path(@trip), class: 'btn' %>
     <% if can_edit?(@trip) %>
       <%= link_to 'Edit', edit_trip_stage_path(@trip, @stage), class: 'btn' %>
     <% end %>

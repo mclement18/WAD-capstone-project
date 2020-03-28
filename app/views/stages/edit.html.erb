@@ -1,8 +1,8 @@
 <div class="main-title">
   <div class="title">
-    <h1>Edit Stage: <%= @stage.title %></h1>
+    <p class="gamma">Stage <%= @stage.number %> of trip: <%= @trip.title %></p>
+    <h1>Edit Stage</h1>
   </div>
-  <h2>From trip: <%= @trip.title %></h2>
 </div>
 
 <%= render partial: 'form', locals: { trip: @trip, stage: @stage } %>
