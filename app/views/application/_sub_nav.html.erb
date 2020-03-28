@@ -1,9 +1,9 @@
 <div class="sub-nav">
   <ul class="bare-list">
-    <li><%= link_to 'Account', account_path, class: "link link--subnav #{is_current?(current, 'account')}" %></li>
-    <li><%= link_to 'My Trips', account_trips_path, class: "link link--subnav #{is_current?(current, 'trips')}" %></li>
-    <li><%= link_to 'To Do List', account_todolist_path, class: "link link--subnav #{is_current?(current, 'todolist')}" %></li>
-    <li><%= link_to 'Current Travels', account_travels_path, class: "link link--subnav #{is_current?(current, 'travels')}" %></li>
-    <li><%= link_to 'Completed Travels', account_success_path, class: "link link--subnav #{is_current?(current, 'success')}" %></li>
+    <li><%= link_to 'Account', sub_nav_link_path(account_path, current, 'account'), class: "link link--subnav #{current_class(current, 'account')}" %></li>
+    <li><%= link_to 'My Trips', sub_nav_link_path(account_trips_path, current, 'trips'), class: "link link--subnav #{current_class(current, 'trips')}" %></li>
+    <li><%= link_to 'To Do List', sub_nav_link_path(account_todolist_path, current, 'todolist'), class: "link link--subnav #{current_class(current, 'todolist')}" %></li>
+    <li><%= link_to 'Current Travels', sub_nav_link_path(account_travels_path, current, 'travels'), class: "link link--subnav #{current_class(current, 'travels')}" %></li>
+    <li><%= link_to 'Completed Travels', sub_nav_link_path(account_success_path, current, 'success'), class: "link link--subnav #{current_class(current, 'success')}" %></li>
   </ul>
 </div>
