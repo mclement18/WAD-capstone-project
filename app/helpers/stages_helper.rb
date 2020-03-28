@@ -25,7 +25,7 @@ module StagesHelper
 
   def stage_nav_link(trip, stage)
     if stage == 'None'
-      return '#'
+      return 'javascript:;'
     else
       return trip_stage_path(trip, stage)
     end
@@ -33,5 +33,13 @@ module StagesHelper
 
   def stage_nav_class(stage)
     return 'btn--disabled' if stage == 'None'
+  end
+
+  def stage_map(stage)
+    if stage.number == 1
+      render partial: 'embeded_map', locals: { address: stage.address, width: '100%', height: '100%', class_name: nil }
+    else
+      render partial: 'js_map'
+    end
   end
 end

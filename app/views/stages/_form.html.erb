@@ -23,15 +23,9 @@
         async defer ></script>
     </div>
   </div>
-  <iframe
-    id="staticMap"
-    class="form__map"
-    width="600"
-    height="450"
-    frameborder="0" style="border:0"
-    src="https://www.google.com/maps/embed/v1/place?key=<%= ENV["GOOGLE_API_CLIENT_KEY"] %>&q=<%= url_encode(map_query(stage.address)) %>"
-    allowfullscreen>
-  </iframe>
+
+  <%= render partial: 'embeded_map', locals: { address: stage.address, width: '100%', height: '450', class_name: 'form__map' } %>
+
   <div class="prompt prompt--cancel">
     <%= link_to 'Cancel', stage_form_cancel_path(trip, stage), class: 'link' %>
     <%= form.submit class: 'btn btn--primary' %>

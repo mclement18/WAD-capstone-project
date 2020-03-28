@@ -38,18 +38,16 @@ MapsAPI.parseAddress = function() {
 };
 
 MapsAPI.setAutocomplete = function() {
-  if (!this.autocomplete) {
-    this.autocomplete = new google.maps.places.Autocomplete(this.getAutocompleteField());
-    this.autocomplete.setFields(['formatted_address', 'name']);
-    this.autocomplete.addListener('place_changed', this.parseAddress.bind(this));
+  this.autocomplete = new google.maps.places.Autocomplete(this.getAutocompleteField());
+  this.autocomplete.setFields(['formatted_address', 'name']);
+  this.autocomplete.addListener('place_changed', this.parseAddress.bind(this));
 
-    // Prevent the form submission when selecting an option with enter
-    google.maps.event.addDomListener(this.getAutocompleteField(), 'keydown', event => { 
-      if (event.keyCode === 13) { 
-          event.preventDefault(); 
-      }
-    }); 
-  }
+  // Prevent the form submission when selecting an option with enter
+  google.maps.event.addDomListener(this.getAutocompleteField(), 'keydown', event => { 
+    if (event.keyCode === 13) { 
+        event.preventDefault(); 
+    }
+  }); 
 };
 
 MapsAPI.getStageDirections = function() {
@@ -139,14 +137,15 @@ MapsAPI.renderStageMap = function() {
     travelMode: this.getStageTravelMode()
   });
   this.renderSteps([this.getStageDirections()], map);
-  this.reset();
 };
 
 MapsAPI.reset = function() {
-  window.addEventListener('beforeunload', () => {
+  document.addEventListener('turbolinks:before-cache', () => {
     window.google = {};
   });
 };
+
+MapsAPI.reset();
 
 // Callback functions for URL
 function initAutocomplete() {

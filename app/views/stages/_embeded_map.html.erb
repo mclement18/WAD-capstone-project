@@ -1,0 +1,9 @@
+<iframe
+  id="staticMap"
+  class="<%= class_name %>"
+  width="<%= width %>"
+  height="<%= height %>"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=<%= ENV["GOOGLE_API_CLIENT_KEY"] %>&q=<%= url_encode(map_query(address)) %>"
+  allowfullscreen>
+</iframe>
