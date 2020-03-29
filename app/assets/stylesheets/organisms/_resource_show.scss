@@ -1,4 +1,4 @@
-.stage {
+.resource-show {
   margin: 0 0 $base-margin * 4;
 
   padding: 0 0 $base-margin * 2;
@@ -6,7 +6,7 @@
   
 }
 
-.stage__media {
+.resource-show__media {
   margin: 0 0 $base-margin;
   overflow: hidden;
   border-radius: 5px;
@@ -24,6 +24,20 @@
     }
   }
 
+  .map-unavailable {
+    display: flex;
+    align-items: center;
+    padding: $base-margin;;
+    height: 100%;
+    background: $brown-4;
+
+    p {
+      width: 100%;
+      color: $green;
+      text-align: center;
+    }
+  }
+
   @include tablet {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -34,15 +48,16 @@
   }
 }
 
-.stage__info {
+.resource-show__info {
   margin: 0 0 $base-margin * 3;
+  .owner, .description, .tags-list {
+    margin: 0 0 $base-margin * 2;
+  }
 
   .owner {
     display: flex;
     align-items: center;
     color: $black;
-  
-    margin: 0 0 $base-margin * 2;
   
     span {
       margin: 0 10px 0 0;
@@ -50,10 +65,9 @@
   }
   
   .description {
-    margin: 0 0 $base-margin * 2;
     text-align: justify;
   }
-  
+
   .details {
     color: $brown-3;
     
@@ -89,27 +103,31 @@
     display: grid;
     grid-template-columns: repeat(12, 1 / 12 * 100%);
 
-    .owner {
+    .owner, .description, .tags-list {
       grid-column: span 8;
     }
 
     .description {
-      grid-column: span 8;
       margin: 0 $base-margin * 2 0 0;
+    }
+
+    .tags-list {
+      margin: $base-margin 0 0;
     }
 
     .details {
       grid-column: 9 / 13;
-      grid-row: 1 / span 2;
+      grid-row: 1 / span 3;
       margin: $base-margin 0 0 0;
     }
   }
 }
 
 
-.stage__nav {
+.resource-show__nav {
   justify-content: space-between;
-  .btn {
+  .btn,
+  .btn--form {
     flex: 0 1 200px;
   }
 }

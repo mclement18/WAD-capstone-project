@@ -40,4 +40,12 @@ module LocationSelectHelper
     end
     return options
   end
+
+  def get_country_name(country_code)
+    Country.alpha_2_coded(country_code) if country_code
+  end
+
+  def get_region_name(country_code, region_code)
+    CS.states(country_code)[region_code.to_sym] if country_code && region_code
+  end
 end

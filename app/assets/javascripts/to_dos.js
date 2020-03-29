@@ -4,16 +4,28 @@ ToDo.getToDoList = function() {
   return document.getElementById('todo-list');
 };
 
-ToDo.getCardFooter = function(tripId) {
-  return Card.getCard(`trip-id-${tripId}`).querySelector('.card__footer');
+ToDo.getButtonGroup = function(tripId, from) {
+  if (from === 'card') {
+    return Card.getCard(`trip-id-${tripId}`).querySelector('.card__footer');
+  } else if (from === 'page') {
+    return document.querySelector('.stage__nav');
+  }
 };
 
-ToDo.getTagsList = function(tripId) {
-  return Card.getCard(`trip-id-${tripId}`).querySelector('.card__tags');
+ToDo.getTagsList = function(tripId, from) {
+  if (from === 'card') {
+    return Card.getCard(`trip-id-${tripId}`).querySelector('.tags-list');
+  } else if (from === 'page') {
+    return document.querySelector('.tags-list');
+  }
 };
 
-ToDo.getStatusTag = function(tripId) {
-  return Card.getCard(`trip-id-${tripId}`).querySelector('[data-status=true]');
+ToDo.getStatusTag = function(tripId, from) {
+  if (from === 'card') {
+    return Card.getCard(`trip-id-${tripId}`).querySelector('[data-status=true]');
+  } else if (from === 'page') {
+    return document.querySelector('[data-status=true]');
+  }
 };
 
 ToDo.buildStatusTag = function() {
@@ -25,30 +37,30 @@ ToDo.buildStatusTag = function() {
   return tag;
 };
 
-ToDo.removeTag = function(tripId) {
-  this.getTagsList(tripId).removeChild(this.getStatusTag(tripId));
+ToDo.removeTag = function(tripId, from) {
+  this.getTagsList(tripId, from).removeChild(this.getStatusTag(tripId, from));
 };
 
-ToDo.addTag = function(tripId) {
-  this.getTagsList(tripId).appendChild(this.buildStatusTag());
+ToDo.addTag = function(tripId, from) {
+  this.getTagsList(tripId, from).appendChild(this.buildStatusTag());
 };
 
-ToDo.removeButtonToCard = function(tripId, buttonType) {
-  const cardFooter = this.getCardFooter(tripId);
-  cardFooter.removeChild(cardFooter.querySelector(`[data-${buttonType}=true]`));
+ToDo.removeButton = function(tripId, buttonType, from) {
+  const buttonGroup = this.getButtonGroup(tripId, from);
+  buttonGroup.removeChild(buttonGroup.querySelector(`[data-${buttonType}=true]`));
 };
 
-ToDo.addButtonToCard = function(tripId, button) {
-  this.getCardFooter(tripId).insertAdjacentHTML('afterbegin', button);
+ToDo.addButton = function(tripId, button, from) {
+  this.getButtonGroup(tripId, from).insertAdjacentHTML('afterbegin', button);
 };
 
-ToDo.replaceCardButton = function(tripId, buttonType, button) {
-  this.removeButtonToCard(tripId, buttonType);
-  this.addButtonToCard(tripId, button);
+ToDo.replaceButton = function(tripId, buttonType, button, from) {
+  this.removeButton(tripId, buttonType, from);
+  this.addButton(tripId, button, from);
   if (buttonType === 'todo-create') {
-    this.addTag(tripId);
+    this.addTag(tripId, from);
   } else if (buttonType === 'todo-delete') {
-    this.removeTag(tripId);
+    this.removeTag(tripId, from);
   }
 };
 
@@ -59,7 +71,9 @@ ToDo.removeFromPage = function(tripId, message) {
 ToDo.respond = function(tripId, buttonType, button, message="You don't have any trip in your list.") {
   if (this.getToDoList()) {
     this.removeFromPage(tripId, message);
-  } else if (this.getCardFooter(tripId)) {
-    this.replaceCardButton(tripId, buttonType, button);
+  } else if (Card.getCardsList()) {
+    this.replaceButton(tripId, buttonType, button, 'card');
+  } else {
+    this.replaceButton(tripId, buttonType, button, 'page');
   }
-}
+};

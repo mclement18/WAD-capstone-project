@@ -51,15 +51,15 @@ MapsAPI.setAutocomplete = function() {
 };
 
 MapsAPI.getStageDirections = function() {
-  return JSON.parse(document.querySelector('meta[name=stage-directions]').getAttribute('value'));
+  return JSON.parse(document.querySelector('meta[name=directions]').getAttribute('value'));
 };
 
 MapsAPI.getStageTravelMode = function() {
-  return document.querySelector('meta[name=stage-travelMode]').getAttribute('value').toUpperCase();
+  return document.querySelector('meta[name=travelMode]').getAttribute('value').toUpperCase();
 };
 
 MapsAPI.createMap = function() {
-  return new google.maps.Map(document.getElementById('stage-map'));
+  return new google.maps.Map(document.getElementById('map'));
 };
 
 MapsAPI.typecastRouteFromServer = function(routes){
@@ -93,7 +93,7 @@ MapsAPI.asPath = function(encodedPolyObject){
   return google.maps.geometry.encoding.decodePath(encodedPolyObject.points);
 };
 
-MapsAPI.renderRoutes = function(map, stageDirections, request) {
+MapsAPI.renderRoutes = function(map, stageDirections, request, suppressMarkers=false, preserveViewport=false) {
   const directionsRenderer = new google.maps.DirectionsRenderer();
   directionsRenderer.setOptions({
     directions: {
@@ -101,7 +101,9 @@ MapsAPI.renderRoutes = function(map, stageDirections, request) {
       request: request
     },
     draggable: false,
-    map: map 
+    map: map,
+    suppressMarkers: suppressMarkers,
+    preserveViewport: preserveViewport
   });
 };
 
@@ -126,6 +128,19 @@ MapsAPI.renderSteps = function(routes, map) {
   });
 };
 
+MapsAPI.renderStartEnd = function(route, map) {
+  const stepDisplay = new google.maps.InfoWindow;
+  const startAndEnd = [{location: route.legs[0].start_location}, {location: route.legs[0].end_location}];
+  startAndEnd[0].address = route.legs[0].start_address;
+  startAndEnd[1].address = route.legs[0].end_address;
+  startAndEnd.forEach(point => {
+    const marker = new google.maps.Marker;
+    marker.setMap(map);
+    marker.setPosition(point.location);
+    this.attachInstructionText(stepDisplay, marker, point.address, map);
+  });
+};
+
 MapsAPI.renderWarnings = function(route) {
   document.getElementById('warnings-panel').innerHTML = '<b>' + route.warnings + '</b>';
 };
@@ -137,6 +152,19 @@ MapsAPI.renderStageMap = function() {
     travelMode: this.getStageTravelMode()
   });
   this.renderSteps([this.getStageDirections()], map);
+};
+
+MapsAPI.renderTripMap = function() {
+  const map = this.createMap();
+  const mapBounds = new google.maps.LatLngBounds();
+  this.getStageDirections().forEach(directions => {
+    this.renderRoutes(map, directions, {
+      travelMode: this.getStageTravelMode()
+    }, true, true);
+    this.renderStartEnd(directions, map);
+    mapBounds.union(directions.bounds);
+  });
+  map.fitBounds(mapBounds);
 };
 
 MapsAPI.reset = function() {
@@ -154,4 +182,8 @@ function initAutocomplete() {
 
 function initStageMap() {
   MapsAPI.renderStageMap();
+}
+
+function initTripMap() {
+  MapsAPI.renderTripMap();
 }

@@ -15,7 +15,7 @@
         <li>Planned <%= trip.dreamers.length %></li>
       </ul>
     </div>
-    <ul class="card__tags bare-list">
+    <ul class="card__tags tags-list bare-list">
       <li class="tag">Owner</li>
       <% if trip.dreamers.include?(current_user) %>
         <li class="tag" data-status="true">ToDo</li>

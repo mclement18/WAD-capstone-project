@@ -18,4 +18,20 @@ module TripsHelper
       return account_trips_path
     end
   end
+
+  def display_attribute(attribute)
+    if attribute
+      attribute
+    else
+      'N/A'
+    end
+  end
+
+  def merge_stages_directions(trip)
+    directions_array = []
+    trip.stages.each do |stage|
+      directions_array << JSON.parse(stage.directions) unless stage.number == 1
+    end
+    directions_array.to_json
+  end
 end

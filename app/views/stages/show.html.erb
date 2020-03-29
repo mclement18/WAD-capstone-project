@@ -1,6 +1,6 @@
 <% content_for :meta_tag do %>
-  <meta name="stage-directions" value="<%= @stage.directions %>" />
-  <meta name="stage-travelMode" value="<%= @stage.travel_type %>" />
+  <meta name="directions" value="<%= @stage.directions %>" />
+  <meta name="travelMode" value="<%= @stage.travel_type %>" />
 <% end %>
 
 <div class="main-title">
@@ -10,23 +10,27 @@
   </div>
 </div>
 
-<div class="stage">
-  <div class="stage__media">
-    <%= image_tag @stage.image_url, class: 'image', id: 'stage-image' %>
+<div class="resource-show">
+  <div class="resource-show__media">
+    <%= image_tag @stage.image_url, class: 'image' %>
   
-    <div class="map" id="stage-map">
-      <%= stage_map(@stage) %>
+    <div class="map" id="map">
+      <% if stage.number == 1 %>
+        <%= render partial: 'embeded_map', locals: { address: stage.address, width: '100%', height: '100%', class_name: nil } %>
+      <% else %>
+        <%= render partial: 'js_map', locals: { callback: 'initStageMap' } %>
+      <% end %>
     </div>
   </div>
   
-  <div class="stage__info">
+  <div class="resource-show__info">
     <div class="owner">
       <span>Created by</span>
       <%= link_to user_path(@trip.user), class: 'link link--user' do %>
         <%= image_tag @trip.user.avatar_url(:small), class: 'avatar avatar--mini' %>
         <span><%= @trip.user.name %></span>
       <% end %>
-      <span>on <time datetime=<%= @trip.created_at.strftime("%FT%T") %>><%= @trip.created_at.strftime("%d %b '%y") %></time></span>
+      <span>on <time datetime=<%= @stage.created_at.strftime("%FT%T") %>><%= @stage.created_at.strftime("%d %b '%y") %></time></span>
     </div>
   
     <p class="description">
@@ -41,7 +45,7 @@
     </ul>
   </div>
   
-  <div class="stage__nav buttons-group">
+  <div class="resource-show__nav buttons-group">
     <%= link_to 'Previous', stage_nav_link(@trip, @stage.previous_stage), class: "btn #{stage_nav_class(@stage.previous_stage)}" %>
     <%= link_to 'Trip', trip_path(@trip), class: 'btn' %>
     <% if can_edit?(@trip) %>

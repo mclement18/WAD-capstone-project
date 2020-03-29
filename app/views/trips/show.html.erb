@@ -1,23 +1,93 @@
+<% if @trip.stages.any? %>
+  <% content_for :meta_tag do %>
+    <meta name="directions" value="<%= merge_stages_directions(@trip) %>" />
+    <meta name="travelMode" value="<%= @trip.stages.first.travel_type %>" />
+  <% end %>
+<% end %>
+
 <div class="main-title">
   <div class="title">
     <h1><%= @trip.title %></h1>
   </div>
 </div>
 
-<div class="media">
-  <div class="image">
-    <%= image_tag @trip.image_url %>
+<div class="resource-show">
+  <div class="resource-show__media">
+    <%= image_tag @trip.image_url, class: 'image' %>
+  
+    <div class="map" id="map">
+      <% if logged_in? %>
+        <% if @trip.stages.any? %>
+          <%= render partial: 'js_map', locals: { callback: 'initTripMap' } %>
+        <% else %>
+          <%= render partial: 'map_unavailable', locals: { message: 'This trip has no stage.' } %>
+        <% end %>
+      <% else %>
+        <%= render partial: 'map_unavailable', locals: { message: 'Log in or sign in to view the map!' } %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="resource-show__info">
+    <div class="owner">
+      <span>Created by</span>
+      <%= link_to user_path(@trip.user), class: 'link link--user' do %>
+        <%= image_tag @trip.user.avatar_url(:small), class: 'avatar avatar--mini' %>
+        <span><%= @trip.user.name %></span>
+      <% end %>
+      <span>on <time datetime=<%= @trip.created_at.strftime("%FT%T") %>><%= @trip.created_at.strftime("%d %b '%y") %></time></span>
+    </div>
+
+    <p class="description">
+      <%= raw @trip.description %>
+    </p>
+
+    <ul class="tags-list bare-list">
+      <li class="tag"><%= @trip.category_1 %></li>
+      <li class="tag"><%= @trip.category_2 %></li>
+      <% if @trip.user == current_user %>
+        <li class="tag">Owner</li>
+      <% end %>
+      <% if @trip.dreamers.include?(current_user) %>
+        <li class="tag" data-status="true">ToDo</li>
+      <% end %>
+      <% if @trip.travelers.include?(current_user) %>
+        <li class="tag" data-status="true">Current Trip</li>
+      <% end %>
+      <% if @trip.veterans.include?(current_user) %>
+        <li class="tag" data-status="true">Completed</li>
+      <% end %>
+    </ul>
+
+    <ul class="details">
+      <li><span class="variable">Continent:</span> <span class="value"><%= display_attribute(@trip.continent) %></span></li>
+      <li><span class="variable">Country:</span> <span class="value"><%= display_attribute(get_country_name(@trip.country)) %></span></li>
+      <li><span class="variable">Region:</span> <span class="value"><%= display_attribute(get_region_name(@trip.country, @trip.region)) %></span></li>
+      <li><span class="variable">City:</span> <span class="value"><%= display_attribute(@trip.city) %></span></li>
+      <li><span class="variable">Planned:</span> <span class="value"><%= @trip.dreamers.length %></span></li>
+      <li><span class="variable">Doing:</span> <span class="value"><%= @trip.travelers.length %></span></li>
+      <li><span class="variable">Done:</span> <span class="value"><%= @trip.veterans.length %></span></li>
+      <li><span class="variable">Comments:</span> <span class="value"><%= @trip.comments.length %></span></li>
+    </ul>
   </div>
 
-  <div class="map">
-
+  <div class="stages-list">
+    
   </div>
-</div>
-
-<div class="info">
-  <p class="description">
-    <%= @trip.description %>
-  </p>
+  
+  <% if logged_in? %>
+    <div class="resource-show__nav buttons-group">
+      <% if is_a_current_user_todo?(@trip) %>
+        <%= render partial: 'todo_delete_button', locals: { user: current_user, todo: current_user_to_do(@trip.id) } %>
+      <% else %>
+        <%= render partial: 'todo_create_button', locals: { user: current_user, trip_id: @trip.id } %>
+      <% end %>
+      <% if can_edit?(@trip) %>
+        <%= link_to 'Edit', edit_trip_path(@trip), class: 'btn' %>
+        <%= link_to 'Delete', trip_path(@trip), class: 'btn btn--secondary', method: :delete %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 <%= render partial: 'comments/comments', locals: { article: @trip } %>

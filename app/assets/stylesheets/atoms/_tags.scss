@@ -9,3 +9,7 @@
   border: 2px solid $brown-1;
   border-radius: 2px;
 }
+
+.tags-list {
+  @include flex-list-horizontal;
+}

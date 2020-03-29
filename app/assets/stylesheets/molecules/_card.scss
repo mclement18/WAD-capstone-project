@@ -68,8 +68,6 @@
 }
 
 .card__tags {
-  @include flex-list-horizontal;
-  
   position: absolute;
   top: 0;
   right: 0;
