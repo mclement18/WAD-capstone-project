@@ -30,6 +30,9 @@ class User < ApplicationRecord
     self.password = 'deleted'
     self.role = 'registered'
     self.remove_avatar!
+    self.to_dos.each do |todo|
+      todo.destroy
+    end
     self.save
   end
   
