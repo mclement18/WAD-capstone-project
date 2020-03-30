@@ -71,9 +71,22 @@
     </ul>
   </div>
 
-  <div class="stages-list">
-    
-  </div>
+  <% if @trip.stages.any? %>
+    <details class="stages-list">
+      <summary class="gamma stages-list__title">
+        Trip's stages
+      </summary>
+      <ul class="bare-list list-color">
+        <% @trip.stages.each do |stage| %>
+          <li class="stages-list__stage">
+            <%= link_to trip_stage_path(@trip, stage) do %>
+              <h4>Stage <%= stage.number %>: <%= stage.title %></h4>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </details>
+  <% end %>
   
   <% if logged_in? %>
     <div class="resource-show__nav buttons-group">

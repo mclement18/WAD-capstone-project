@@ -1,0 +1,27 @@
+.stages-list {
+  @include tablet {
+    padding: 0 $base-margin;
+  }
+  
+  &__title {
+    cursor: pointer;
+  }
+
+  &__stage {
+    text-align: left;
+
+    a {
+      display: block;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    h4 {
+      margin: 0;
+      color: $black;
+    }
+  }
+}

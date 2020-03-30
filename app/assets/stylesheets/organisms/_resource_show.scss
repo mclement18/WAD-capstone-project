@@ -4,6 +4,9 @@
   padding: 0 0 $base-margin * 2;
   border-bottom: 1px solid $green;
   
+  .stages-list {
+    margin: 0 0 $base-margin * 3;
+  }
 }
 
 .resource-show__media {

@@ -23,7 +23,7 @@
   </div>
   <%= image_tag current_user.avatar_url, class: 'avatar', alt: "#{current_user.name} avatar" %>
   
-  <ul class="account__stats">
+  <ul class="account__stats list-color">
     <li><span class="text">Trips created:</span> <span class="count"><%= current_user.trips.count %></span></li>
     <li><span class="text">Trips to do:</span> <span class="count"><%= current_user.dreams.count %></span></li>
     <li><span class="text">Trips in progress:</span> <span class="count"><%= current_user.travels.count %></span></li>

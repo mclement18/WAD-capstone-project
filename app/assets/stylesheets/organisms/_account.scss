@@ -61,22 +61,10 @@
 }
 
 .account__stats {
-  color: $black;
-  
+
   li {
     display: grid;
     grid-template-columns: repeat(12, 1 / 12 * 100%);
-
-    padding: $base-margin;
-    border-bottom: 1px solid $brown-3;
-
-    &:nth-child(2n+1) {
-      background: lighten($green, 30);
-    }
-    
-    &:nth-child(2n+0) {
-      background: lighten($brown-4, 20);
-    }
   }
 
   .text, .count {
