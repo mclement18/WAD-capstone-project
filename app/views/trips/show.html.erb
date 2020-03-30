@@ -13,8 +13,12 @@
 
 <div class="resource-show">
   <div class="resource-show__media">
-    <%= image_tag @trip.image_url, class: 'image' %>
-  
+    <%= image_set_tag @trip.image_url,
+                      { 
+                        @trip.image_url(:thumb) => '300w',
+                        @trip.image_url => '600w'
+                      },
+                      sizes: '100vw', alt: "Trip #{@trip.id} image", class: 'image' %>
     <div class="map" id="map">
       <% if logged_in? %>
         <% if @trip.stages.any? %>

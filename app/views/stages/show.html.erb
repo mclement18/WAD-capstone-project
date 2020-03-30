@@ -12,11 +12,15 @@
 
 <div class="resource-show">
   <div class="resource-show__media">
-    <%= image_tag @stage.image_url, class: 'image' %>
-  
+    <%= image_set_tag @stage.image_url,
+                      { 
+                        @stage.image_url(:thumb) => '300w',
+                        @stage.image_url => '600w'
+                      },
+                      sizes: '100vw', alt: "Stage #{@stage.id} image", class: 'image' %>
     <div class="map" id="map">
-      <% if stage.number == 1 %>
-        <%= render partial: 'embeded_map', locals: { address: stage.address, width: '100%', height: '100%', class_name: nil } %>
+      <% if @stage.number == 1 %>
+        <%= render partial: 'embeded_map', locals: { address: @stage.address, width: '100%', height: '100%', class_name: nil } %>
       <% else %>
         <%= render partial: 'js_map', locals: { callback: 'initStageMap' } %>
       <% end %>
