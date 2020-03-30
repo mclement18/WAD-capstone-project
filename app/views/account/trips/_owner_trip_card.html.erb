@@ -36,6 +36,6 @@
       <% end %>
     <% end %>
     <%= link_to 'Edit Trip', edit_trip_path(trip), class: 'btn' %>
-    <%= link_to 'Delete Trip', trip_path(trip), class: 'btn btn--secondary', method: :delete, remote: true %>
+    <%= link_to 'Delete Trip', trip_path(trip), class: 'btn btn--secondary', method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
   </div>
 </li>

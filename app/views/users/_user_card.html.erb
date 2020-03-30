@@ -26,7 +26,7 @@
   <% if current_user.role == 'admin' %>
     <div class="card__footer buttons-group">
       <%= link_to 'Edit User', edit_user_path(user), class: 'btn' %>
-      <%= link_to 'Delete User', user_path(user), class: 'btn btn--secondary', method: :delete, remote: remote_delete?(user, remote_delete) %>
+      <%= link_to 'Delete User', user_path(user), class: 'btn btn--secondary', method: :delete, remote: remote_delete?(user, remote_delete), data: { confirm: 'Are you sure?' } %>
     </div>
   <% end %>
 </li>

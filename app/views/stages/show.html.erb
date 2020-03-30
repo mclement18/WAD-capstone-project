@@ -54,6 +54,7 @@
     <%= link_to 'Trip', trip_path(@trip), class: 'btn' %>
     <% if can_edit?(@trip) %>
       <%= link_to 'Edit', edit_trip_stage_path(@trip, @stage), class: 'btn' %>
+      <%= link_to 'Delete', trip_stage_path(@trip, @stage), class: 'btn btn--secondary', method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
     <%= link_to 'Next', stage_nav_link(@trip, @stage.next_stage), class: "btn #{stage_nav_class(@stage.next_stage)}" %>
   </div>

@@ -128,9 +128,21 @@
 
 
 .resource-show__nav {
+  flex-wrap: wrap;
   justify-content: space-between;
+  
   .btn,
   .btn--form {
-    flex: 0 1 200px;
+    margin: 0 0 $base-margin;
+    flex: 1 1 200px;
+  }
+
+  @include tablet {
+    flex-wrap: nowrap;
+    .btn,
+    .btn--form {
+      margin: 0 $base-margin 0 0;
+      flex: 0 1 200px;
+    }
   }
 }
