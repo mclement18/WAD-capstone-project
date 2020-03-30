@@ -101,6 +101,7 @@
       <% end %>
       <% if can_edit?(@trip) %>
         <%= link_to 'Edit', edit_trip_path(@trip), class: 'btn' %>
+        <%= link_to 'New Stage', new_trip_stage_path(@trip), class: 'btn' %>
         <%= link_to 'Delete', trip_path(@trip), class: 'btn btn--secondary', method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
     </div>
