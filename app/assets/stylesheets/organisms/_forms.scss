@@ -1,13 +1,17 @@
 .form {
-  margin: 0 auto $base-margin * 3;
+  margin: 0 auto $base-margin * 4;
   max-width: 80rem;
 
-  .input-group {
+  .input-group, .draggable-field {
     margin: 0 0 $base-margin * 1.5;
   }
 
   @include tablet {
     padding: 0 $base-margin;
+  }
+
+  &__info {
+    margin: 0 0 $base-margin * 2.5;
   }
 
   &__input {

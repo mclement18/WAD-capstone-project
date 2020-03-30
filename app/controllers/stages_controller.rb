@@ -95,8 +95,14 @@ class StagesController < ApplicationController
 
       stage.number = i
 
-      stage.travel_type = stages["stage_#{i}".to_sym][:travel_type]
-      stage.travel_type = stage.travel_type_change_to_be_saved[1] unless stage.validate(:travel_type)
+      if i == 1
+        stage.travel_type = 'None'
+      elsif stages["stage_#{i}".to_sym][:travel_type] == 'None'
+        stage.travel_type = 'driving'
+      else
+        stage.travel_type = stages["stage_#{i}".to_sym][:travel_type]
+        stage.travel_type = stage.travel_type_change_to_be_saved[1] unless stage.validate(:travel_type)
+      end
 
       if stage.will_save_change_to_number?
         stage.set_directions!(previous_address)

@@ -1,7 +1,7 @@
 <% if @trip.stages.any? %>
   <% content_for :meta_tag do %>
     <meta name="directions" value="<%= merge_stages_directions(@trip) %>" />
-    <meta name="travelMode" value="<%= @trip.stages.first.travel_type %>" />
+    <meta name="travelMode" value="<%= @trip.stages.second.travel_type %>" />
   <% end %>
 <% end %>
 
@@ -102,6 +102,9 @@
       <% if can_edit?(@trip) %>
         <%= link_to 'Edit', edit_trip_path(@trip), class: 'btn' %>
         <%= link_to 'New Stage', new_trip_stage_path(@trip), class: 'btn' %>
+        <% if @trip.stages.any? %>
+          <%= link_to 'Reorder Stages', trip_stages_path(@trip), class: 'btn' %>
+        <% end %>
         <%= link_to 'Delete', trip_path(@trip), class: 'btn btn--secondary', method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
     </div>

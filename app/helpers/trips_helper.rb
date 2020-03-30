@@ -30,7 +30,7 @@ module TripsHelper
   def merge_stages_directions(trip)
     directions_array = []
     trip.stages.each do |stage|
-      directions_array << JSON.parse(stage.directions) unless stage.number == 1
+      directions_array << JSON.parse(stage.directions) unless is_first_stage?(stage)
     end
     directions_array.to_json
   end

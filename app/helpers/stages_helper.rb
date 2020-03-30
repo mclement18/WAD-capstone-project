@@ -36,7 +36,7 @@ module StagesHelper
   end
 
   def stage_travel_type(stage)
-    if stage.number == 1
+    if is_first_stage?(stage)
       'N/A'
     else
       stage.travel_type.capitalize

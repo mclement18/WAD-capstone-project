@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  patch 'trips/:trip_id/stages', to: 'stages#reorder', as: 'reorder_trip_stages'
+  patch 'trips/:trip_id/stages/reorder', to: 'stages#reorder', as: 'reorder_trip_stages'
   resources :trips do
     resources :stages
     concerns :commentable

@@ -49,3 +49,118 @@
     width: 100%;
   }
 }
+
+.draggable-field {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, 1 / 12 * 100%);
+  align-items: center;
+
+  text-align: left;
+
+  &, .input-label {
+    cursor: grab;
+  }
+}
+
+.draggable-field__label {
+  grid-column: span 3;
+
+  .input-label {
+    margin: 0;
+  }
+
+  @include tablet {
+    grid-column: span 2;
+  }
+}
+
+.draggable-field__row {
+  grid-column: 4 / 13;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1 / 12 * 100%);
+  row-gap: $base-margin;
+  align-items: center;
+  
+  .input-label {
+    grid-column: span 6;
+    margin: 0;
+  }
+
+  .input-field {
+    position: relative;
+    z-index: 1;
+    grid-column: 7 / 13;
+    box-shadow: none;
+  }
+
+  @include tablet {
+    grid-column: 3 / 13;
+    
+    .draggable-field__value {
+      grid-column: span 6;
+      margin: 0 10px 0 0;
+    }
+    
+    .input-label {
+      grid-column: span 3;
+    }
+    .input-field {
+      grid-column: span 3 / 13;
+      box-shadow: none;
+    }
+  }
+
+  @include desktop {
+    .draggable-field__value {
+      grid-column: span 7;
+    }
+    
+    .input-label {
+      grid-column: span 3;
+    }
+    .input-field {
+      grid-column: span 2 / 13;
+      box-shadow: none;
+    }
+  }
+}
+
+.draggable-field__value {
+  grid-column: span 12;
+  display: block;
+  margin: 0;
+}
+
+.draggable-field--dragged {
+  cursor: grabbing;
+  opacity: .4;
+}
+
+.draggable-field--hovered {
+  border: 1px solid $green;
+}
+
+.dropzone {
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  opacity: .3;
+
+  &--hovered {
+    background: $green;
+  }
+}
+
+.drop-before {
+  top: -10px;
+  bottom: 50%;
+  border-radius: 3px 3px 0 0;
+}
+
+.drop-after {
+  top: 50%;
+  bottom: -10px;
+  border-radius: 0 0 3px 3px;
+}
