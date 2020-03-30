@@ -34,4 +34,12 @@ module StagesHelper
   def stage_nav_class(stage)
     return 'btn--disabled' if stage == 'None'
   end
+
+  def stage_travel_type(stage)
+    if stage.number == 1
+      'N/A'
+    else
+      stage.travel_type.capitalize
+    end
+  end
 end

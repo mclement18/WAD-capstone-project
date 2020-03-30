@@ -43,7 +43,7 @@
 
     <ul class="details">
       <li><span class="variable">Address:</span> <span class="value"><%= @stage.address %></span></li>
-      <li><span class="variable">Travel mode:</span> <span class="value"><%= @stage.travel_type.capitalize %></span></li>
+      <li><span class="variable">Travel mode:</span> <span class="value"><%= stage_travel_type(@stage) %></span></li>
       <li><span class="variable">Stage number:</span> <span class="value"><%= @stage.number %></span></li>
       <li><span class="variable">Comments:</span> <span class="value"><%= @stage.comments.length %></span></li>
     </ul>
