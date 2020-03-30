@@ -1,18 +1,20 @@
 <div class="comments-title">
-  <h2>Comments</h2>
+  <h2 class="alpha">Comments</h2>
 </div>
 
   <% if logged_in? %>
     <%= render 'comments/new', article: article %>
   <% end %>
 
-<% if article.comments.any? %>
-  <div id="comments" data-channel="comments" 
-      data-article-id="<%= article.id %>" 
-      data-article-type="<%= article.class.to_s %>" 
-      class="comments-list">
-    <%= render article.comments %>
-  </div>
-<% else %>
-  <p class="no-comments">No comments yet.</p>
-<% end %>
+<div class="comments-list">
+  <% if article.comments.any? %>
+    <div id="comments" data-channel="comments" 
+        data-article-id="<%= article.id %>" 
+        data-article-type="<%= article.class.to_s %>" 
+        class="comments-list">
+      <%= render article.comments %>
+    </div>
+  <% else %>
+    <p class="not-found">No comments yet.</p>
+  <% end %>
+</div>

@@ -1,17 +1,24 @@
 <div id="comment_id_<%= comment.id %>" data-user-id="<%= comment.user_id %>" class="media comment">
-  <div class="media-image">
-    <%= image_tag comment.user.avatar_url, class: 'avatar' %>
+  <div class="media__image">
+    <%= link_to user_path(comment.user) do %>
+      <%= image_tag comment.user.avatar_url, class: 'avatar avatar--medium' %>
+    <% end %>
   </div>
-  <div class="media-content">
-    <div class="media-title">
-      <h3 class="comment-user"><%= comment.user.name %> <time datetime="<%= comment.created_at.strftime("%FT%T")%>"><%= time_ago_in_words(comment.created_at) %></time></h3>
+  <div class="media__content">
+    <div class="media__title">
+      <%= link_to user_path(comment.user) do %>
+        <h3 class="user"><%= comment.user.name %></h3>
+      <% end %>
+      <span class="date"><time datetime="<%= comment.created_at.strftime("%FT%T")%>"><%= time_ago_in_words(comment.created_at) %> ago</time></span>
     </div>
-    <div class="media-body">
-      <p class="comment-body"><%= comment.body %></p>
+    <div class="media__body">
+      <p class="text"><%= raw comment.body %></p>
     </div>
-    <div class="media-action">
-      <%= link_to 'edit', edit_comment_path(comment), class: 'link media-btn', remote: true, method: :get %>
-      <%= link_to 'delete', comment_path(comment), class: 'link media-btn', remote: true, method: :delete %>
-    </div>
+    <% if logged_in? && can_edit?(comment) %>
+      <div class="media__action">
+        <%= link_to 'edit', edit_comment_path(comment), class: 'btn', remote: true, method: :get %>
+        <%= link_to 'delete', comment_path(comment), class: 'btn btn--secondary', remote: true, method: :delete %>
+      </div>
+    <% end %>
   </div>
 </div>

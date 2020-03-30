@@ -1,20 +1,23 @@
 <%= form_for [article, comment], html: { id: "comment_id_#{comment.id}", class: 'media comment comment-form' }, data: { 'user-id' => comment.user_id } , remote: true do |form| %>
-  <div class="media-image">
-    <%= image_tag comment.user.avatar_url, class: 'avatar' %>
+  <div class="media__image">
+    <%= link_to user_path(comment.user) do %>
+      <%= image_tag comment.user.avatar_url, class: 'avatar avatar--medium' %>
+    <% end %>
   </div>
-  <div class="media-content">
-    <div class="media-title">
-      <h3 class="comment-user"><%= comment.user.name %> <time datetime="<%= comment.created_at.strftime("%FT%T")%>"><%= time_ago_in_words(comment.created_at) %></time></h3>
+  <div class="media__content">
+    <div class="media__title">
+      <%= link_to user_path(comment.user) do %>
+        <h3 class="user"><%= comment.user.name %></h3>
+      <% end %>
+      <span class="date"><time datetime="<%= comment.created_at.strftime("%FT%T")%>"><%= time_ago_in_words(comment.created_at) %> ago</time></span>
     </div>
-    <div class="media-body">
-      <%= form.text_area :body, class: 'input-field' %>
+    <div class="media__body">
+      <%= form.label :body, 'Edit comment', for: "edit-comment-#{comment.id}", class: 'input-label' %>
+      <%= form.text_area :body, class: 'input-field input-field--textarea', id: "edit-comment-#{comment.id}", maxlength: 500, placeholder: 'Max 500 characters...' %>
     </div>
-  </div>
-  <div class="prompt">
-    <%= form.submit class: 'btn' %>
-  </div>
-  <div class="media-action">
-    <%= link_to 'cancel', comment_path(comment), class: 'link media-btn', remote: true, method: :get %>
-    <%= link_to 'delete', comment_path(comment), class: 'link media-btn', remote: true, method: :delete %>
+    <div class="media__action">
+      <%= link_to 'Cancel', comment_path(comment), class: 'link', remote: true, method: :get %>
+      <%= form.submit class: 'btn btn--primary' %>
+    </div>
   </div>
 <% end %>

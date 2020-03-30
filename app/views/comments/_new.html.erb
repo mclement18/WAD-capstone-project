@@ -1,12 +1,16 @@
-<%= form_for [article, Comment.new], html: { class: 'comment-form' }, remote: true do |form| %>
-  <div class="media-image">
-    <%= image_tag current_user.avatar_url, class: 'avatar' %>
+<%= form_for [article, Comment.new], html: { class: 'media comment-form' }, remote: true do |form| %>
+  <div class="media__image">
+    <%= image_tag current_user.avatar_url, class: 'avatar avatar--medium' %>
   </div>
-  <div class="media-content">
-    <%= form.label :body, 'Add comment', class: 'input-label' %>
-    <%= form.text_area :body, class: 'input-field' %>
-  </div>
-  <div class="prompt">
-    <%= form.submit 'Post', class: 'btn' %>
+  <div class="media__content">
+    <div class="media__title">
+      <%= form.label :body, 'Add comment', class: 'input-label' %>
+    </div>
+    <div class="media__body">
+      <%= form.text_area :body, class: 'input-field input-field--textarea', maxlength: 500, placeholder: 'Max 500 characters...' %>
+    </div>
+    <div class="media__action comment-form__prompt">
+      <%= form.submit 'Post', class: 'btn btn--primary' %>
+    </div>
   </div>
 <% end %>

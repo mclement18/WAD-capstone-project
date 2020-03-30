@@ -1,0 +1,50 @@
+.comments-title {
+  margin: 0 0 $base-margin * 3;
+  text-align: left;
+}
+
+.comments-list {
+  margin: 0 0 $base-margin * 4;
+  
+  .comment {
+    margin: 0 0 $base-margin * 2;
+    padding: 0 0 $base-margin;
+    border-bottom: 1px solid $green;
+
+    @include tablet {
+      padding: 0 $base-margin $base-margin;
+    }
+  }
+
+  .not-found {
+    text-align: center;
+    max-width: 500px;
+  }
+}
+
+.comment-form {
+  margin: 0 0 $base-margin * 2;
+  
+  .media__title .input-label {
+    @extend .gamma;
+  }
+  
+  .input-label {
+    text-align: left;
+  }
+
+  .media__body {
+    margin: 0 0 $base-margin;
+  }
+
+  @include tablet {
+    padding: 0 $base-margin;
+  }
+  
+  &__prompt {
+    .btn, .link  {
+      font-size: 1.3rem;
+      padding: $base-margin * 0.75;
+    }
+  }
+}
