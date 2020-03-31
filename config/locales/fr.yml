@@ -258,6 +258,7 @@ fr:
     header: 'a/ont empêché la sauvgarde:'
     format: "%{attribute} %{message}"
     messages:
+      email: n'est pas un email
       accepted: doit être accepté(e)
       blank: doit être rempli(e)
       confirmation: ne concorde pas avec %{attribute}

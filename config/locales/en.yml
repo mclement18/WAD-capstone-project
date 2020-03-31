@@ -230,6 +230,8 @@ en:
   errors:
     error: error
     header: 'prohibited this from being saved:'
+    messages:
+      email: is not an email
     ids_not_match: The number of stage ids and actual trip stages number don't match.
     ids_invalid: Non valid stage ids were sent.
   notices:
