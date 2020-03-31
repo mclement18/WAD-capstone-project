@@ -8,13 +8,11 @@
   }
 
   @include tablet {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    @include grid-4-flex;
   }
 
   &__box {
-    display: flex;
-    justify-content: center;
+    @include flex-content-center;
     
     padding: $base-margin;
     border: 2px solid $red;

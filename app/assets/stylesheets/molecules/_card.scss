@@ -1,7 +1,5 @@
 .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
+  @include flex-column-content-stretch;
   
   box-shadow: 2px 2px 5px 3px $brown-4;
   overflow: hidden;
@@ -107,9 +105,7 @@
   margin: 0 auto $base-margin * 2;
   
   .card__thumb {
-    display: flex;
-    flex-direction: column;
-    justify-content: stretch;
+    @include flex-column-content-stretch;
     
     padding: $base-margin * 2 0 0;
     background: linear-gradient(to bottom, $white 0%, $brown-4 35%, $brown-3 60%);

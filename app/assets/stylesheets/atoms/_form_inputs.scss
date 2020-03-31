@@ -51,11 +51,10 @@
 }
 
 .draggable-field {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(12, 1 / 12 * 100%);
+  @include grid-12-fixed;
   align-items: center;
-
+  
+  position: relative;
   text-align: left;
 
   &, .input-label {
@@ -76,12 +75,11 @@
 }
 
 .draggable-field__row {
-  grid-column: 4 / 13;
-
-  display: grid;
-  grid-template-columns: repeat(12, 1 / 12 * 100%);
+  @include grid-12-fixed;
   row-gap: $base-margin;
   align-items: center;
+  
+  grid-column: 4 / 13;
   
   .input-label {
     grid-column: span 6;

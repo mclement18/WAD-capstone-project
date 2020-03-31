@@ -1,0 +1,70 @@
+@mixin flex {
+  display: flex;
+}
+
+@mixin flex-item-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-content-center {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flex-column-content-stretch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@mixin flex-list-horizontal {
+  display: flex;
+  align-items: center;
+
+  > li:not(:last-child) {
+    margin: 0 $base-margin 0 0;
+  }
+}
+
+ @mixin flex-list-horizontal-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  > li:not(:last-child) {
+    margin: 0 $base-margin 0 0;
+  }
+}
+
+@mixin card-grid {
+  @include tablet {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: $base-margin * 2;
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@mixin grid-12-fixed {
+  display: grid;
+  grid-template-columns: repeat(12, 1 / 12 * 100%);
+}
+
+@mixin grid-8-flex {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+@mixin grid-4-flex {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@mixin grid-2-flex {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}

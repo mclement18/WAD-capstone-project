@@ -1,8 +1,7 @@
 .input-group {
 
   @include tablet {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    @include grid-8-flex;
     align-items: center;
   }
 
@@ -29,7 +28,8 @@
   }
 
   &__row {
-    display: flex;
+    @include flex;
+    
     grid-column: span 6;
 
     .input-field {
@@ -49,18 +49,15 @@
     grid-column: span 2;
     text-align: left;
     font-size: 1.5em;
-    // margin: 0 $base-margin 0 0;
   }
   
   .btn {
     width: 100%;
     grid-column: span 6;
-    // flex: 1 0 auto;
   }
   
   @include tablet {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    @include grid-8-flex;
 
     .btn {
       grid-column: span 6 / 9;
@@ -68,8 +65,7 @@
   }
 
   &--cancel {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    @include grid-8-flex;
     align-items: center;
   }
 }

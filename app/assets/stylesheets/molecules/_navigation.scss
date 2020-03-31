@@ -35,8 +35,8 @@
   }
   
   .link {
-    display: flex;
-    align-items: center;
+    @include flex-item-center;
+
     text-align: center;
     height: 100%;
 

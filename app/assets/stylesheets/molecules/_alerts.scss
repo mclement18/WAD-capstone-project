@@ -1,6 +1,6 @@
 .alert {
-  display: flex;
-  align-items: center;
+  @include flex-item-center;
+
   z-index: 1;
   
   margin: 0;
@@ -29,8 +29,7 @@
   }
 
   &__button {
-    display: flex;
-    align-items: center;
+    @include flex-item-center;
     
     margin: 0 0 0 auto;
     padding: 0;

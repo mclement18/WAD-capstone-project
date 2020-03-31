@@ -1,6 +1,5 @@
 .pagination {
-  display: flex;
-  justify-content: center;
+  @include flex-content-center;
   
   .first, .prev,
   .last, .next,

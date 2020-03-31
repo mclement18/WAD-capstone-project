@@ -1,5 +1,5 @@
 .buttons-group {
-  display: flex;
+  @include flex;
 
   > .btn,
   .btn--form {

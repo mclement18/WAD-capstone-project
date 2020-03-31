@@ -12,8 +12,7 @@
   }
 
   @include tablet {
-    display: grid;
-    grid-template-columns: repeat(12, 1 / 12 * 100%);
+    @include grid-12-fixed;
 
     .account__details {
       grid-column: span 7;
@@ -64,8 +63,7 @@
 .account__stats {
 
   li {
-    display: grid;
-    grid-template-columns: repeat(12, 1 / 12 * 100%);
+    @include grid-12-fixed;
   }
 
   .text, .count {
