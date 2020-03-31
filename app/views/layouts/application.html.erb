@@ -12,7 +12,7 @@
     <%= yield :meta_tag %>
   </head>
 
-  <body>
+  <body class="footer-to-bottom-container">
   
     <header class="<%= yield :banner %>">
       <div class="global-header" id="alert-insertion">
@@ -57,7 +57,7 @@
       </div>
     </main>
 
-    <footer class="global-footer">
+    <footer class="global-footer footer-to-bottom">
       <div class="content-wrapper">
         <div class="logo logo--inverted">
           <%= link_to root_path do %>

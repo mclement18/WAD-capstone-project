@@ -1,26 +1,28 @@
 <div class="envelope">
-  <div class="main-title">
-    <div class="title">
-      <h1><%= t('.title') %></h1>
+  <div class="envelope__border">
+    <div class="main-title">
+      <div class="title">
+        <h1><%= t('.title') %></h1>
+      </div>
     </div>
+    
+    <%= form_for(@user, url: signup_path, html: { class: 'form' }) do |form| %>
+    
+      <%= render partial: 'model_errors', locals: { model: @user } %>
+    
+      <div class="form__input">
+        <div class="input-group">
+          <%= form.label :email, class: 'input-label' %>
+          <%= form.email_field :email, class: 'input-field', placeholder: 'e.g. peterparker@oscorp.com' %>
+        </div>
+        <div class="input-group">
+          <%= form.label :password, class: 'input-label' %>
+          <%= form.password_field :password, class: 'input-field' %>
+        </div>
+      </div>
+      <div class="prompt">
+        <%= form.submit class: 'btn btn--primary' %>
+      </div>
+    <% end %>
   </div>
-  
-  <%= form_for(@user, url: signup_path, html: { class: 'form' }) do |form| %>
-  
-    <%= render partial: 'model_errors', locals: { model: @user } %>
-  
-    <div class="form__input">
-      <div class="input-group">
-        <%= form.label :email, class: 'input-label' %>
-        <%= form.email_field :email, class: 'input-field', placeholder: 'e.g. peterparker@oscorp.com' %>
-      </div>
-      <div class="input-group">
-        <%= form.label :password, class: 'input-label' %>
-        <%= form.password_field :password, class: 'input-field' %>
-      </div>
-    </div>
-    <div class="prompt">
-      <%= form.submit class: 'btn btn--primary' %>
-    </div>
-  <% end %>
 </div>

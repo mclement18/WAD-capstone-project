@@ -1,5 +1,6 @@
 .form {
-  margin: 0 auto $base-margin * 4;
+  margin: 0 auto;
+  padding: 0 0 $margin-before-footer;
   max-width: 80rem;
 
   .input-group, .draggable-field {

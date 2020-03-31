@@ -11,3 +11,4 @@ $white: #fff;
 // General variables
 $line-height: 1.6;
 $base-margin: $line-height * 1rem;
+$margin-before-footer: calc(#{$base-margin} * 4 + 200px)

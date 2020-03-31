@@ -1,5 +1,6 @@
 .cards {
-  margin: 0 0 $base-margin * 4;
+  margin: 0;
+  padding: 0 0 $margin-before-footer;
 
   &__list {
     @include card-grid;
