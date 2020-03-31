@@ -35,7 +35,7 @@
   <div class="resource-show__info">
     <div class="owner">
       <span><%= t('ownership.created_by') %></span>
-      <%= link_to user_path(@trip.user), class: 'link link--user' do %>
+      <%= link_to user_link_path(@trip.user), class: "link link--user #{user_link_class(@trip.user)}" do %>
         <%= image_tag @trip.user.avatar_url(:small), class: 'avatar avatar--mini' %>
         <span><%= @trip.user.name %></span>
       <% end %>

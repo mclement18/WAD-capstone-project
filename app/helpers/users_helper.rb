@@ -11,4 +11,16 @@ module UsersHelper
     return current_user != user if remote
     false 
   end
+
+  def user_link_path(user)
+    if user.deleted
+      return 'javascript:;'
+    else
+      return user_path(user)
+    end
+  end
+
+  def user_link_class(user)
+    'user-deleted' if user.deleted
+  end
 end
