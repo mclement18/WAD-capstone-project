@@ -24,3 +24,9 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore compiled assets in public folder
+/public/assets/*
+
+# Ignore run-production script
+run-production.sh
