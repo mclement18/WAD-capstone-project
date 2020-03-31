@@ -15,7 +15,7 @@ Card.getCardsContainer = function() {
 Card.buildNotFound = function(message) {
   const p = document.createElement('p');
   p.className = 'not-found';
-  p.textContent = message;
+  p.innerHTML = message;
   
   return p;
 };

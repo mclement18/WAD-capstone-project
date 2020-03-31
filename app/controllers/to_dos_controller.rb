@@ -26,7 +26,7 @@ class ToDosController < ApplicationController
         when 'cancel'    then flash.now.notice = t('notices.todo_reset')
         end
       else
-        flash.now.alert = t('alerts.todo_creation_fail')
+        flash.now.alert = t('alerts.todo_update_fail')
       end
       format.js
     end
@@ -35,7 +35,7 @@ class ToDosController < ApplicationController
   def destroy
     respond_to do |format|
       if @todo.destroy
-        flash.now.notice = t('notices.todo_update_fail')
+        flash.now.notice = t('notices.todo_deleted')
       else
         flash.now.alert = t('alerts.todo_deletion_fail')
       end

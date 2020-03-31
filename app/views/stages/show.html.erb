@@ -54,7 +54,7 @@
     <%= link_to t('.trip'), trip_path(@trip), class: 'btn' %>
     <% if can_edit?(@trip) %>
       <%= link_to t('links.edit'), edit_trip_stage_path(@trip, @stage), class: 'btn' %>
-      <%= link_to t('links.delete'), trip_stage_path(@trip, @stage), class: 'btn btn--secondary', method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to t('links.delete'), trip_stage_path(@trip, @stage), class: 'btn btn--secondary', method: :delete, data: { confirm: t('notices.are_you_sure') } %>
     <% end %>
     <%= link_to t('.next'), stage_nav_link(@trip, @stage.next_stage), class: "btn #{stage_nav_class(@stage.next_stage)}" %>
   </div>

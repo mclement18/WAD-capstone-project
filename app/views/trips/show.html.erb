@@ -47,8 +47,8 @@
     </p>
 
     <ul class="tags-list bare-list">
-      <li class="tag"><%= @trip.category_1 %></li>
-      <li class="tag"><%= @trip.category_2 %></li>
+      <li class="tag"><%= t("categories.#{@trip.category_1}") %></li>
+      <li class="tag"><%= t("categories.#{@trip.category_2}") %></li>
       <% if @trip.user == current_user %>
         <li class="tag"><%= t('tags.owner') %></li>
       <% end %>
@@ -103,7 +103,7 @@
         <% if @trip.stages.any? %>
           <%= link_to t('.reorder_stages'), trip_stages_path(@trip), class: 'btn' %>
         <% end %>
-        <%= link_to t('links.delete'), trip_path(@trip), class: 'btn btn--secondary', method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to t('links.delete'), trip_path(@trip), class: 'btn btn--secondary', method: :delete, data: { confirm: t('notices.are_you_sure') } %>
       <% end %>
     </div>
   <% end %>

@@ -7,11 +7,11 @@
       <h3 class="card__title"><%= user.name %></h3>
       <h4 class="card__subtitle"><%= user.email %></h4>
       <ul class="card__info bare-list">
-        <li><%= "#{user.trips.length} #{pluralize_better(t('user_card.trip'), user.trips.length)} #{t('user_card.created')}" %></li>
-        <li><%= "#{user.success.length} #{pluralize_better(t('user_card.trip'), user.success.length)} #{t('user_card.completed')}" %></li>
-        <li><%= "#{user.travels.length} #{t('user_card.current')} #{pluralize_better(t('user_card.trip'), user.travels.length)}" %></li>
-        <li><%= "#{user.dreams.length} #{pluralize_better(t('user_card.trip'), user.dreams.length)} #{t('user_card.to_do')}" %></li>
-        <li><%= "#{user.comments.length} #{pluralize_better(t('user_card.comment'), user.comments.length)} #{t('user_card.leaved')}" %></li>
+        <li><%= t('user_card.created', trip: pluralize_better(t('user_card.trip'), user.trips.length), number: user.trips.length) %></li>
+        <li><%= t('user_card.completed', trip: pluralize_better(t('user_card.trip'), user.success.length), number: user.success.length) %></li>
+        <li><%= t('user_card.current', trip: pluralize_better(t('user_card.trip'), user.travels.length), number: user.travels.length) %></li>
+        <li><%= t('user_card.to_do', trip: pluralize_better(t('user_card.trip'), user.dreams.length), number: user.dreams.length) %></li>
+        <li><%= t('user_card.leaved', comment: pluralize_better(t('user_card.comment'), user.comments.length), number: user.comments.length) %></li>
       </ul>
     </div>
     <ul class="card__tags tags-list bare-list">
@@ -26,7 +26,7 @@
   <% if current_user.role == 'admin' %>
     <div class="card__footer buttons-group">
       <%= link_to t('user_card.edit'), edit_user_path(user), class: 'btn' %>
-      <%= link_to t('user_card.delete'), user_path(user), class: 'btn btn--secondary', method: :delete, remote: remote_delete?(user, remote_delete), data: { confirm: 'Are you sure?' } %>
+      <%= link_to t('user_card.delete'), user_path(user), class: 'btn btn--secondary', method: :delete, remote: remote_delete?(user, remote_delete), data: { confirm: t('notices.are_you_sure') } %>
     </div>
   <% end %>
 </li>

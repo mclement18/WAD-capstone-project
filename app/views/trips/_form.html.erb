@@ -42,7 +42,7 @@
       <%= form.label :city, class: 'input-label' %>
       <div class="input-group__row">
         <%= form.select :city, city_options(trip.country, trip.region, trip.city), {}, class: 'input-field input-field--select' %>
-        <%= button_tag 'Manual entry', type: 'button', class:'btn', id: 'city-input-change',
+        <%= button_tag t('forms.manual_entry'), type: 'button', class:'btn', id: 'city-input-change',
           data: { select: t('forms.selection_list'), input: t('forms.manual_entry'), action: 'getInput' } %>
       </div>
     </div>

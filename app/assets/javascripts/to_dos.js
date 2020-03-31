@@ -12,7 +12,7 @@ ToDo.getButtonGroup = function(tripId, from) {
   if (from === 'card') {
     return Card.getCard(`trip-id-${tripId}`).querySelector('.card__footer');
   } else if (from === 'page') {
-    return document.querySelector('.stage__nav');
+    return document.querySelector('.resource-show__nav');
   }
 };
 

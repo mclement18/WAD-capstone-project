@@ -56,7 +56,7 @@ en:
   home:
     index:
       title: If you don't know where to go for your next vacation, you found the right place!
-      secondtitle: You know what you want to do? Then brows the suggested trips by categories.
+      secondtitle: Do you have an idea on what would please you? Then browse the suggested trips by categories.
   search:
     label: Search term
     button: Search
@@ -97,7 +97,7 @@ en:
   stages:
     index:
       title: Stages of Trip
-      form_info: Reorder stages by dragging them. Don't forget to control the travel type!
+      form_info: Reorder stages by dragging and dropping them. Don't forget to control the travel type!
       stage_number: "Stage %{number}"
       reorder: Reorder
     show:
@@ -130,24 +130,23 @@ en:
       title: Sign Up
     edit:
       title: Edit User
-      delete_tip: Delete tip
     roles:
       registered: registered
       admin: admin
   user_card:
     trip: trip
     comment: comment
-    created: created
-    completed: completed
-    current: current
-    to_do: to do
-    leaved: leaved
+    created: "%{number} %{trip} created"
+    completed: "%{number} %{trip} completed"
+    current: "%{number} current %{trip}"
+    to_do: "%{number} %{trip} to do"
+    leaved: "%{number} %{comment} leaved"
     edit: Edit User
     delete: Delete User
   account:
     show:
       title: Your profile
-      name_info: This user name was automatically generated. To change it update your account.
+      name_info: This user name was automatically generated. To change it, update your account.
       trips_created: Trips created
       trips_todo: Trips to do
       trips_current: Trips in progress
@@ -174,7 +173,7 @@ en:
   forms:
     fileinput: choose file
     manual_entry: Manual Entry
-    selection_list: Selection List
+    selection_list: dropdown List
     continents:
       africa: Africa
       america: America
@@ -234,6 +233,7 @@ en:
     ids_not_match: The number of stage ids and actual trip stages number don't match.
     ids_invalid: Non valid stage ids were sent.
   notices:
+    are_you_sure: Are you sure?
     account_updated: Account successfully updated!
     account_deleted: You successfuly deleted your account!
     comment_created: Comment successfully created!
@@ -266,7 +266,7 @@ en:
     comment_update_fail: Unable to update comment.
     comment_deletion_fail: Unable to delete comment.
     todo_creation_fail: Unable to add Trip to your To Do List.
-    todo_update_fail: Unable to update to do status. Wrong transition...
+    todo_update_fail: Unable to update item status. Wrong transition...
     todo_deletion_fail: Unable to remove trip from your list.
     login_fail: Invalid email and password combiantion. Please try again.
     not_logged_in: You have to log in to see this content.

@@ -16,7 +16,7 @@
     <h3 class="email"><%= current_user.email %></h3>
     <ul class="action bare-list">
       <li><%= link_to t('links.edit'), edit_account_path, class: 'btn' %></li>
-      <li><%= link_to t('links.delete'), account_path, class: 'btn btn--secondary', method: :delete, data: { confirm: 'Are you sure?' } %></li>
+      <li><%= link_to t('links.delete'), account_path, class: 'btn btn--secondary', method: :delete, data: { confirm: t('notices.are_you_sure') } %></li>
       <% if current_user.role == 'admin' %>
         <li class="tag"><%= t('tags.admin') %></li>
       <% end %>

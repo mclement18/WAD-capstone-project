@@ -17,7 +17,7 @@
     <% if logged_in? && can_edit?(comment) %>
       <div class="media__action">
         <%= link_to t('links.edit'), edit_comment_path(comment), class: 'btn', remote: true, method: :get %>
-        <%= link_to t('links.delete'), comment_path(comment), class: 'btn btn--secondary', remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to t('links.delete'), comment_path(comment), class: 'btn btn--secondary', remote: true, method: :delete, data: { confirm: t('notices.are_you_sure') } %>
       </div>
     <% end %>
   </div>

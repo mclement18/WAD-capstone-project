@@ -1,0 +1,351 @@
+fr:
+  links:
+    signup: S'inscrire
+    login: Connexion
+    logout: Deconnexion
+    cancel: Annuler
+    alltrips: Tous les Voyages
+    account: Compte
+    mytrips: Mes Voyages
+    todolist: ToDo Liste
+    current_travels: Voyages actuels
+    completed_travels: Voyages terminés
+    users: Utilisateurs
+    favourites: Favoris
+    edit: Modifier
+    delete: Supprimer
+  tags:
+    owner: À moi
+    admin: Admin
+    you: Toi
+    todo: à faire
+    current: en court
+    completed: terminé
+  ownership:
+    created_by: Créé par
+  home:
+    index:
+      title: Si tu ne sais pas où aller pour tes prochaines vacances, tu as trouvé le bon endroit!
+      secondtitle: Tu as une idée de ce qu'il te ferait plaisir? Alors cherche parmis les voyages suggérés par catégories.
+  search:
+    label: Mots-clefs
+    button: Rechercher
+  categories:
+    city: en Ville
+    road: en Voiture
+    international: International
+    relaxing: Relaxant
+    cultural: Culturel
+    adventurous: Aventureux
+    trip_and_category: "Voyage %{category}"
+    index:
+      title: "Tous les Voyages %{category}"
+      title_search: "Voyages %{category} contenant"
+      not_found: Pas de voyage trouvé.
+  trips:
+    index:
+      title: Tous les Voyages
+      title_search: Voyages contenant
+      not_found: Pas de voyage trouvé.    
+    show:
+      map_no_stage: Ce voyage n'a pas d'étape.
+      map_not_logged_in: Connecte ou inscris toi pour voir la carte!
+      new_stage: Nouvelle Étape
+      reorder_stages: Réorganiser Étapes
+      trip_stages: Étapes du Voyage
+      stage: Étape
+    new:
+      title: Créer un Voyage
+    edit:
+      title: Modifier Voyage
+  trip_card:
+    done: Términé
+    doing: En court
+    planned: Prévu
+    edit: Modifier Voyage
+    delete: Supprimer Voyage
+  stages:
+    index:
+      title: Étapes du Voyage
+      form_info: Réorganise les étapes en les glisant et déposant. N'oublie pas de contrôler le mode de voyage!
+      stage_number: "Étape %{number}"
+      reorder: Réorganiser
+    show:
+      subtitle: "Étape %{number} du Voyage"
+      next: Prochaine
+      previous: Précédente
+      trip: Voyage
+      stage_number: Étape numéro
+    new:
+      title: Créer une Étape pour le Voyage
+    edit:
+      title: Modifier Étape
+      subtitle: "Étape %{number} du Voyage"
+  comments:
+    title: Commentaires
+    not_found: Pas de commentaires pour l'instant.
+    date: "il y a %{time}"
+    add_comment: Ajoutez un commentaire
+    edit_comment: Modifier commentaire
+  todos:
+    create: À Faire
+    start: Commencer
+    finish: Terminer
+    reset: À Faire
+    delete: Enlever
+  users:
+    index:
+      title: Tous les Utilisateurs
+    new:
+      title: S'inscrire
+    edit:
+      title: Modifier le profil utilisateur
+    roles:
+      registered: inscrit
+      admin: administrateur
+  user_card:
+    trip: voyage
+    comment: commentaire
+    created: "A créé %{number} %{trip}"
+    completed: "A terminé %{number} %{trip}"
+    current: "A %{number} %{trip} en court"
+    to_do: "A %{number} %{trip} à faire"
+    leaved: "A publié %{number} %{comment}"
+    edit: Modifier
+    delete: Supprimer
+  account:
+    show:
+      title: Ton profile
+      name_info: Ce nom d'utilisateur a été créé automatiquement. Pour le changer, mets à jour ton profile.
+      trips_created: Voyages créés
+      trips_todo: Voyages à faire
+      trips_current: Voyages en court
+      trips_done: Voyages terminés
+    edit:
+      title: Actualiser votre compte
+    trips:
+      index:
+        title: Vos conseils
+        new_trip: Nouveau Voyage
+        not_found: Tu n'as pas encore créer de voyage.
+    to_dos:
+      index:
+        title_todolist: Ta ToDo Liste
+        title_travels: Tes Voyages en court
+        title_success: Tes Voyages terminés
+        not_found: Tu n'as pas de voyage dans ta liste.
+  sessions:
+    new:
+      title: Connexion
+      email: Email
+      password: Mot de passe
+      submit: Connexion
+  forms:
+    fileinput: choisir fichier
+    manual_entry: Entrée Manuelle
+    selection_list: List déroulante
+    continents:
+      africa: Afrique
+      america: Amérique
+      asia: Asie
+      europe: Europe
+      oceania: Océanie
+    choose_country: Choisir un pays
+    travel_types:
+      driving: Voiture
+      walking: À Pieds
+      bicycling: À Vélo
+      transit: Transport Public
+  helpers:
+    submit:
+      trip:
+        create: Créer Voyage
+        update: Actualiser Voyage
+      stage:
+        create: Créer Étape
+        update: Actualiser Étape
+      user:
+        create: S'inscrire
+        update: Actualiser
+      comment:
+        create: Poster
+        update: Actualiser Commentaire
+  activerecord:
+    attributes:
+      trip:
+        title: Titre
+        description: Description
+        image: Image
+        category_1: Categorie 1
+        category_2: Categorie 2
+        continent: Continent
+        country: Pays
+        region: Région
+        city: Ville
+      stage:
+        title: Titre
+        description: Description
+        image: Image
+        travel_type: Mode de Voyage
+        address: Adresse
+      user:
+        email: Email
+        name: Nom
+        avatar: Avatar
+        password: Mot de passe
+        role: Rôle
+  date:
+    abbr_month_names:
+    - 
+    - jan
+    - fév
+    - mar
+    - avr
+    - mai
+    - juin
+    - juil
+    - août
+    - sept
+    - oct
+    - nov
+    - déc
+  time:
+    formats:
+      default: "le %e %b %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: environ une heure
+        other: environ %{count} heures
+      about_x_months:
+        one: environ un mois
+        other: environ %{count} mois
+      about_x_years:
+        one: environ un an
+        other: environ %{count} ans
+      almost_x_years:
+        one: presqu'un an
+        other: presque %{count} ans
+      half_a_minute: une demi-minute
+      less_than_x_minutes:
+        zero: moins d'une minute
+        one: moins d'une minute
+        other: moins de %{count} minutes
+      less_than_x_seconds:
+        zero: moins d'une seconde
+        one: moins d'une seconde
+        other: moins de %{count} secondes
+      over_x_years:
+        one: plus d'un an
+        other: plus de %{count} ans
+      x_days:
+        one: 1 jour
+        other: "%{count} jours"
+      x_minutes:
+        one: 1 minute
+        other: "%{count} minutes"
+      x_months:
+        one: 1 mois
+        other: "%{count} mois"
+      x_years:
+        one: un an
+        other: "%{count} ans"
+      x_seconds:
+        one: 1 seconde
+        other: "%{count} secondes"
+  errors:
+    error: erreur
+    header: 'a/ont empêché la sauvgarde:'
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: doit être accepté(e)
+      blank: doit être rempli(e)
+      confirmation: ne concorde pas avec %{attribute}
+      empty: doit être rempli(e)
+      equal_to: doit être égal à %{count}
+      even: doit être pair
+      exclusion: n'est pas disponible
+      greater_than: doit être supérieur à %{count}
+      greater_than_or_equal_to: doit être supérieur ou égal à %{count}
+      inclusion: n'est pas inclus(e) dans la liste
+      invalid: n'est pas valide
+      less_than: doit être inférieur à %{count}
+      less_than_or_equal_to: doit être inférieur ou égal à %{count}
+      model_invalid: 'Validation échouée : %{errors}'
+      not_a_number: n'est pas un nombre
+      not_an_integer: doit être un nombre entier
+      odd: doit être impair
+      other_than: doit être différent de %{count}
+      present: doit être vide
+      required: doit exister
+      taken: n'est pas disponible
+      too_long:
+        one: est trop long (pas plus d'un caractère)
+        other: est trop long (pas plus de %{count} caractères)
+      too_short:
+        one: est trop court (au moins un caractère)
+        other: est trop court (au moins %{count} caractères)
+      wrong_length:
+        one: ne fait pas la bonne longueur (doit comporter un seul caractère)
+        other: ne fait pas la bonne longueur (doit comporter %{count} caractères
+      carrierwave_processing_error: "Impossible de redimensionner l'image."
+      carrierwave_integrity_error: "Ce n'est pas une image."
+      carrierwave_download_error: "Impossible de télécharger l'image."
+      extension_whitelist_error: "Vous n'êtes pas autorisé à uploader des fichiers %{extension}, types autorisés: %{allowed_types}"
+      extension_blacklist_error: "Vous n'êtes pas autorisé à uploader des fichiers %{extension}, types interdits: %{prohibited_types}"
+      content_type_whitelist_error: "Vous n'êtes pas autorisé à uploader des fichiers de type %{content_type}"
+      content_type_blacklist_error: "Vous n'êtes pas autorisé à uploader des fichiers de type %{content_type}"
+      rmagick_processing_error: "La manipulation d'image avec rmagick a échoué. Peut-être que ce n'est pas une image ? Erreur originale: %{e}"
+      mini_magick_processing_error: "La manipulation d'image avec MiniMagick a échoué. Peut-être que ce n'est pas une image ? Erreur originale: %{e}"
+      min_size_error: "La taille du fichier doit être supérieure à %{min_size}"
+      max_size_error: "La taille du fichier doit être inférieure à %{max_size}"
+    ids_not_match: Le nombre d'étapes et le nombre de voyages ne correspondent pas.
+    ids_invalid: Étapes on valides ont été envoyées.
+  notices:
+    are_you_sure: Supprimer ?
+    account_updated: Profile mis à jour avec succès!
+    account_deleted: Tu as supprimé ton compte avec succès!
+    comment_created: Commentaire créé avec succès!
+    comment_updated: Commentaire mis à jour avec succès!
+    comment_destroyed: Commentaire supprimé avec succès!
+    login_success: Connecté avec succès!
+    logout_success: Deconnecté avec succès!
+    trip_created: Voyage créé avec succès!
+    trip_updated: Voyage mis à jour avec succès!
+    trip_destroyed: Voyage supprimé avec succès!
+    stage_created: Étape créée avec succès!
+    stage_updated: Étape mise à jour avec succès!
+    stage_destroyed: Étape supprimée avec succès!
+    stage_reordered: Étapes réorganisées avec succès!
+    user_created: Utilisateur créé avec succès!
+    user_updated: Utilisateur mis à jour avec succès!
+    user_destroyed: Utilisateur supprimé avec succès!
+    todo_created: Voyage ajouté à ta ToDo Liste avec succès!
+    todo_started: Voyage ajouté à tes Voyages en court avec succès!
+    todo_finished: Voyage ajouté à tes Voyages terminés avec succès!
+    todo_reset: Voyage renvoyé vers ta ToDo Liste.
+    todo_deleted: Voyage supprimé de ta liste avec succès!
+  alerts:
+    user_deletion_fail: Impossible de supprimer l'utilisateur.
+    account_deletion_fail: Impossible de supprimer le compte.
+    trip_deletion_fail: Impossible de supprimer le voyage.
+    stage_deletion_fail: Impossible de supprimer l'étape.
+    stage_reorder_fail: Impossible de réorganiser les étapes.
+    comment_creation_fail: Impossible de créer le commentaire.
+    comment_update_fail: Impossible de mettre à jour le commentaire.
+    comment_deletion_fail: Impossible de supprimer le commentaire.
+    todo_creation_fail: Impossible d'ajouter à ta ToDo Liste.
+    todo_update_fail: Impossible de mettre à jour le statut de l'élément. Mauvaise transition...
+    todo_deletion_fail: Impossible de supprimer le voyage de ta liste.
+    login_fail: Combination email et mot de passe invalide. Veuillez réessayer.
+    not_logged_in: Tu dois être connecté pour avoir accès à ce contenu.
+    already_logged_in: Tu es déjà connecté!
+    not_allowed: Tu n'as pas l'authorization de faire ça!
+  views:
+    pagination:
+      first: "&laquo; Prem"
+      last: "Dern &raquo;"
+      previous: "&lsaquo; Préc"
+      next: "Suiv &rsaquo;"
+      truncate: "&hellip;"
+    

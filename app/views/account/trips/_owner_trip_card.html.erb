@@ -31,6 +31,6 @@
       <%= render partial: 'todo_create_button', locals: { user: current_user, trip_id: trip.id } %>
     <% end %>
     <%= link_to t('trip_card.edit'), edit_trip_path(trip), class: 'btn' %>
-    <%= link_to t('trip_card.delete'), trip_path(trip), class: 'btn btn--secondary', method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
+    <%= link_to t('trip_card.delete'), trip_path(trip), class: 'btn btn--secondary', method: :delete, remote: true, data: { confirm: t('notices.are_you_sure') } %>
   </div>
 </li>
