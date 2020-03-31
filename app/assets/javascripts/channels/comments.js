@@ -15,12 +15,12 @@ App.comments = App.cable.subscriptions.create("CommentsChannel", {
       switch (data.action) {
         case 'create':
           Comments.insertComment(data.comment);
-        break;
+          break;
         case 'update':
           Comments.replaceComment(data.comment_id, data.comment);
           break;
         case 'delete':
-          Comments.removeComment(data.comment_id);
+          Comments.removeComment(data.comment_id, data.message);
           break;
       }
     }
