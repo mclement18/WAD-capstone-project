@@ -1,28 +1,28 @@
 <% content_for :meta_tag do %>
   <meta name="travelTypesOptions" value="<%= travel_type_options('').to_json %>" />
-  <meta name="travelTypeLabel" value="Travel type" />
+  <meta name="travelTypeLabel" value="<%= t('activerecord.attributes.stage.travel_type') %>" />
 <% end %>
 
 <div class="main-title">
   <div class="title">
-    <h1>Stages of trip: <%= @trip.title %></h1>
+    <h1><%= t('.title') %>: <%= @trip.title %></h1>
   </div>
 </div>
 
 <%= form_tag reorder_trip_stages_path(@trip), method: :patch, class: 'form drag-drop-form' do %>
-  <h3 class="form__info">Reorder stages by dragging them. Don't forget to control the travel type!</h3>
+  <h3 class="form__info"><%= t('.form_info') %></h3>
 
   <div class="form__input">
     <% @stages.each do |stage| %>
       <div class="draggable-field input-field stage can-drop" draggable="true" id="stage-id-<%= stage.id %>" >
         <div class="draggable-field__label stage__id">
-          <%= label_tag "stage_#{stage.number}_stage_id", "Stage #{stage.number}", class: 'input-label' %>
+          <%= label_tag "stage_#{stage.number}_stage_id", t('.stage_number', number: stage.number), class: 'input-label' %>
           <%= hidden_field_tag "trip[stages][stage_#{stage.number}][stage_id]", stage.id, id: "stage_#{stage.number}_stage_id" %>
         </div>
         <div class="draggable-field__row stage__travel-type">
           <span class="draggable-field__value delta"><%= stage.title %></span>
           <% unless is_first_stage?(stage) %>
-            <%= label_tag "stage_#{stage.number}_travel_type", 'Travel type', class: 'input-label' %>
+            <%= label_tag "stage_#{stage.number}_travel_type", t('activerecord.attributes.stage.travel_type'), class: 'input-label' %>
             <%= select_tag "trip[stages][stage_#{stage.number}][travel_type]", travel_type_options(stage.travel_type), class: 'input-field input-field--select', id: "stage_#{stage.number}_travel_type" %>
           <% end %>
         </div>
@@ -32,7 +32,7 @@
     <% end %>
   </div>
   <div class="prompt prompt--cancel">
-    <%= link_to 'Cancel', trip_path(@trip), class: 'link' %>
-    <%= button_tag 'Reorder', class: 'btn btn--primary' %>
+    <%= link_to t('links.cancel'), trip_path(@trip), class: 'link' %>
+    <%= button_tag t('.reorder'), class: 'btn btn--primary' %>
   </div>
 <% end %>

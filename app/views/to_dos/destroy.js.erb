@@ -1,7 +1,7 @@
 <% if @todo.destroyed? %>
   ToDo.respond(<%= @todo.trip_id %>, 'todo-delete',
                 '<%=j render partial: 'todo_create_button', locals: { user: current_user, trip_id: @todo.trip_id } %>',
-                "You don't have any trip in your list.")
+                "<%= t('account.to_dos.index.not_found') %>")
 <% end %>
 
 <% if flash.any? %>

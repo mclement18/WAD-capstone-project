@@ -9,9 +9,9 @@ class ToDosController < ApplicationController
     @todo = ToDo.new user: current_user, trip_id: params[:trip_id]
     respond_to do |format|
       if @todo.save
-        flash.now.notice = 'Trip successfully added to your To Do List!'
+        flash.now.notice = t('notices.todo_created')
       else
-        flash.now.alert = 'Unable to add Trip to your To Do List.'
+        flash.now.alert = t('alerts.todo_creation_fail')
       end
       format.js
     end
@@ -21,12 +21,12 @@ class ToDosController < ApplicationController
     respond_to do |format|
       if @todo.update_status(params[:transition]) && @todo.save
         case params[:transition]
-        when 'traveling' then flash.now.notice = 'Trip added to your current Trips!'
-        when 'arrived'   then flash.now.notice = 'Trip added to your completed Trips!'
-        when 'cancel'    then flash.now.notice = 'Trip moved back to your To Do List.'
+        when 'traveling' then flash.now.notice = t('notices.todo_started')
+        when 'arrived'   then flash.now.notice = t('notices.todo_finished')
+        when 'cancel'    then flash.now.notice = t('notices.todo_reset')
         end
       else
-        flash.now.alert = 'Unable to update to do status. Wrong transition...'
+        flash.now.alert = t('alerts.todo_creation_fail')
       end
       format.js
     end
@@ -35,9 +35,9 @@ class ToDosController < ApplicationController
   def destroy
     respond_to do |format|
       if @todo.destroy
-        flash.now.notice = 'Trip successfully removed from your list!'
+        flash.now.notice = t('notices.todo_update_fail')
       else
-        flash.now.alert = 'Unable to remove trip from your list.'
+        flash.now.alert = t('alerts.todo_deletion_fail')
       end
       format.js
     end

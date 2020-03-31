@@ -12,6 +12,13 @@
       <%= form.text_area :description, class: 'input-field input-field--textarea', maxlength: 500, placeholder: 'max 500 characters' %>
     </div>
     <div class="input-group">
+      <%= form.label :image, class: 'input-label' %>
+      <div class="input-file__container">
+        <%= form.file_field :image, class: 'input-file sr-only', accept: '.jpg, .jpeg, .gif, .png' %>
+        <label class="btn input-file__trigger" for="stage_image" id="fileTrigger"><%= t('forms.fileinput') %></label>
+      </div>
+    </div>
+    <div class="input-group">
       <%= form.label :travel_type, class: 'input-label' %>
       <%= form.select :travel_type, travel_type_options(stage.travel_type), {}, class: 'input-field input-field--select' %>
     </div>
@@ -28,7 +35,7 @@
   <%= render partial: 'embeded_map', locals: { address: stage.address, width: '100%', height: '450', class_name: 'form__map' } %>
 
   <div class="prompt prompt--cancel">
-    <%= link_to 'Cancel', stage_form_cancel_path(trip, stage), class: 'link' %>
+    <%= link_to t('links.cancel'), stage_form_cancel_path(trip, stage), class: 'link' %>
     <%= form.submit class: 'btn btn--primary' %>
   </div>
 <% end %>

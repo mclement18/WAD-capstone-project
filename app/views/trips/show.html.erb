@@ -24,22 +24,22 @@
         <% if @trip.stages.any? %>
           <%= render partial: 'js_map', locals: { callback: 'initTripMap' } %>
         <% else %>
-          <%= render partial: 'map_unavailable', locals: { message: 'This trip has no stage.' } %>
+          <%= render partial: 'map_unavailable', locals: { message: t('.map_no_stage') } %>
         <% end %>
       <% else %>
-        <%= render partial: 'map_unavailable', locals: { message: 'Log in or sign in to view the map!' } %>
+        <%= render partial: 'map_unavailable', locals: { message: t('.map_not_logged_in') } %>
       <% end %>
     </div>
   </div>
   
   <div class="resource-show__info">
     <div class="owner">
-      <span>Created by</span>
+      <span><%= t('ownership.created_by') %></span>
       <%= link_to user_path(@trip.user), class: 'link link--user' do %>
         <%= image_tag @trip.user.avatar_url(:small), class: 'avatar avatar--mini' %>
         <span><%= @trip.user.name %></span>
       <% end %>
-      <span>on <time datetime=<%= @trip.created_at.strftime("%FT%T") %>><%= @trip.created_at.strftime("%d %b '%y") %></time></span>
+      <span><time datetime="<%= @trip.created_at.strftime("%FT%T") %>"><%= l(@trip.created_at) %></time></span>
     </div>
 
     <p class="description">
@@ -50,41 +50,39 @@
       <li class="tag"><%= @trip.category_1 %></li>
       <li class="tag"><%= @trip.category_2 %></li>
       <% if @trip.user == current_user %>
-        <li class="tag">Owner</li>
+        <li class="tag"><%= t('tags.owner') %></li>
       <% end %>
       <% if @trip.dreamers.include?(current_user) %>
-        <li class="tag" data-status="true">ToDo</li>
-      <% end %>
-      <% if @trip.travelers.include?(current_user) %>
-        <li class="tag" data-status="true">Current Trip</li>
-      <% end %>
-      <% if @trip.veterans.include?(current_user) %>
-        <li class="tag" data-status="true">Completed</li>
+        <li class="tag" data-status="true"><%= t('tags.todo') %></li>
+      <% elsif @trip.travelers.include?(current_user) %>
+        <li class="tag" data-status="true"><%= t('tags.current') %></li>
+      <% elsif @trip.veterans.include?(current_user) %>
+        <li class="tag" data-status="true"><%= t('tags.completed') %></li>
       <% end %>
     </ul>
 
     <ul class="details">
-      <li><span class="variable">Continent:</span> <span class="value"><%= display_attribute(@trip.continent) %></span></li>
-      <li><span class="variable">Country:</span> <span class="value"><%= display_attribute(get_country_name(@trip.country)) %></span></li>
-      <li><span class="variable">Region:</span> <span class="value"><%= display_attribute(get_region_name(@trip.country, @trip.region)) %></span></li>
-      <li><span class="variable">City:</span> <span class="value"><%= display_attribute(@trip.city) %></span></li>
-      <li><span class="variable">Planned:</span> <span class="value"><%= @trip.dreamers.length %></span></li>
-      <li><span class="variable">Doing:</span> <span class="value"><%= @trip.travelers.length %></span></li>
-      <li><span class="variable">Done:</span> <span class="value"><%= @trip.veterans.length %></span></li>
-      <li><span class="variable">Comments:</span> <span class="value"><%= @trip.comments.length %></span></li>
+      <li><span class="variable"><%= t('activerecord.attributes.trip.continent') %>:</span> <span class="value"><%= display_attribute(@trip.continent, true) %></span></li>
+      <li><span class="variable"><%= t('activerecord.attributes.trip.country') %>:</span> <span class="value"><%= display_attribute(get_country_name(@trip.country)) %></span></li>
+      <li><span class="variable"><%= t('activerecord.attributes.trip.region') %>:</span> <span class="value"><%= display_attribute(get_region_name(@trip.country, @trip.region)) %></span></li>
+      <li><span class="variable"><%= t('activerecord.attributes.trip.city') %>:</span> <span class="value"><%= display_attribute(@trip.city) %></span></li>
+      <li><span class="variable"><%= t('trip_card.planned') %>:</span> <span class="value"><%= @trip.dreamers.length %></span></li>
+      <li><span class="variable"><%= t('trip_card.doing') %>:</span> <span class="value"><%= @trip.travelers.length %></span></li>
+      <li><span class="variable"><%= t('trip_card.done') %>:</span> <span class="value"><%= @trip.veterans.length %></span></li>
+      <li><span class="variable"><%= t('comments.title') %>:</span> <span class="value"><%= @trip.comments.length %></span></li>
     </ul>
   </div>
 
   <% if @trip.stages.any? %>
     <details class="stages-list">
       <summary class="gamma stages-list__title">
-        Trip's stages
+        <%= t('.trip_stages') %>
       </summary>
       <ul class="bare-list list-color">
         <% @trip.stages.each do |stage| %>
           <li class="stages-list__stage">
             <%= link_to trip_stage_path(@trip, stage) do %>
-              <h4>Stage <%= stage.number %>: <%= stage.title %></h4>
+              <h4><%= t('.stage') %> <%= stage.number %>: <%= stage.title %></h4>
             <% end %>
           </li>
         <% end %>
@@ -100,12 +98,12 @@
         <%= render partial: 'todo_create_button', locals: { user: current_user, trip_id: @trip.id } %>
       <% end %>
       <% if can_edit?(@trip) %>
-        <%= link_to 'Edit', edit_trip_path(@trip), class: 'btn' %>
-        <%= link_to 'New Stage', new_trip_stage_path(@trip), class: 'btn' %>
+        <%= link_to t('links.edit'), edit_trip_path(@trip), class: 'btn' %>
+        <%= link_to t('.new_stage'), new_trip_stage_path(@trip), class: 'btn' %>
         <% if @trip.stages.any? %>
-          <%= link_to 'Reorder Stages', trip_stages_path(@trip), class: 'btn' %>
+          <%= link_to t('.reorder_stages'), trip_stages_path(@trip), class: 'btn' %>
         <% end %>
-        <%= link_to 'Delete', trip_path(@trip), class: 'btn btn--secondary', method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to t('links.delete'), trip_path(@trip), class: 'btn btn--secondary', method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
     </div>
   <% end %>

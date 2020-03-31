@@ -1,5 +1,5 @@
 <div class="comments-title">
-  <h2 class="alpha">Comments</h2>
+  <h2 class="alpha"><%= t('comments.title') %></h2>
 </div>
 
   <% if logged_in? %>
@@ -15,6 +15,6 @@
       <%= render article.comments %>
     </div>
   <% else %>
-    <p class="not-found">No comments yet.</p>
+    <p class="not-found"><%= t('comments.not_found') %></p>
   <% end %>
 </div>

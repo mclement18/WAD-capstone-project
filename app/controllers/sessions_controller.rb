@@ -11,9 +11,9 @@ class SessionsController < ApplicationController
     respond_to do |format|
       if @user.present? && @user.authenticate(params[:password])
         session[:user_id] = @user.id
-        format.html { redirect_to root_path, notice: 'Successfully logged in!' }
+        format.html { redirect_to root_path, notice: t('notices.login_success') }
       else
-        format.html { redirect_to login_path, motice: 'Wrong email/password combination.' }
+        format.html { redirect_to login_path, alert: t('alerts.login_fail') }
       end
     end
   end
@@ -21,13 +21,13 @@ class SessionsController < ApplicationController
   def destroy
     session.delete(:user_id)
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Successfully logged out!' }
+      format.html { redirect_to root_path, notice: t('notices.logout_success') }
     end
   end
 
   private
 
   def ensure_not_authenticated
-    redirect_to account_path, notice: 'You are already logged in.' if logged_in?
+    redirect_to account_path, alert: t('alerts.already_logged_in') if logged_in?
   end
 end

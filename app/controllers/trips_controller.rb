@@ -26,7 +26,7 @@ class TripsController < ApplicationController
     @trip.user = current_user
     respond_to do |format|
       if @trip.save
-        format.html { redirect_to @trip, notice: 'Trip successfully created!' }
+        format.html { redirect_to @trip, notice: t('notices.trip_created') }
       else
         format.html { render :new }
       end
@@ -39,7 +39,7 @@ class TripsController < ApplicationController
   def update
     respond_to do |format|
       if @trip.update(trip_params)
-        format.html { redirect_to @trip, notice: 'Trip successfully updated!' }
+        format.html { redirect_to @trip, notice: t('notices.trip_updated') }
       else
         format.html { render :edit }
       end
@@ -49,12 +49,12 @@ class TripsController < ApplicationController
   def destroy
     respond_to do |format|
       if @trip.soft_delete_if_needed
-        format.html { redirect_to account_trips_path, notice: 'Trip successfully deleted!' }
-        flash.now.notice = 'Trip successfully deleted!'
+        format.html { redirect_to account_trips_path, notice: t('notices.trip_destroyed') }
+        flash.now.notice = t('notices.trip_destroyed')
         format.js
       else
-        format.html { redirect_to trip_path(@trip), alert: 'Unable to delete trip.' }
-        flash.now.alert = 'Unable to delete trip.'
+        format.html { redirect_to trip_path(@trip), alert: t('alerts.trip_deletion_fail') }
+        flash.now.alert = t('alerts.trip_deletion_fail')
         format.js
       end
     end
@@ -71,6 +71,6 @@ class TripsController < ApplicationController
   end
 
   def authorize_to_edit_trip
-    redirect_to trip_path(@trip) unless can_edit?(@trip)
+    redirect_to trip_path(@trip), alert: t('alerts.not_allowed') unless can_edit?(@trip)
   end
 end

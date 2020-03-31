@@ -17,7 +17,7 @@ class StagesController < ApplicationController
     reorder_stages(reorder_params[:stages], @trip.id)
 
     respond_to do |format|
-      format.html { redirect_to trip_path(@trip), notice: 'Stages successfully reordered!' }
+      format.html { redirect_to trip_path(@trip), notice: t('notices.stage_reordered') }
     end
   end
 
@@ -31,7 +31,7 @@ class StagesController < ApplicationController
     @stage.trip = @trip
     respond_to do |format|
       if @stage.save
-        format.html { redirect_to trip_stage_path(@trip, @stage), notice: 'Stage successfully created!' }
+        format.html { redirect_to trip_stage_path(@trip, @stage), notice: t('notices.stage_created') }
       else
         format.html { render :new }
       end
@@ -47,7 +47,7 @@ class StagesController < ApplicationController
   def update
     respond_to do |format|
       if @stage.update stage_params
-        format.html { redirect_to trip_stage_path(@trip, @stage), notice: 'Stage successfully updated' }
+        format.html { redirect_to trip_stage_path(@trip, @stage), notice: t('notices.stage_updated') }
       else
         format.html { render :edit }
       end
@@ -57,9 +57,9 @@ class StagesController < ApplicationController
   def destroy
     respond_to do |format|
       if @stage.delete_from(@trip)
-        format.html { redirect_to trip_path(@trip), notice: 'Stage successfully deleted!' }
+        format.html { redirect_to trip_path(@trip), notice: t('notices.stage_destroyed') }
       else
-        format.html { redirect_to trip_stage_path(@trip, @stage), alert: 'Unable to delete stage.' }
+        format.html { redirect_to trip_stage_path(@trip, @stage), alert: t('alerts.stage_deletion_fail') }
       end
     end
   end
@@ -75,15 +75,15 @@ class StagesController < ApplicationController
   end
 
   def ensure_trip_stage_association
-    redirect_to trip_path(@trip) unless @stage.trip_id == @trip.id
+    redirect_to trip_path(@trip), alert: t('alerts.not_allowed') unless @stage.trip_id == @trip.id
   end
 
   def authorize_to_edit_stage
-    redirect_to trip_stage_path(@trip, @stage) unless can_edit?(@trip)
+    redirect_to trip_stage_path(@trip, @stage), alert: t('alerts.not_allowed') unless can_edit?(@trip)
   end
 
   def authorize_to_reorder_stages
-    redirect_to trip_path(@trip) unless can_edit?(@trip)
+    redirect_to trip_path(@trip), alert: t('alerts.not_allowed') unless can_edit?(@trip)
   end
 
   def reorder_stages(stages, trip_id)
@@ -128,18 +128,18 @@ class StagesController < ApplicationController
     
     begin
       unless stages.keys.length == trip_stages_ids.length
-        raise StandardError.new "The number of stage ids and actual trip stages number don't match."
+        raise StandardError.new t('errors.ids_not_match')
       end
   
       stages.each do |stage, values|
         id = values[:stage_id].to_i
         unless trip_stages_ids.include?(id)
-          raise StandardError.new 'Non valid stage ids were sent.'
+          raise StandardError.new t('errors.ids_invalid')
         end
       end
     rescue StandardError => e
       respond_to do |format|
-        format.html { redirect_to trip_stages_path(@trip), alert: "Unable to reorder stages. #{e.message}" }
+        format.html { redirect_to trip_stages_path(@trip), alert: "#{t('alerts.stage_reorder_fail')} #{e.message}" }
       end
     end
   end

@@ -30,4 +30,245 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  links:
+    signup: Sign Up
+    login: Log In
+    logout: Log Out
+    cancel: Cancel
+    alltrips: All Trips
+    account: Account
+    mytrips: My Trips
+    todolist: To Do List
+    current_travels: Current Travels
+    completed_travels: Completed Travels
+    users: Users
+    edit: Edit
+    delete: Delete
+  tags:
+    owner: Owner
+    admin: Admin
+    you: You
+    todo: ToDo
+    current: Current Trip
+    completed: Completed
+  ownership:
+    created_by: Created by
+  home:
+    index:
+      title: If you don't know where to go for your next vacation, you found the right place!
+      secondtitle: You know what you want to do? Then brows the suggested trips by categories.
+  search:
+    label: Search term
+    button: Search
+  categories:
+    city: City
+    road: Road
+    international: International
+    relaxing: Relaxing
+    cultural: Cultural
+    adventurous: Adventurous
+    trip_and_category: "%{category} Trip"
+    index:
+      title: "All %{category} Trips"
+      title_search: "%{category} Trips that match"
+      not_found: No trip found.
+  trips:
+    index:
+      title: All Trips
+      title_search: Results for
+      not_found: No trip found.
+    show:
+      map_no_stage: This trip has no stage.
+      map_not_logged_in: Log in or sign in to view the map!
+      new_stage: New Stage
+      reorder_stages: Reorder Stages
+      trip_stages: Trip's Stages
+      stage: Stage
+    new:
+      title: Create a Trip
+    edit:
+      title: Edit Trip
+  trip_card:
+    done: Done
+    doing: Doing
+    planned: Planned
+    edit: Edit Trip
+    delete: Delete Trip
+  stages:
+    index:
+      title: Stages of Trip
+      form_info: Reorder stages by dragging them. Don't forget to control the travel type!
+      stage_number: "Stage %{number}"
+      reorder: Reorder
+    show:
+      subtitle: "Stage %{number} of Trip"
+      next: Next
+      previous: Previous
+      trip: Trip
+      stage_number: Stage number
+    new:
+      title: Create a Stage for Trip
+    edit:
+      title: Edit Stage
+      subtitle: "Stage %{number} of Trip"
+  comments:
+    title: Comments
+    not_found: No comments yet.
+    date: "%{time} ago"
+    add_comment: Add a comment
+    edit_comment: Edit comment
+  todos:
+    create: Add ToDo
+    start: Start
+    finish: Finish
+    reset: ToDo
+    delete: Remove ToDo
+  users:
+    index:
+      title: All Users
+    new:
+      title: Sign Up
+    edit:
+      title: Edit User
+      delete_tip: Delete tip
+    roles:
+      registered: registered
+      admin: admin
+  user_card:
+    trip: trip
+    comment: comment
+    created: created
+    completed: completed
+    current: current
+    to_do: to do
+    leaved: leaved
+    edit: Edit User
+    delete: Delete User
+  account:
+    show:
+      title: Your profile
+      name_info: This user name was automatically generated. To change it update your account.
+      trips_created: Trips created
+      trips_todo: Trips to do
+      trips_current: Trips in progress
+      trips_done: Trips done
+    edit:
+      title: Update your account
+    trips:
+      index:
+        title: Your Trips
+        new_trip: New Trip
+        not_found: You did not created any trip yet.
+    to_dos:
+      index:
+        title_todolist: Your To Do List
+        title_travels: Your current Trips
+        title_success: Your completed Trips
+        not_found: You don't have any trip in your list.
+  sessions:
+    new:
+      title: Log In
+      email: Email
+      password: Password
+      submit: Log in
+  forms:
+    fileinput: choose file
+    manual_entry: Manual Entry
+    selection_list: Selection List
+    continents:
+      africa: Africa
+      america: America
+      asia: Asia
+      europe: Europe
+      oceania: Oceania
+    choose_country: Choose a country
+    travel_types:
+      driving: Driving
+      walking: Walking
+      bicycling: Bicycling
+      transit: Transit
+  helpers:
+    submit:
+      tip:
+        create: Create Trip
+        update: Update Trip
+      stage:
+        create: Create Stage
+        update: Update Stage
+      user:
+        create: Sign up
+        update: Update
+      comment:
+        create: Post
+        update: Update Comment
+  activerecord:
+    attributes:
+      trip:
+        title: Title
+        description: Description
+        image: Image
+        category_1: Category 1
+        category_2: Category 2
+        continent: Continent
+        country: Country
+        region: Region
+        city: City
+      stage:
+        title: Title
+        description: Description
+        image: Image
+        travel_type: Travel type
+        address: Address
+      user:
+        email: Email
+        name: Name
+        avatar: Avatar
+        password: Password
+        role: Role
+  time:
+    formats:
+      default: "on %e %b %Y"
+  errors:
+    error: error
+    header: 'prohibited this from being saved:'
+    ids_not_match: The number of stage ids and actual trip stages number don't match.
+    ids_invalid: Non valid stage ids were sent.
+  notices:
+    account_updated: Account successfully updated!
+    account_deleted: You successfuly deleted your account!
+    comment_created: Comment successfully created!
+    comment_updated: Comment successfully updated!
+    comment_destroyed: Comment successfully deleted!
+    login_success: Successfully logged in!
+    logout_success: Successfully logged out!
+    trip_created: Trip successfully created!
+    trip_updated: Trip successfully updated!
+    trip_destroyed: Trip successfully deleted!
+    stage_created: Stage successfully created!
+    stage_updated: Stage successfully updated!
+    stage_destroyed: Stage successfully deleted!
+    stage_reordered: Stages successfully reordered!
+    user_created: Account successfully created!
+    user_updated: User successfully updated!
+    user_destroyed: User successfully deleted!
+    todo_created: Trip successfully added to your To Do List!
+    todo_started: Trip added to your current Trips!
+    todo_finished: Trip added to your completed Trips!
+    todo_reset: Trip moved back to your To Do List.
+    todo_deleted: Trip successfully removed from your list!
+  alerts:
+    user_deletion_fail: Unable to delete user.
+    account_deletion_fail: Unable to delete account.
+    trip_deletion_fail: Unable to delete trip.
+    stage_deletion_fail: Unable to delete stage.
+    stage_reorder_fail: Unable to reorder stages.
+    comment_creation_fail: Unable to save comment.
+    comment_update_fail: Unable to update comment.
+    comment_deletion_fail: Unable to delete comment.
+    todo_creation_fail: Unable to add Trip to your To Do List.
+    todo_update_fail: Unable to update to do status. Wrong transition...
+    todo_deletion_fail: Unable to remove trip from your list.
+    login_fail: Invalid email and password combiantion. Please try again.
+    not_logged_in: You have to log in to see this content.
+    already_logged_in: You are already logged in!
+    not_allowed: Your are not allowed to do this!

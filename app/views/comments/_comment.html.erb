@@ -9,15 +9,15 @@
       <%= link_to user_path(comment.user) do %>
         <h3 class="user"><%= comment.user.name %></h3>
       <% end %>
-      <span class="date"><time datetime="<%= comment.created_at.strftime("%FT%T")%>"><%= time_ago_in_words(comment.created_at) %> ago</time></span>
+      <span class="date"><time datetime="<%= comment.created_at.strftime("%FT%T")%>"><%= t('comments.date', time: time_ago_in_words(comment.created_at)) %></time></span>
     </div>
     <div class="media__body">
       <p class="text"><%= raw comment.body %></p>
     </div>
     <% if logged_in? && can_edit?(comment) %>
       <div class="media__action">
-        <%= link_to 'edit', edit_comment_path(comment), class: 'btn', remote: true, method: :get %>
-        <%= link_to 'delete', comment_path(comment), class: 'btn btn--secondary', remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to t('links.edit'), edit_comment_path(comment), class: 'btn', remote: true, method: :get %>
+        <%= link_to t('links.delete'), comment_path(comment), class: 'btn btn--secondary', remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
       </div>
     <% end %>
   </div>

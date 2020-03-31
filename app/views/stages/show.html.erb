@@ -5,7 +5,7 @@
 
 <div class="main-title">
   <div class="title">
-    <p class="gamma">Stage <%= @stage.number %> of trip: <%= @trip.title %></p>
+    <p class="gamma"><%= t('.subtitle', number: @stage.number) %>: <%= @trip.title %></p>
     <h1><%= @stage.title %></h1>
   </div>
 </div>
@@ -19,7 +19,7 @@
                       },
                       sizes: '100vw', alt: "Stage #{@stage.id} image", class: 'image' %>
     <div class="map" id="map">
-      <% if @stage.number == 1 %>
+      <% if is_first_stage?(@stage) %>
         <%= render partial: 'embeded_map', locals: { address: @stage.address, width: '100%', height: '100%', class_name: nil } %>
       <% else %>
         <%= render partial: 'js_map', locals: { callback: 'initStageMap' } %>
@@ -29,12 +29,12 @@
   
   <div class="resource-show__info">
     <div class="owner">
-      <span>Created by</span>
+      <span><%= t('ownership.created_by') %></span>
       <%= link_to user_path(@trip.user), class: 'link link--user' do %>
         <%= image_tag @trip.user.avatar_url(:small), class: 'avatar avatar--mini' %>
         <span><%= @trip.user.name %></span>
       <% end %>
-      <span>on <time datetime=<%= @stage.created_at.strftime("%FT%T") %>><%= @stage.created_at.strftime("%d %b '%y") %></time></span>
+      <span><time datetime="<%= @stage.created_at.strftime("%FT%T") %>"><%= l(@stage.created_at) %></time></span>
     </div>
   
     <p class="description">
@@ -42,21 +42,21 @@
     </p>
 
     <ul class="details">
-      <li><span class="variable">Address:</span> <span class="value"><%= @stage.address %></span></li>
-      <li><span class="variable">Travel mode:</span> <span class="value"><%= stage_travel_type(@stage) %></span></li>
-      <li><span class="variable">Stage number:</span> <span class="value"><%= @stage.number %></span></li>
-      <li><span class="variable">Comments:</span> <span class="value"><%= @stage.comments.length %></span></li>
+      <li><span class="variable"><%= t('activerecord.attributes.stage.address') %>:</span> <span class="value"><%= @stage.address %></span></li>
+      <li><span class="variable"><%= t('activerecord.attributes.stage.travel_type') %>:</span> <span class="value"><%= stage_travel_type(@stage) %></span></li>
+      <li><span class="variable"><%= t('.stage_number') %>:</span> <span class="value"><%= @stage.number %></span></li>
+      <li><span class="variable"><%= t('comments.title') %>:</span> <span class="value"><%= @stage.comments.length %></span></li>
     </ul>
   </div>
   
   <div class="resource-show__nav buttons-group">
-    <%= link_to 'Previous', stage_nav_link(@trip, @stage.previous_stage), class: "btn #{stage_nav_class(@stage.previous_stage)}" %>
-    <%= link_to 'Trip', trip_path(@trip), class: 'btn' %>
+    <%= link_to t('.previous'), stage_nav_link(@trip, @stage.previous_stage), class: "btn #{stage_nav_class(@stage.previous_stage)}" %>
+    <%= link_to t('.trip'), trip_path(@trip), class: 'btn' %>
     <% if can_edit?(@trip) %>
-      <%= link_to 'Edit', edit_trip_stage_path(@trip, @stage), class: 'btn' %>
-      <%= link_to 'Delete', trip_stage_path(@trip, @stage), class: 'btn btn--secondary', method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to t('links.edit'), edit_trip_stage_path(@trip, @stage), class: 'btn' %>
+      <%= link_to t('links.delete'), trip_stage_path(@trip, @stage), class: 'btn btn--secondary', method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
-    <%= link_to 'Next', stage_nav_link(@trip, @stage.next_stage), class: "btn #{stage_nav_class(@stage.next_stage)}" %>
+    <%= link_to t('.next'), stage_nav_link(@trip, @stage.next_stage), class: "btn #{stage_nav_class(@stage.next_stage)}" %>
   </div>
 </div>
 

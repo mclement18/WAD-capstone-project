@@ -13,9 +13,9 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        flash.now.notice = 'Comment successfully created!'
+        flash.now.notice = t('notices.comment_created')
       else
-        flash.now.alert = 'Unable to save comment'
+        flash.now.alert = t('alerts.comment_creation_fail')
       end
       format.js
     end
@@ -30,9 +30,9 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        flash.now.notice = 'Comment successfully updated!'
+        flash.now.notice = t('notices.comment_updated')
       else
-        flash.now.alert = 'Unable to update comment'
+        flash.now.alert = t('alerts.comment_update_fail')
       end
       format.js
     end
@@ -41,9 +41,9 @@ class CommentsController < ApplicationController
   def destroy
     respond_to do |format|
       if @comment.destroy
-        flash.now.notice = 'Comment successfully deleted!'
+        flash.now.notice = t('notices.comment_destroyed')
       else
-        flash.now.alert = 'Unable to delete comment.'
+        flash.now.alert = t('alerts.comment_deletion_fail')
       end
       format.js
     end

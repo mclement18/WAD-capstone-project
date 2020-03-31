@@ -1,14 +1,14 @@
 <div class="main-title">
   <div class="title title--with-button">
-    <h1>Your Trips</h1>
-    <%= link_to 'New Trip', new_trip_path, class: 'btn' %>
+    <h1><%= t('.title') %></h1>
+    <%= link_to t('.new_trip'), new_trip_path, class: 'btn' %>
   </div>
   <%= render partial: 'sub_nav', locals: { current: 'trips' } %>
 </div>
 
 <div class="cards">
   <% if @trips.any? %>
-    <ul class="cards__list bare-list">
+    <ul class="cards__list bare-list" id="my-trips">
       <% @trips.each do |trip| %>
         <%= render partial: 'owner_trip_card', locals: { trip: trip } %>
       <% end %>
@@ -16,6 +16,6 @@
 
     <%= paginate @trips, window: 1 %>
   <% else %>
-    <p class="not-found">You did not created any trip yet.</p>
+    <p class="not-found"><%= t('.not_found') %></p>
   <% end %>
 </div>

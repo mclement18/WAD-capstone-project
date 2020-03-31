@@ -2,7 +2,7 @@
   <div class="error" role="alert">
     <div class="error__box">
       <div class="error__content">
-        <p class="error__title"><%= model.errors.count %> error/s prohibited this from being saved:</p>
+        <p class="error__title"><%= "#{pluralize(model.errors.count, t('errors.error'), locale: :en)} #{t('errors.header')}" %></p>
     
         <ul class="error__list">
         <% model.errors.full_messages.each do |message| %>

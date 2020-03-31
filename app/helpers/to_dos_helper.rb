@@ -21,9 +21,9 @@ module ToDosHelper
 
   def todo_update_button_name(transition)
     case transition
-    when 'traveling' then 'Start'
-    when 'arrived'   then 'Finish'
-    when 'cancel'    then 'ToDo'
+    when 'traveling' then t('todos.start')
+    when 'arrived'   then t('todos.finish')
+    when 'cancel'    then t('todos.reset')
     end
   end
 

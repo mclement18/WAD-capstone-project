@@ -1,14 +1,34 @@
 module TripsHelper
   def category_1_options(selected)
-    options_for_select [['None', ''], ['City trip', 'city'], ['Road trip', 'road'], ['International trip', 'international']], selected
+    options_for_select [
+                         ['None', ''],
+                         [t('categories.trip_and_category', category: t('categories.city')), 'city'],
+                         [t('categories.trip_and_category', category: t('categories.road')), 'road'],
+                         [t('categories.trip_and_category', category: t('categories.international')), 'international']
+                       ],
+                       selected
   end
 
   def category_2_options(selected)
-    options_for_select [['None', ''], ['Relaxing', 'relaxing'], ['Adventurous', 'adventurous'], ['Cultural', 'cultural']], selected
+    options_for_select [
+                         ['None', ''],
+                         [t('categories.relaxing'), 'relaxing'],
+                         [t('categories.adventurous'), 'adventurous'],
+                         [t('categories.cultural'), 'cultural']
+                       ],
+                       selected
   end
 
   def continent_options(selected)
-    options_for_select [['None', ''], ['America', 'America'], ['Africa', 'Africa'], ['Asia', 'Asia'], ['Europe', 'Europe'], ['Oceania', 'Oceania']], selected
+    options_for_select [
+                         ['None', ''],
+                         [t('forms.continents.america'), 'America'],
+                         [t('forms.continents.africa'), 'Africa'],
+                         [t('forms.continents.asia'), 'Asia'],
+                         [t('forms.continents.europe'), 'Europe'],
+                         [t('forms.continents.oceania'), 'Oceania']
+                       ],
+                       selected
   end
 
   def trip_form_cancel_path(trip)
@@ -19,9 +39,13 @@ module TripsHelper
     end
   end
 
-  def display_attribute(attribute)
+  def display_attribute(attribute, continent=false)
     if attribute
-      attribute
+      if continent
+        t("forms.continents.#{attribute.downcase}")
+      else
+        attribute
+      end
     else
       'N/A'
     end

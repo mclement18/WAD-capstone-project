@@ -23,7 +23,7 @@
       <%= form.label :image, class: 'input-label' %>
       <div class="input-file__container">
         <%= form.file_field :image, class: 'input-file sr-only', accept: '.jpg, .jpeg, .gif, .png' %>
-        <label class="btn input-file__trigger" for="trip_image" id="fileTrigger">choose file</label>
+        <label class="btn input-file__trigger" for="trip_image" id="fileTrigger"><%= t('forms.fileinput') %></label>
       </div>
     </div>
     <div class="input-group">
@@ -43,12 +43,12 @@
       <div class="input-group__row">
         <%= form.select :city, city_options(trip.country, trip.region, trip.city), {}, class: 'input-field input-field--select' %>
         <%= button_tag 'Manual entry', type: 'button', class:'btn', id: 'city-input-change',
-          data: { select: 'Selection list', input: 'Manual entry', action: 'getInput' } %>
+          data: { select: t('forms.selection_list'), input: t('forms.manual_entry'), action: 'getInput' } %>
       </div>
     </div>
   </div>
   <div class="prompt prompt--cancel">
-    <%= link_to 'Cancel', trip_form_cancel_path(trip), class: 'link' %>
+    <%= link_to t('links.cancel'), trip_form_cancel_path(trip), class: 'link' %>
     <%= form.submit class: 'btn btn--primary' %>
   </div>
 <% end %>

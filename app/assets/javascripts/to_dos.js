@@ -4,6 +4,10 @@ ToDo.getToDoList = function() {
   return document.getElementById('todo-list');
 };
 
+ToDo.getMyTrips = function() {
+  return document.getElementById('my-trips');
+};
+
 ToDo.getButtonGroup = function(tripId, from) {
   if (from === 'card') {
     return Card.getCard(`trip-id-${tripId}`).querySelector('.card__footer');
@@ -64,6 +68,11 @@ ToDo.replaceButton = function(tripId, buttonType, button, from) {
   }
 };
 
+ToDo.removeButtonFromMyTrips = function(tripId, buttonType) {
+  this.removeButton(tripId, buttonType, 'card');
+  this.addTag(tripId, 'card');
+};
+
 ToDo.removeFromPage = function(tripId, message) {
   Card.remove(`trip-id-${tripId}`, message);
 };
@@ -71,6 +80,8 @@ ToDo.removeFromPage = function(tripId, message) {
 ToDo.respond = function(tripId, buttonType, button, message="You don't have any trip in your list.") {
   if (this.getToDoList()) {
     this.removeFromPage(tripId, message);
+  } else if (this.getMyTrips()) {
+    this.removeButtonFromMyTrips(tripId, buttonType);
   } else if (Card.getCardsList()) {
     this.replaceButton(tripId, buttonType, button, 'card');
   } else {

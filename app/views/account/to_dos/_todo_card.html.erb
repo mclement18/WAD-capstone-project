@@ -8,37 +8,37 @@
                       sizes: '100vw', alt: "Trip #{trip.id} image", class: 'card__image' %>
     <div class="card__intro">
       <h3 class="card__title"><%= trip.title %></h3>
-      <h4 class="card__subtitle"><%= trip.category_1 %> / <%= trip.category_2 %></h4>
+      <h4 class="card__subtitle"><%= t("categories.#{trip.category_1}") %> / <%= t("categories.#{trip.category_2}") %></h4>
       <ul class="card__info bare-list">
-        <li>Done <%= trip.veterans.length %></li>
-        <li>Doing <%= trip.travelers.length %></li>
-        <li>Planned <%= trip.dreamers.length %></li>
+        <li><%= t('trip_card.done') %> <%= trip.veterans.length %></li>
+        <li><%= t('trip_card.doing') %> <%= trip.travelers.length %></li>
+        <li><%= t('trip_card.planned') %> <%= trip.dreamers.length %></li>
       </ul>
     </div>
     <ul class="card__tags tags-list bare-list">
       <% if trip.user == current_user %>
-        <li class="tag">Owner</li>
+        <li class="tag"><%= t('tags.owner') %></li>
       <% end %>
       <% case current_page
          when 'todolist' %>
-        <li class="tag" data-status="true">ToDo</li>
+        <li class="tag" data-status="true"><%= t('tags.todo') %></li>
       <% when 'travels' %>
-        <li class="tag" data-status="true">Curent</li>
+        <li class="tag" data-status="true"><%= t('tags.current') %></li>
       <% when 'success' %>
-        <li class="tag" data-status="true">Completed</li>
+        <li class="tag" data-status="true"><%= t('tags.completed') %></li>
       <% end %>
     </ul>
   <% end %>
   <div class="card__footer buttons-group">
     <% case current_page
        when 'todolist' %>
-      <%= render partial: 'todo_update_button', locals: { trip: trip, transition: 'traveling' } %>
+      <%= render partial: 'todo_update_button', locals: { user: current_user, todo: current_user_to_do(trip.id), transition: 'traveling' } %>
     <% when 'travels' %>
-      <%= render partial: 'todo_update_button', locals: { trip: trip, transition: 'arrived' } %>
-      <%= render partial: 'todo_update_button', locals: { trip: trip, transition: 'cancel' } %>
+      <%= render partial: 'todo_update_button', locals: { user: current_user, todo: current_user_to_do(trip.id), transition: 'arrived' } %>
+      <%= render partial: 'todo_update_button', locals: { user: current_user, todo: current_user_to_do(trip.id), transition: 'cancel' } %>
     <% when 'success' %>
-      <%= render partial: 'todo_update_button', locals: { trip: trip, transition: 'cancel' } %>
+      <%= render partial: 'todo_update_button', locals: { user: current_user, todo: current_user_to_do(trip.id), transition: 'cancel' } %>
     <% end %>
-    <%= link_to 'Remove', user_to_do_path(current_user, current_user_to_do(trip.id)), class: 'btn btn--secondary', method: :delete, remote: true %>
+    <%= render partial: 'todo_delete_button', locals: { user: current_user, todo: current_user_to_do(trip.id) } %>
   </div>
 </li>

@@ -25,10 +25,10 @@
   
           <%= form_tag trips_path, method: :get, class: 'search-box' do %>
             <div class="input-group">
-              <%= label_tag 'q', 'Search', class: 'input-label sr-only' %>
+              <%= label_tag 'q', t('.search.label'), class: 'input-label sr-only' %>
               <div class="input-group__row">
                 <%= text_field_tag 'q', nil, class: 'input-field', placeholder: 'e.g. mountain trip' %>
-                <%= button_tag 'Search', name: nil, class: 'btn btn--primary' %>
+                <%= button_tag t('search.button'), name: nil, class: 'btn btn--primary' %>
               </div>
             </div>
           <% end %>
@@ -65,8 +65,9 @@
           <% end %>
         </div>
         <ul class="locales bare-list">
-          <li><%= link_to 'en', '#', class: 'link link--foot' %></li>
-          <li><%= link_to 'fr', '#', class: 'link link--foot' %></li>
+          <% I18n.available_locales.each do |locale| %>
+            <li><%= link_to locale, url_for(locale: locale), class: 'link link--foot' %></li>
+          <% end %>
         </ul>
         <p class="copyright">&copy; Mathieu Clément</p>
       </div>

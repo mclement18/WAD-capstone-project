@@ -7,7 +7,7 @@
                       },
                       sizes: '100vw', alt: "#{category} image", class: 'card__image' %>
     <div class="card__intro">
-      <h3 class="card__title"><%= category.capitalize %> Trip</h3>
+      <h3 class="card__title"><%= t('categories.trip_and_category', category: t("categories.#{category}")) %></h3>
     </div>
   <% end %>
 </li>

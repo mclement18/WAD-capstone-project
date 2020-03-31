@@ -7,26 +7,26 @@
       <h3 class="card__title"><%= user.name %></h3>
       <h4 class="card__subtitle"><%= user.email %></h4>
       <ul class="card__info bare-list">
-        <li><%= user.trips.length %> trips created</li>
-        <li><%= user.success.length %> trips completed</li>
-        <li><%= user.travels.length %> current trips</li>
-        <li><%= user.dreams.length %> trips to do</li>
-        <li><%= user.comments.length %> comments leaved</li>
+        <li><%= "#{user.trips.length} #{pluralize_better(t('user_card.trip'), user.trips.length)} #{t('user_card.created')}" %></li>
+        <li><%= "#{user.success.length} #{pluralize_better(t('user_card.trip'), user.success.length)} #{t('user_card.completed')}" %></li>
+        <li><%= "#{user.travels.length} #{t('user_card.current')} #{pluralize_better(t('user_card.trip'), user.travels.length)}" %></li>
+        <li><%= "#{user.dreams.length} #{pluralize_better(t('user_card.trip'), user.dreams.length)} #{t('user_card.to_do')}" %></li>
+        <li><%= "#{user.comments.length} #{pluralize_better(t('user_card.comment'), user.comments.length)} #{t('user_card.leaved')}" %></li>
       </ul>
     </div>
     <ul class="card__tags tags-list bare-list">
       <% if user == current_user %>
-        <li class="tag">You</li>
+        <li class="tag"><%= t('tags.you') %></li>
       <% end %>
       <% if user.role == 'admin' %>
-        <li class="tag">Admin</li>
+        <li class="tag"><%= t('tags.admin') %></li>
       <% end %>
     </ul>
   <% end %>
   <% if current_user.role == 'admin' %>
     <div class="card__footer buttons-group">
-      <%= link_to 'Edit User', edit_user_path(user), class: 'btn' %>
-      <%= link_to 'Delete User', user_path(user), class: 'btn btn--secondary', method: :delete, remote: remote_delete?(user, remote_delete), data: { confirm: 'Are you sure?' } %>
+      <%= link_to t('user_card.edit'), edit_user_path(user), class: 'btn' %>
+      <%= link_to t('user_card.delete'), user_path(user), class: 'btn btn--secondary', method: :delete, remote: remote_delete?(user, remote_delete), data: { confirm: 'Are you sure?' } %>
     </div>
   <% end %>
 </li>

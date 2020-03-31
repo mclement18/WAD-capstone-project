@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
-        format.html { redirect_to root_path, notice: 'Successfully signed up!' }
+        format.html { redirect_to root_path, notice: t('notices.user_created') }
       else
         format.html { render :new }
       end
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update admin_params
-        format.html { redirect_to edit_user_path(@user), notice: 'User succesfully updated!' }
+        format.html { redirect_to edit_user_path(@user), notice: t('notices.user_updated') }
       else
         format.html {render :edit }
       end
@@ -47,15 +47,15 @@ class UsersController < ApplicationController
       if @user.soft_delete
         if @user.id == current_user.id
           session.delete(:user_id) 
-          format.html { redirect_to root_path, notice: 'You successfuly deleted your account!' }
+          format.html { redirect_to root_path, notice: t('notices.account_deleted') }
         else
-          format.html { redirect_to users_path, notice: 'User successfuly deleted!' }
-          flash.now.notice = 'User successfuly deleted!'
+          format.html { redirect_to users_path, notice: t('notices.user_destroyed') }
+          flash.now.notice = t('notices.user_destroyed')
           format.js
         end
       else
-        format.html { redirect_to users_path, alert: 'Unable to delete user.' }
-        flash.now.alert = 'Unable to delete user.'
+        format.html { redirect_to users_path, alert: t('alerts.user_deletion_fail') }
+        flash.now.alert = t('alerts.user_deletion_fail')
         format.js
       end
     end
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
   end
 
   def ensure_admin
-    redirect_to root_path unless current_user.role == 'admin'
+    redirect_to root_path, alert: t('alerts.not_allowed') unless current_user.role == 'admin'
   end
 
   def user_params

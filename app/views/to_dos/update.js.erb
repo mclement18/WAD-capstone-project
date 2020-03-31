@@ -1,5 +1,5 @@
 <% if @todo.saved_change_to_status? %>
-  ToDo.respond(<%= @todo.trip_id %>, '', '', "You don't have any trip in your list.")
+  ToDo.respond(<%= @todo.trip_id %>, '', '', "<%= t('account.to_dos.index.not_found') %>")
 <% end %>
 
 <% if flash.any? %>

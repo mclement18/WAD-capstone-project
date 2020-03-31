@@ -1,9 +1,9 @@
 <div class="main-title">
   <div class="title">
     <% if @queries.present? %>
-      <h1>Results for "<%= @queries.join(' ') %>"</h1>
+      <h1><%= t('.title_search') %> "<%= @queries.join(' ') %>"</h1>
     <% else %>
-      <h1>All trips</h1>
+      <h1><%= t('.title') %></h1>
     <% end %>
   </div>
 </div>
@@ -18,6 +18,6 @@
 
     <%= paginate @trips, window: 1 %>
   <% else %>
-    <p class="not-found">No trip found.</p>
+    <p class="not-found"><%= t('.not_found') %></p>
   <% end %>
 </div>

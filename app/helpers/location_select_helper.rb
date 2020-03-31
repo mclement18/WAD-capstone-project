@@ -11,7 +11,7 @@ module LocationSelectHelper
     if selected.present?
       options_for_select get_regions(country), selected
     else
-      options_for_select [['Choose a country', '']]
+      options_for_select [[t('forms.choose_country'), '']]
     end
   end
 
@@ -21,7 +21,7 @@ module LocationSelectHelper
       return options_for_select [['None', '']].concat(cities), selected if cities
       return options_for_select [['None', ''], selected], selected
     else
-      options_for_select [['Choose a country', '']]
+      options_for_select [[t('forms.choose_country'), '']]
     end
   end
 

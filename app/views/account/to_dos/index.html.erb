@@ -1,6 +1,6 @@
 <div class="main-title">
   <div class="title">
-    <h1><%= @title %></h1>
+    <h1><%= t(".title_#{@current_page}") %></h1>
   </div>
   <%= render partial: 'sub_nav', locals: { current: @current_page } %>
 </div>
@@ -15,6 +15,6 @@
 
     <%= paginate @todos, window: 1 %>
   <% else %>
-    <p class="not-found">You don't have any trip in your list.</p>
+    <p class="not-found"><%= t('.not_found') %></p>
   <% end %>
 </div>

@@ -8,26 +8,24 @@
                       sizes: '100vw', alt: "Trip #{trip.id} image", class: 'card__image' %>
     <div class="card__intro">
       <h3 class="card__title"><%= trip.title %></h3>
-      <h4 class="card__subtitle"><%= trip.category_1 %> / <%= trip.category_2 %></h4>
+      <h4 class="card__subtitle"><%= t("categories.#{trip.category_1}") %> / <%= t("categories.#{trip.category_2}") %></h4>
       <ul class="card__info bare-list">
-        <li>Done <%= trip.veterans.length %></li>
-        <li>Doing <%= trip.travelers.length %></li>
-        <li>Planned <%= trip.dreamers.length %></li>
+        <li><%= t('trip_card.done') %> <%= trip.veterans.length %></li>
+        <li><%= t('trip_card.doing') %> <%= trip.travelers.length %></li>
+        <li><%= t('trip_card.planned') %> <%= trip.dreamers.length %></li>
       </ul>
     </div>
     <% if logged_in?%>
       <ul class="card__tags tags-list bare-list">
         <% if trip.user == current_user %>
-          <li class="tag">Owner</li>
+          <li class="tag"><%= t('tags.owner') %></li>
         <% end %>
         <% if trip.dreamers.include?(current_user) %>
-          <li class="tag" data-status="true">ToDo</li>
-        <% end %>
-        <% if trip.travelers.include?(current_user) %>
-          <li class="tag" data-status="true">Current Trip</li>
-        <% end %>
-        <% if trip.veterans.include?(current_user) %>
-          <li class="tag" data-status="true">Completed</li>
+          <li class="tag" data-status="true"><%= t('tags.todo') %></li>
+        <% elsif trip.travelers.include?(current_user) %>
+          <li class="tag" data-status="true"><%= t('tags.current') %></li>
+        <% elsif trip.veterans.include?(current_user) %>
+          <li class="tag" data-status="true"><%= t('tags.completed') %></li>
         <% end %>
       </ul>
     <% end %>
@@ -40,7 +38,7 @@
         <%= render partial: 'todo_create_button', locals: { user: current_user, trip_id: trip.id } %>
       <% end %>
       <% if can_edit?(trip) %>
-        <%= link_to 'Edit Trip', edit_trip_path(trip), class: 'btn' %>
+        <%= link_to t('trip_card.edit'), edit_trip_path(trip), class: 'btn' %>
       <% end %>
     </div>
   <% end %>

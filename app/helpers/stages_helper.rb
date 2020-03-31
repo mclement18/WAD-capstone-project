@@ -1,6 +1,11 @@
 module StagesHelper
   def travel_type_options(selected)
-    options_for_select [['None', 'None'], ['Driving', 'driving'], ['Walking', 'walking'], ['Bicycling', 'bicycling'], ['Transit', 'transit']], selected
+    options_for_select [['None', 'None'],
+                       [t('forms.travel_types.driving'), 'driving'],
+                       [t('forms.travel_types.walking'), 'walking'],
+                       [t('forms.travel_types.bicycling'), 'bicycling'],
+                       [t('forms.travel_types.transit'), 'transit']],
+                       selected
   end
 
   def is_first_stage?(stage)
@@ -39,7 +44,7 @@ module StagesHelper
     if is_first_stage?(stage)
       'N/A'
     else
-      stage.travel_type.capitalize
+      t("forms.travel_types.#{stage.travel_type}")
     end
   end
 end
