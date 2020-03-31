@@ -1,26 +1,37 @@
 @mixin flex {
+  display: -webkit-box;
   display: flex;
 }
 
 @mixin flex-item-center {
+  display: -webkit-box;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 @mixin flex-content-center {
+  display: -webkit-box;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+          justify-content: center;
 }
 
 @mixin flex-column-content-stretch {
+  display: -webkit-box;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-pack: center;
+          justify-content: center;
 }
 
 @mixin flex-list-horizontal {
+  display: -webkit-box;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
 
   > li:not(:last-child) {
     margin: 0 $base-margin 0 0;
@@ -28,8 +39,10 @@
 }
 
  @mixin flex-list-horizontal-wrap {
+  display: -webkit-box;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
   flex-wrap: wrap;
 
   > li:not(:last-child) {

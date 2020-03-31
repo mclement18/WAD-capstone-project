@@ -3,7 +3,8 @@
 
   > .btn,
   .btn--form {
-    flex: 1 0 auto;
+    -webkit-box-flex: 1;
+            flex: 1 0 auto;
     margin: 0 $base-margin 0 0;
 
     &:last-child {

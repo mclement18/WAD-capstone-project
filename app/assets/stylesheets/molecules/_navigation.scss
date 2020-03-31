@@ -22,7 +22,8 @@
 .sub-nav {
   ul {
     font-size: 1.2em;
-    align-items: stretch;
+    -webkit-box-align: stretch;
+            align-items: stretch;
     margin: 0 0 -2px;
 
     @include tablet {

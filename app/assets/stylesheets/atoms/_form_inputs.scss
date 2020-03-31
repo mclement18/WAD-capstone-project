@@ -29,6 +29,7 @@
   &--select {
     font-size: 1.5em;
     border: 1px solid lighten($brown-4, 15);
+    background-image: asset-url('icons/arrow_down.svg'), -webkit-gradient(linear, left top, left bottom, from($white), to(lighten($brown-4, 15)));
     background-image: asset-url('icons/arrow_down.svg'), linear-gradient(to bottom, $white 0%, lighten($brown-4, 15) 100%);
     background-repeat: no-repeat, repeat;
     background-position: right .7em top 50%, 0 0;
@@ -52,12 +53,14 @@
 
 .draggable-field {
   @include grid-12-fixed;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
   
   position: relative;
   text-align: left;
 
   &, .input-label {
+    cursor: -webkit-grab;
     cursor: grab;
   }
 }
@@ -77,7 +80,8 @@
 .draggable-field__row {
   @include grid-12-fixed;
   row-gap: $base-margin;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
   
   grid-column: 4 / 13;
   
@@ -132,6 +136,7 @@
 }
 
 .draggable-field--dragged {
+  cursor: -webkit-grabbing;
   cursor: grabbing;
   opacity: .4;
 }

@@ -1,6 +1,7 @@
 .btn {
   font-size: 1.3rem;
   line-height: 1;
+  background: -webkit-gradient(linear, left top, left bottom, from($white), to(lighten($brown-4, 10)));
   background: linear-gradient(to bottom, $white 0%, lighten($brown-4, 10) 100%);
   color: $black;
 
@@ -22,6 +23,7 @@
   &:active,
   &:focus {
     text-decoration: none;
+    background: -webkit-gradient(linear, left top, left bottom, from(lighten($brown-4, 10)), to($brown-4));
     background: linear-gradient(to bottom, lighten($brown-4, 10) 0%, $brown-4 100%);
     color: $green;
     
@@ -36,6 +38,7 @@
 }
 
 .btn.btn--primary {
+  background: -webkit-gradient(linear, left top, left bottom, from(lighten($green, 10)), to($green));
   background: linear-gradient(to bottom, lighten($green, 10) 0%, $green 100%);
   color: $white;
   border: 1px solid $green;
@@ -43,6 +46,7 @@
   &:hover,
   &:active,
   &:focus {
+    background: -webkit-gradient(linear, left top, left bottom, from($green), to(darken($green, 20)));
     background: linear-gradient(to bottom, $green 0%, darken($green, 20) 100%);
     border-color: darken($green, 20);
     color: $white;
@@ -58,6 +62,7 @@
 }
 
 .btn.btn--secondary {
+  background: -webkit-gradient(linear, left top, left bottom, from(lighten($red, 10)), to($red));
   background: linear-gradient(to bottom, lighten($red, 10) 0%, $red 100%);
   color: $white;
   border: 1px solid $red;
@@ -65,6 +70,7 @@
   &:hover,
   &:active,
   &:focus {
+    background: -webkit-gradient(linear, left top, left bottom, from($red), to(darken($red, 10)));
     background: linear-gradient(to bottom, $red 0%, darken($red, 10) 100%);
     border-color: darken($red, 10);
     color: $white;

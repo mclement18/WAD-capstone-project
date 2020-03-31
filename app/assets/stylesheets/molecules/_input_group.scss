@@ -2,7 +2,8 @@
 
   @include tablet {
     @include grid-8-flex;
-    align-items: center;
+    -webkit-box-align: center;
+            align-items: center;
   }
 
   .input-label {
@@ -24,7 +25,8 @@
   }
 
   &--textarea {
-    align-items: start;
+    -webkit-box-align: start;
+            align-items: start;
   }
 
   &__row {
@@ -66,7 +68,8 @@
 
   &--cancel {
     @include grid-8-flex;
-    align-items: center;
+    -webkit-box-align: center;
+            align-items: center;
   }
 }
 
