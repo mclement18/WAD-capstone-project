@@ -8,7 +8,7 @@
   }
 
   @include tablet {
-    padding: 0 $base-margin;
+    padding: 0 $base-margin $margin-before-footer;
   }
 
   &__info {
