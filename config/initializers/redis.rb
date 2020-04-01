@@ -1,3 +1,1 @@
-Rails.env.production? do
-  $redis = Redis.new(url: ENV["REDIS_URL"])
-end
+$redis = Redis.new(url: ENV["REDIS_URL"]) if defined?(Redis)
