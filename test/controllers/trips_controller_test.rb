@@ -2,6 +2,7 @@ require 'test_helper'
 
 class TripsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    app.default_url_options[:locale] = :en
     @trip = trips(:one)
   end
   

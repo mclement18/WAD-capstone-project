@@ -2,6 +2,7 @@ require 'test_helper'
 
 class StagesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    app.default_url_options[:locale] = :en
     sign_in_as('one@wheretogo.com')
     @trip = trips(:one)
     @stage = stages(:one)

@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    app.default_url_options[:locale] = :en
+  end
+  
   test "get new" do
     get new_user_url
     assert_response :success
@@ -46,7 +50,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "admin delete user" do
     sign_in_as('two@wheretogo.com')
     
-    assert_changes('User.find(users(:one).id).status', from: 'active', to: 'deleted') do
+    assert_changes('User.find(users(:one).id).deleted', from: false, to: true) do
       delete user_url(users(:one))
     end
     assert_redirected_to users_url

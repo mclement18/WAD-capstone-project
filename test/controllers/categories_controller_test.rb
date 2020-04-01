@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    app.default_url_options[:locale] = :en
+  end
+  
   test "get adventurous trips" do
     get categories_url('adventurous')
     assert_response :success

@@ -2,6 +2,7 @@ require 'test_helper'
 
 class AccountControllerTest < ActionDispatch::IntegrationTest
   setup do
+    app.default_url_options[:locale] = :en
     sign_in_as('two@wheretogo.com')
   end
   
@@ -43,7 +44,7 @@ class AccountControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "delete account" do
-    assert_changes('User.find(users(:two).id).status', from: 'active', to: 'deleted') do
+    assert_changes('User.find(users(:two).id).deleted', from: false, to: true) do
       delete account_url
     end
     assert_redirected_to root_url

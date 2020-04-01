@@ -2,6 +2,7 @@ require 'test_helper'
 
 class ToDosControllerTest < ActionDispatch::IntegrationTest
   setup do
+    app.default_url_options[:locale] = :en
     sign_in_as('one@wheretogo.com')
     @user = users(:one)
   end

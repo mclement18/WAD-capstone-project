@@ -61,7 +61,7 @@ class Stage < ApplicationRecord
       very_next_stage = true
       
       self.number.upto(current_trip.stages.count) do |i|
-        stage = Stage.recently_updated.find_next(trip.id, i)
+        stage = Stage.recently_updated.find_by(trip_id: current_trip.id, number: i + 1)
         stage.number = i
         stage.set_directions!(self.address) if very_next_stage
         stage.save

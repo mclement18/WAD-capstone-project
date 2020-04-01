@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    app.default_url_options[:locale] = :en
+  end
+  
   test "get new" do
     get login_url
     assert_response :success
