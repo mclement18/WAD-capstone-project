@@ -28,5 +28,8 @@
 # Ignore compiled assets in public folder
 /public/assets/*
 
+# Ignore uploads folder
+/public/uploads
+
 # Ignore run-production script
 run-production.sh
