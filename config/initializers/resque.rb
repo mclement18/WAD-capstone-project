@@ -1,1 +1,3 @@
-Resque.redis = $redis
+Rails.env.production? do
+  Resque.redis = $redis
+end
