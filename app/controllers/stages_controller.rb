@@ -1,5 +1,8 @@
+require 'trip_stages_reordering'
+
 class StagesController < ApplicationController
   include RoleHelper
+  include TripStagesReordering
   
   before_action :ensure_authenticated
   before_action :load_trip
@@ -7,17 +10,19 @@ class StagesController < ApplicationController
   before_action :ensure_trip_stage_association, only: [:show, :edit, :update, :destroy]
   before_action :authorize_to_edit_stage, only: [:edit, :update, :destroy]
   before_action :authorize_to_reorder_stages, only: [:reorder]
-  before_action :ensure_valid_stage_ids, only: :reorder
+  before_action :ensure_valid_input_for_reorder, only: :reorder
   
   def index
     @stages = @trip.stages
   end
 
   def reorder
-    reorder_stages(reorder_params[:stages], @trip.id)
-
     respond_to do |format|
-      format.html { redirect_to trip_path(@trip), notice: t('notices.stage_reordered') }
+      if reorder_stages(@trip, reorder_params[:stages])
+        format.html { redirect_to trip_path(@trip), notice: t('notices.stages_reordered') }
+      else
+        format.html { redirect_to trip_path(@trip), notice: t('alerts.stages_reorder_fail') }
+      end
     end
   end
 
@@ -86,62 +91,9 @@ class StagesController < ApplicationController
     redirect_to trip_path(@trip), alert: t('alerts.not_allowed') unless can_edit?(@trip)
   end
 
-  def reorder_stages(stages, trip_id)
-    update_next = false
-    previous_address = nil
-
-    1.upto(stages.keys.length) do |i|
-      stage = Stage.find_by(id: stages["stage_#{i}".to_sym][:stage_id], trip_id: trip_id)
-
-      stage.number = i
-
-      if i == 1
-        stage.travel_type = 'None'
-      elsif stages["stage_#{i}".to_sym][:travel_type] == 'None'
-        stage.travel_type = 'driving'
-      else
-        stage.travel_type = stages["stage_#{i}".to_sym][:travel_type]
-        stage.travel_type = stage.travel_type_change_to_be_saved[1] unless stage.validate(:travel_type)
-      end
-
-      if stage.will_save_change_to_number?
-        stage.set_directions!(previous_address)
-        update_next = true
-      else
-        stage.set_directions!(previous_address) if !stage.will_save_change_to_travel_type? && update_next
-        update_next = false
-      end
-
-      stage.update_next_stage_directions = false
-      stage.save
-      previous_address = stage.address
-    end
-  end
-
-  def ensure_valid_stage_ids
-    trip_stages_ids = []
-    @trip.stages.each do |stage|
-      trip_stages_ids.push(stage.id)
-    end
-
-    stages = reorder_params[:stages]
-    
-    begin
-      unless stages.keys.length == trip_stages_ids.length
-        raise StandardError.new t('errors.ids_not_match')
-      end
-  
-      stages.each do |stage, values|
-        id = values[:stage_id].to_i
-        unless trip_stages_ids.include?(id)
-          raise StandardError.new t('errors.ids_invalid')
-        end
-      end
-    rescue StandardError => e
-      respond_to do |format|
-        format.html { redirect_to trip_stages_path(@trip), alert: "#{t('alerts.stage_reorder_fail')} #{e.message}" }
-      end
-    end
+  def ensure_valid_input_for_reorder
+    errors = validates_all(@trip, reorder_params[:stages])
+    redirect_to trip_stages_path(@trip), alert: errors.to_s if errors.messages.any?
   end
 
   def stage_params

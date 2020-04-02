@@ -7,7 +7,7 @@ class Stage < ApplicationRecord
   validates :title, presence: true, length: { maximum: 75 }
   validates :description, presence: true, length: { maximum: 500 }
   validates :number, presence: true
-  validates :travel_type, presence: true, inclusion: { in: %w(driving walking bicycling transit None) }
+  validates :travel_type, presence: true, inclusion: { in: :valid_travel_types }
   validates :address, presence: true
 
   before_create :set_directions!, unless: :will_save_change_to_directions?
@@ -74,6 +74,10 @@ class Stage < ApplicationRecord
     end
   end
 
+  def self.valid_travel_types
+    %w(driving walking bicycling transit None)
+  end
+
   private
 
   def update_directions!
@@ -91,5 +95,9 @@ class Stage < ApplicationRecord
       next_stage.set_directions!(self.address)
       next_stage.save
     end
+  end
+
+  def valid_travel_types
+    Stage.valid_travel_types
   end
 end

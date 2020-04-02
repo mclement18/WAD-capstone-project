@@ -302,7 +302,8 @@ fr:
       min_size_error: "La taille du fichier doit être supérieure à %{min_size}"
       max_size_error: "La taille du fichier doit être inférieure à %{max_size}"
     ids_not_match: Le nombre d'étapes et le nombre de voyages ne correspondent pas.
-    ids_invalid: Étapes on valides ont été envoyées.
+    ids_invalid: Étapes non valides ont été envoyées.
+    travel_types_invalid: Modes de voyage non valides ont été envoyés.
   notices:
     are_you_sure: Supprimer ?
     account_updated: Profile mis à jour avec succès!
@@ -318,7 +319,7 @@ fr:
     stage_created: Étape créée avec succès!
     stage_updated: Étape mise à jour avec succès!
     stage_destroyed: Étape supprimée avec succès!
-    stage_reordered: Étapes réorganisées avec succès!
+    stages_reordered: Étapes réorganisées avec succès!
     user_created: Utilisateur créé avec succès!
     user_updated: Utilisateur mis à jour avec succès!
     user_destroyed: Utilisateur supprimé avec succès!
@@ -332,7 +333,7 @@ fr:
     account_deletion_fail: Impossible de supprimer le compte.
     trip_deletion_fail: Impossible de supprimer le voyage.
     stage_deletion_fail: Impossible de supprimer l'étape.
-    stage_reorder_fail: Impossible de réorganiser les étapes.
+    stages_reorder_fail: Impossible de réorganiser les étapes.
     comment_creation_fail: Impossible de créer le commentaire.
     comment_update_fail: Impossible de mettre à jour le commentaire.
     comment_deletion_fail: Impossible de supprimer le commentaire.

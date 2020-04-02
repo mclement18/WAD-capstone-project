@@ -235,6 +235,7 @@ en:
       email: is not an email
     ids_not_match: The number of stage ids and actual trip stages number don't match.
     ids_invalid: Non valid stage ids were sent.
+    travel_types_invalid: Non valid travel types were sent.
   notices:
     are_you_sure: Are you sure?
     account_updated: Account successfully updated!
@@ -250,7 +251,7 @@ en:
     stage_created: Stage successfully created!
     stage_updated: Stage successfully updated!
     stage_destroyed: Stage successfully deleted!
-    stage_reordered: Stages successfully reordered!
+    stages_reordered: Stages successfully reordered!
     user_created: Account successfully created!
     user_updated: User successfully updated!
     user_destroyed: User successfully deleted!
@@ -264,7 +265,7 @@ en:
     account_deletion_fail: Unable to delete account.
     trip_deletion_fail: Unable to delete trip.
     stage_deletion_fail: Unable to delete stage.
-    stage_reorder_fail: Unable to reorder stages.
+    stages_reorder_fail: Unable to reorder stages.
     comment_creation_fail: Unable to save comment.
     comment_update_fail: Unable to update comment.
     comment_deletion_fail: Unable to delete comment.
