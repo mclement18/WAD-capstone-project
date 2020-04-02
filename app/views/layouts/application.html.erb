@@ -65,7 +65,7 @@
           <% end %>
         </div>
         <ul class="locales bare-list">
-          <% I18n.available_locales.each do |locale| %>
+          <% %i(en fr).each do |locale| %>
             <li><%= link_to locale, url_for(locale: locale), class: 'link link--foot' %></li>
           <% end %>
         </ul>

@@ -14,6 +14,7 @@ class User < ApplicationRecord
 
   after_initialize  :default_role!
   after_initialize  :initialize_deleted!
+  after_initialize  :default_name!
   before_validation :downcase_email
 
   scope :active,                     -> { where(deleted: false) }
@@ -48,5 +49,27 @@ class User < ApplicationRecord
 
   def initialize_deleted!
     self.deleted ||= false
+  end
+
+  def default_name!
+    begin
+      name_1 = Faker::Science.unique.element
+    rescue Faker::UniqueGenerator::RetryLimitExceeded => exception
+      Faker::Science.unique.clear
+      name_1 = Faker::Science.unique.element
+    end
+    begin
+      name_2 = Faker::Color.unique.color_name
+    rescue Faker::UniqueGenerator::RetryLimitExceeded => exception
+      Faker::Color.unique.clear
+      name_2 = Faker::Color.unique.color_name
+    end
+    begin
+      name_3 = Faker::Cannabis.unique.strain
+    rescue Faker::UniqueGenerator::RetryLimitExceeded => exception
+      Faker::Cannabis.unique.clear
+      name_3 = Faker::Cannabis.unique.strain
+    end
+    self.name ||= [name_1, name_2, name_3].join('-').downcase.gsub(/\s/, '-')
   end
 end

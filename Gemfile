@@ -88,3 +88,6 @@ gem 'carrierwave'
 
 # Use kanimari for pagination
 gem 'kaminari', '~> 1.2'
+
+# To generate fake username
+gem 'faker', '~> 2.11'
