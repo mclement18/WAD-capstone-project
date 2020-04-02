@@ -10,15 +10,17 @@ class TripsController < ApplicationController
   
   def index
     if params[:filtered_search] && params[:query]
+      @display_search_title = true
       @filtered_query = FilteredQuery.new(params)
       @trips = @filtered_query.search_trips.page(params[:page])
+    elsif params[:q].present?
+      @display_search_title = true
+      @filtered_query = FilteredQuery.new({ query: params[:q] })
+      @trips = @filtered_query.unfiltered_trips_search.page(params[:page])
     else
-      if params[:q].present?
-        @filtered_query = FilteredQuery.new({ query: params[:q] })
-        @trips = @filtered_query.unfiltered_trips_search.page(params[:page])
-      else
-        @trips = Trip.active.load_users.page(params[:page])
-      end
+      @display_search_title = false
+      @filtered_query = FilteredQuery.new
+      @trips = Trip.active.load_users.page(params[:page])
     end
   end
 

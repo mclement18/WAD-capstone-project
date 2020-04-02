@@ -1,6 +1,6 @@
 <div class="main-title">
   <div class="title">
-    <% if @filtered_query.present? %>
+    <% if @display_search_title %>
       <h1><%= t('.title_search') %> "<%= @filtered_query.title %>"</h1>
     <% else %>
       <h1><%= t('.title') %></h1>
@@ -8,9 +8,7 @@
   </div>
 </div>
 
-<% if @filtered_query.present? %>
-  <%= render partial: 'filter_search_form', locals: { filtered_query: @filtered_query, current_path: trips_path, category: nil } %>
-<% end %>
+<%= render partial: 'filter_search_form', locals: { filtered_query: @filtered_query, current_path: trips_path, category: nil } %>
 
 <div class="cards">
   <% if @trips.any? %>
