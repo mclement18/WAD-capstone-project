@@ -1,7 +1,11 @@
 const LocationSelect = {};
 
+LocationSelect.getLocale = function() {
+  return window.location.pathname.split('/')[1];
+};
+
 LocationSelect.getRegions = function(country) {
-  this.getData('/locationselect/regions.json', { 
+  this.getData(`/${this.getLocale()}/locationselect/regions.json`, { 
     country: country 
   }).then(data => {
     this.setDataCountryAttribute(country);
@@ -16,7 +20,7 @@ LocationSelect.getRegions = function(country) {
 };
 
 LocationSelect.getCities = function(country, region) {
-  this.getData('/locationselect/cities.json', { 
+  this.getData(`/${this.getLocale()}/locationselect/cities.json`, { 
     country: country,
     region: region
   }).then(data => {
@@ -57,8 +61,8 @@ LocationSelect.cityInput = function() {
 };
 
 LocationSelect.addOptions = function(selectElement, data) {
-  Object.keys(data).forEach(key => {
-    selectElement.appendChild(this.buildOption(key, data[key]));
+  data.forEach(option => {
+    selectElement.appendChild(this.buildOption(option[1], option[0]));
   });
 };
 
@@ -79,7 +83,8 @@ LocationSelect.setDataCountryAttribute = function(country) {
 
 LocationSelect.resetCities = function() {
   this.removeOptions(this.citiesSelect());
-  this.addOptions(this.citiesSelect(), { '': 'None' })
+  const optionText = this.citiesSelect().nextElementSibling.getAttribute('data-choose');
+  this.addOptions(this.citiesSelect(), [[optionText, '']])
 };
 
 LocationSelect.buildCityInput = function() {

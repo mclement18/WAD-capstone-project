@@ -181,6 +181,7 @@ en:
       europe: Europe
       oceania: Oceania
     choose_country: Choose a country
+    choose_region: Choose a region
     travel_types:
       driving: Driving
       walking: Walking

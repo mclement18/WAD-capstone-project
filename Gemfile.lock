@@ -224,6 +224,8 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.8.1)
       tilt (~> 2.0)
+    sort_alphabetical (1.1.0)
+      unicode_utils (>= 1.2.2)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -249,6 +251,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
+    unicode_utils (1.4.0)
     vegas (0.1.11)
       rack (>= 1.0.0)
     web-console (3.7.0)
@@ -286,6 +289,7 @@ DEPENDENCIES
   resque
   sassc-rails
   selenium-webdriver
+  sort_alphabetical (~> 1.1)
   spring
   spring-watcher-listen (~> 2.0.0)
   sprockets (< 4.0.0)

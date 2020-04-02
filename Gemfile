@@ -70,6 +70,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # carmen gem to get countries and subregions lists with translation
 gem 'carmen'
 
+# Sort UTF8 strings in alphabetical order
+gem 'sort_alphabetical', '~> 1.1'
+
 # city-state to get a list of cities around the world
 gem 'city-state', '~> 0.0.13'
 
