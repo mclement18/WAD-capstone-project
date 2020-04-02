@@ -37,6 +37,15 @@
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
+
+    &:disabled {
+      background: lighten($brown-4, 22);
+      color: lighten($brown-4, 5);
+
+      &:hover, &:focus {
+        border: 1px solid lighten($brown-4, 15);
+      }
+    }
   }
 }
 
@@ -54,7 +63,8 @@
 .draggable-field {
   @include grid-12-fixed;
   -webkit-box-align: center;
-          align-items: center;
+          -ms-flex-align: center;
+      align-items: center;
   
   position: relative;
   text-align: left;
@@ -81,7 +91,8 @@
   @include grid-12-fixed;
   row-gap: $base-margin;
   -webkit-box-align: center;
-          align-items: center;
+          -ms-flex-align: center;
+      align-items: center;
   
   grid-column: 4 / 13;
   

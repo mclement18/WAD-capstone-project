@@ -187,6 +187,17 @@ en:
       walking: Walking
       bicycling: Bicycling
       transit: Transit
+    filteredquery:
+      filtersearch: Filter Search
+      filter: Filter
+      query: Search
+      stages_query: In stages
+      category_1: Category 1
+      category_2: Category 2
+      continent: Continent
+      country: Country
+      region: Region
+      city: City
   helpers:
     submit:
       tip:

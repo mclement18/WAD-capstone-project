@@ -1,12 +1,14 @@
 <div class="main-title">
   <div class="title">
-    <% if @queries.present? %>
-      <h1><%= t('.title_search', category: t("categories.#{@category}")) %> "<%= @queries.join(' ') %>"</h1>
+    <% if @display_search_title %>
+      <h1><%= t('.title_search', category: t("categories.#{@category}")) %> "<%= @filtered_query.title %>"</h1>
     <% else %>
       <h1><%= t('.title', category: t("categories.#{@category}")) %></h1>
     <% end %>
   </div>
 </div>
+
+<%= render partial: 'filter_search_form', locals: { filtered_query: @filtered_query, current_path: categories_path(@category), category: @category } %>
 
 <div class="cards">
   <% if @trips.any? %>

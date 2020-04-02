@@ -1,8 +1,4 @@
-require 'carmen'
-
 module LocationSelectHelper
-  include Carmen
-
   def country_options(selected)
     options_for_select get_countries, selected
   end
@@ -27,7 +23,7 @@ module LocationSelectHelper
 
   def get_countries
     options = [['None', '']]
-    Country.all.sort_alphabetical.each do |country|
+    Carmen::Country.all.sort_alphabetical.each do |country|
       options.push [country.name, country.code]
     end
     return options
@@ -46,7 +42,7 @@ module LocationSelectHelper
   end
 
   def get_country_name(country_code)
-    Country.alpha_2_coded(country_code).name if country_code
+    Carmen::Country.alpha_2_coded(country_code).name if country_code
   end
 
   def get_region_name(country_code, region_code)

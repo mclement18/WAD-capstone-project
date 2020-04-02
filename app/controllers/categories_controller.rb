@@ -1,9 +1,20 @@
+require 'filter_search'
+
 class CategoriesController < ApplicationController
+  include CategoriesHelper
+  include FilterSearch
+
   def index
     @category = params[:category]
-    return @trips = Trip.active.load_users.categories_contains([@category]).page(params[:page]) unless params[:q].present?
     
-    @queries = params[:q].strip.split(' ')
-    @trips = Trip.active.load_users.categories_contains([@category]).global_search(@queries).page(params[:page])
+    if params[:filtered_search] && params[:query]
+      @display_search_title = true
+      @filtered_query = FilteredQuery.new(params)
+      @trips = @filtered_query.search_trips.categories_contains(@category).page(params[:page])
+    else
+      @display_search_title = false
+      @filtered_query = FilteredQuery.new({find_category_class(@category) => @category})
+      @trips = Trip.active.load_users.categories_contains(@category).page(params[:page])
+    end
   end
 end

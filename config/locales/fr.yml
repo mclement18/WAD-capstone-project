@@ -157,6 +157,17 @@ fr:
       walking: À Pieds
       bicycling: À Vélo
       transit: Transport Public
+    filteredquery:
+      filtersearch: Filtrer la recherche
+      filter: Filtrer
+      query: Rechercher
+      stages_query: Dans étapes
+      category_1: Categorie 1
+      category_2: Categorie 2
+      continent: Continent
+      country: Pays
+      region: Région
+      city: Ville
   helpers:
     submit:
       trip:

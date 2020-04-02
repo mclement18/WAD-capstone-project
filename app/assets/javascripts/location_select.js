@@ -49,15 +49,15 @@ LocationSelect.buildOption = function(value, text) {
 };
 
 LocationSelect.regionsSelect = function() {
-  return document.getElementById('trip_region');
+  return document.getElementById('region');
 };
 
 LocationSelect.citiesSelect = function() {
-  return document.querySelector('select#trip_city');
+  return document.querySelector('select#city');
 };
 
 LocationSelect.cityInput = function() {
-  return document.querySelector('input#trip_city');
+  return document.querySelector('input#city');
 };
 
 LocationSelect.addOptions = function(selectElement, data) {
@@ -87,41 +87,49 @@ LocationSelect.resetCities = function() {
   this.addOptions(this.citiesSelect(), [[optionText, '']])
 };
 
-LocationSelect.buildCityInput = function() {
+LocationSelect.buildCityInput = function(prefix) {
   const input = document.createElement('input');
-  input.id = 'trip_city';
+  input.id = 'city';
   input.className = 'input-field';
-  input.name = 'trip[city]';
+  if (prefix) {
+    input.name = `${prefix}[city]`;
+  } else {
+    input.name = 'city';
+  }
   return input;
 };
 
-LocationSelect.buildCitiesSelect = function() {
+LocationSelect.buildCitiesSelect = function(prefix) {
   const select = document.createElement('select');
-  select.id = 'trip_city';
+  select.id = 'city';
   select.className = 'input-field input-field--select';
-  select.name = 'trip[city]';
+  if (prefix) {
+    select.name = `${prefix}[city]`;
+  } else {
+    select.name = 'city';
+  }
   return select;
 };
 
 LocationSelect.changeToCityInput = function() {
   const inputGroup = this.citiesSelect().parentElement;
   inputGroup.removeChild(this.citiesSelect());
-  inputGroup.insertBefore(this.buildCityInput(), inputGroup.lastElementChild);
+  inputGroup.insertBefore(this.buildCityInput(inputGroup.getAttribute('data-name-prefix')), inputGroup.lastElementChild);
 };
 
 LocationSelect.changeToCitiesSelect = function() {
   const inputGroup = this.cityInput().parentElement;
   inputGroup.removeChild(this.cityInput());
-  inputGroup.insertBefore(this.buildCitiesSelect(), inputGroup.lastElementChild);
+  inputGroup.insertBefore(this.buildCitiesSelect(inputGroup.getAttribute('data-name-prefix')), inputGroup.lastElementChild);
   this.getCities(this.regionsSelect().getAttribute('data-country'), this.regionsSelect().value);
 };
 
 LocationSelect.addEventListeners = function() {
   document.addEventListener('change', event => {
     const target = event.target;
-    if (target.id === 'trip_country') {
+    if (target.id === 'country') {
       this.getRegions(target.value);
-    } else if (target.id === 'trip_region' && this.citiesSelect() ) {
+    } else if (target.id === 'region' && this.citiesSelect() ) {
       this.getCities(target.getAttribute('data-country'), target.value);
     }
   });

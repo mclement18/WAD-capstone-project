@@ -21,20 +21,23 @@ class Trip < ApplicationRecord
 
   scope :active,                      -> { where(deleted: false) }
   scope :load_users,                  -> { includes(:user, :dreamers, :travelers, :veterans) }
-  scope :title_contains,              -> (terms) { where(Trip.arel_table[:title].matches_any(terms.map { |term| "%#{term}%" })) }
-  scope :description_contains,        -> (terms) { where(Trip.arel_table[:description].matches_any(terms.map { |term| "%#{term}%" })) }
-  scope :title_or_description_search, -> (terms) { title_contains(terms)
-                                                     .or(description_contains(terms)) }
-  scope :categories_contains,         -> (terms) { where(Trip.arel_table[:categories].matches_any(terms.map { |term| "%#{term}%" })) }
-  scope :location_contains,           -> (terms) { where(Trip.arel_table[:location].matches_any(terms.map { |term| "%#{term}%" })) }
-  scope :global_search,               -> (terms) { title_or_description_search(terms)
-                                                     .or(categories_contains(terms))
-                                                     .or(location_contains(terms)) }
-  scope :filtered_search,             -> (terms, 
-                                          categories_terms,
-                                          location_terms) { title_or_description_search(terms)
-                                                              .categories_contains(categories_terms)
-                                                              .location_contains(location_terms) }
+
+  scope :title_contains,                -> (terms) { where(Trip.arel_table[:title].matches_any(terms.map { |term| "%#{term}%" })) }
+  scope :description_contains,          -> (terms) { where(Trip.arel_table[:description].matches_any(terms.map { |term| "%#{term}%" })) }
+  scope :title_or_description,        -> (terms) { title_contains(terms).or(description_contains(terms)) }
+
+  scope :categories_contains,         -> (category) { where('categories LIKE ?', "%#{category}%") }
+  scope :location_contains,           -> (location) { where('location LIKE ?', "%#{location}%") }
+
+  scope :filtered_search,             -> (terms, categories, location) { 
+                                            title_or_description(terms)
+                                            .categories_contains(categories)
+                                            .location_contains(location)
+                                          }
+  
+  scope :stages_title_contains,       -> (terms) { left_outer_joins(:stages).distinct.where(Stage.arel_table[:title].matches_any(terms.map { |term| "%#{term}%" })) }
+  scope :stages_description_contains, -> (terms) { left_outer_joins(:stages).distinct.where(Stage.arel_table[:description].matches_any(terms.map { |term| "%#{term}%" })) }
+  scope :stages_search,               -> (terms) { stages_title_contains(terms).or(stages_description_contains(terms)) }
 
   mount_uploader :image, ImageUploader
                                                                                                                        

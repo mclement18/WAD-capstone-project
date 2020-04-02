@@ -1,0 +1,52 @@
+  <div class="filter-search-form">
+    <h4 class="filter-search-form__title"><%= t('forms.filteredquery.filtersearch') %> <a href="#" class="link" id="hide-show-toggle">show</a></h4>
+
+    <%= form_tag current_path, method: :get, class: 'form', id: 'hide-show-content', style: 'display: none;' do %>
+      <%= hidden_field_tag :filtered_search, true %>
+      <div class="form__input">
+        <div class="column">
+          <div class="input-group">
+            <%= label_tag :query, t('forms.filteredquery.query'), class: 'input-label' %>
+            <%= text_field_tag :query, filtered_query.query, class: 'input-field' %>
+          </div>
+          <div class="input-group">
+            <%= label_tag :stages_query, t('forms.filteredquery.stages_query'), class: 'input-label' %>
+            <%= text_field_tag :stages_query, filtered_query.stages_query, class: 'input-field' %>
+          </div>
+          <div class="input-group">
+            <%= label_tag :category_1, t('forms.filteredquery.category_1'), class: 'input-label' %>
+            <%= select_tag :category_1, category_1_options(filtered_query.category_1), class: 'input-field input-field--select', disabled: find_category_class(category) == :category_1 %>
+          </div>
+          <div class="input-group">
+            <%= label_tag :category_2, t('forms.filteredquery.category_2'), class: 'input-label' %>
+            <%= select_tag :category_2, category_2_options(filtered_query.category_2), class: 'input-field input-field--select', disabled: find_category_class(category) == :category_2 %>
+          </div>
+        </div>
+        <div class="column">
+          <div class="input-group">
+            <%= label_tag :continent, t('forms.filteredquery.continent'), class: 'input-label' %>
+            <%= select_tag :continent, continent_options(filtered_query.continent), class: 'input-field input-field--select' %>
+          </div>
+          <div class="input-group">
+            <%= label_tag :country, t('forms.filteredquery.country'), for: 'country', class: 'input-label' %>
+            <%= select_tag :country, country_options(filtered_query.country), id: 'country', class: 'input-field input-field--select' %>
+          </div>
+          <div class="input-group">
+            <%= label_tag :region, t('forms.filteredquery.region'), for: 'region', class: 'input-label' %>
+            <%= select_tag :region, region_options(filtered_query.country, filtered_query.region), id: 'region', class: 'input-field input-field--select', 'data-country': filtered_query.country  %>
+          </div>
+          <div class="input-group">
+            <%= label_tag :city, t('forms.filteredquery.city'), for: 'city', class: 'input-label' %>
+            <div class="input-group__row">
+              <%= select_tag :city, city_options(filtered_query.country, filtered_query.region, filtered_query.city), id: 'city', class: 'input-field input-field--select' %>
+              <%= button_tag t('forms.manual_entry'), type: 'button', class:'btn', id: 'city-input-change',
+                data: { select: t('forms.selection_list'), input: t('forms.manual_entry'), choose: t('forms.choose_region'), action: 'getInput' } %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="prompt">
+        <%= submit_tag t('forms.filteredquery.filter'), class: 'btn btn--primary' %>
+      </div>
+    <% end %>
+  </div>

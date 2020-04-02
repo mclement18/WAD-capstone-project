@@ -272,69 +272,57 @@ class TripTest < ActiveSupport::TestCase
     assert_equal trips.length, 2
   end
 
-  test "title_or_description_search search records by title or descriptions" do
+  test "title_or_description search records by title or descriptions" do
     terms = ['One', 'two']
-    trips = Trip.title_or_description_search(terms)
+    trips = Trip.title_or_description(terms)
     assert_equal trips.length, 3
   end
 
-  test "categories_contains search records by categories one query" do
-    terms = ['city']
+  test "categories_contains search records by categories one category" do
+    terms = 'city'
     trips = Trip.categories_contains(terms)
     assert_equal trips.length, 1
   end
 
-  test "categories_contains search records by categories two queries" do
-    terms = ['city', 'road']
+  test "categories_contains search records by categories two categories" do
+    terms = 'international__relaxing'
     trips = Trip.categories_contains(terms)
-    assert_equal trips.length, 2
+    assert_equal trips.length, 1
   end
 
-  test "categories_contains search records by categories three queries" do
-    terms = ['city', 'road', 'relaxing']
-    trips = Trip.categories_contains(terms)
-    assert_equal trips.length, 3
-  end
-
-  test "location_contains search records by location one query" do
-    terms = ['Europe']
+  test "location_contains search records by location continent" do
+    terms = 'Europe'
     trips = Trip.location_contains(terms)
     assert_equal trips.length, 3
   end
 
-  test "location_contains search records by location two queries" do
-    terms = ['VD', 'GR']
+  test "location_contains search records by location region" do
+    terms = 'BE'
     trips = Trip.location_contains(terms)
     assert_equal trips.length, 2
-  end
-
-  test "global_search search records by title, description, categories and location" do
-    terms = ['VD', 'city', 'journey']
-    trips = Trip.global_search(terms)
-    assert_equal trips.length, 3
   end
 
   test "filtered_search search by title and description with categories filters" do
     terms = ['one']
-    categories_terms = ['city']
-    location_terms = ['']
-    trips = Trip.filtered_search(terms, categories_terms, location_terms)
+    categories = 'city'
+    location = ''
+    trips = Trip.filtered_search(terms, categories, location)
     assert_equal trips.length, 1
   end
 
   test "filtered_search search by title and description with location filters" do
     terms = ['one']
-    categories_terms = ['']
-    location_terms = ['VD']
-    trips = Trip.filtered_search(terms, categories_terms, location_terms)
+    categories = ''
+    location = 'VD'
+    trips = Trip.filtered_search(terms, categories, location)
     assert_equal trips.length, 1
   end
 
   test "filtered_search search by title and description with categories and location filters" do
     terms = ['one', 'description']
-    categories_terms = ['adventurous']
-    location_terms = ['CH']
-    trips = Trip.filtered_search(terms, categories_terms, location_terms)
+    categories = 'adventurous'
+    location = 'CH'
+    trips = Trip.filtered_search(terms, categories, location)
     assert_equal trips.length, 1
   end
 

@@ -1,16 +1,24 @@
+require 'filter_search'
+
 class TripsController < ApplicationController
   include RoleHelper
+  include FilterSearch
   
   before_action :ensure_authenticated,   only: [:new, :create, :edit, :update]
   before_action :set_trip,               only: [:show, :edit, :update, :destroy]
   before_action :authorize_to_edit_trip, only: [:edit, :update, :destroy]
   
   def index
-    if params[:q].present?
-      @queries = params[:q].strip.split(' ')
-      @trips = Trip.active.load_users.global_search(@queries).page(params[:page])
+    if params[:filtered_search] && params[:query]
+      @filtered_query = FilteredQuery.new(params)
+      @trips = @filtered_query.search_trips.page(params[:page])
     else
-      @trips = Trip.active.load_users.page(params[:page])
+      if params[:q].present?
+        @filtered_query = FilteredQuery.new({ query: params[:q] })
+        @trips = @filtered_query.unfiltered_trips_search.page(params[:page])
+      else
+        @trips = Trip.active.load_users.page(params[:page])
+      end
     end
   end
 

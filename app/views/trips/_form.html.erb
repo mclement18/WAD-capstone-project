@@ -31,17 +31,17 @@
       <%= form.select :continent, continent_options(trip.continent), {}, class: 'input-field input-field--select' %>
     </div>
     <div class="input-group">
-      <%= form.label :country, class: 'input-label' %>
-      <%= form.select :country, country_options(trip.country), {}, class: 'input-field input-field--select' %>
+      <%= form.label :country, for: 'country', class: 'input-label' %>
+      <%= form.select :country, country_options(trip.country), {}, id: 'country', class: 'input-field input-field--select' %>
     </div>
     <div class="input-group">
-      <%= form.label :region, class: 'input-label' %>
-      <%= form.select :region, region_options(trip.country, trip.region), {}, class: 'input-field input-field--select', 'data-country': trip.country  %>
+      <%= form.label :region, for: 'region', class: 'input-label' %>
+      <%= form.select :region, region_options(trip.country, trip.region), {}, id: 'region', class: 'input-field input-field--select', 'data-country': trip.country  %>
     </div>
     <div class="input-group">
-      <%= form.label :city, class: 'input-label' %>
-      <div class="input-group__row">
-        <%= form.select :city, city_options(trip.country, trip.region, trip.city), {}, class: 'input-field input-field--select' %>
+      <%= form.label :city, for: 'city', class: 'input-label' %>
+      <div class="input-group__row" data-name-prefix="trip">
+        <%= form.select :city, city_options(trip.country, trip.region, trip.city), {}, id: 'city', class: 'input-field input-field--select' %>
         <%= button_tag t('forms.manual_entry'), type: 'button', class:'btn', id: 'city-input-change',
           data: { select: t('forms.selection_list'), input: t('forms.manual_entry'), choose: t('forms.choose_region'), action: 'getInput' } %>
       </div>

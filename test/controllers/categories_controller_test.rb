@@ -18,13 +18,13 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "get cultural trips with successful search" do
-    get categories_url('cultural'), params: { q: 'Bern' }
+    get categories_url('cultural'), params: { filtered_search: true, query: 'This' }
     assert_response :success
     assert_select 'h3', 'Trip one'
   end
 
   test "get cultural trips with unsuccessful search" do
-    get categories_url('cultural'), params: { q: 'GR' }
+    get categories_url('cultural'), params: { filtered_search: true, query: 'GR' }
     assert_response :success
     assert_select '.not-found'
   end
