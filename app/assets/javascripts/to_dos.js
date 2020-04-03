@@ -1,5 +1,9 @@
 const ToDo = {};
 
+ToDo.getLocale = function() {
+  return window.location.pathname.split('/')[1];
+};
+
 ToDo.getToDoList = function() {
   return document.getElementById('todo-list');
 };
@@ -36,7 +40,11 @@ ToDo.buildStatusTag = function() {
   const tag = document.createElement('li');
   tag.className = 'tag';
   tag.setAttribute('data-status', 'true');
-  tag.textContent = 'ToDo';
+  if (this.getLocale() === 'en') {
+    tag.textContent = 'ToDo';
+  } else if (this.getLocale() === 'fr') {
+    tag.textContent = 'à faire'
+  }
 
   return tag;
 };
