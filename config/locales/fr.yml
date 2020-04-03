@@ -19,7 +19,7 @@ fr:
     admin: Admin
     you: Toi
     todo: à faire
-    current: en court
+    current: en cours
     completed: terminé
   ownership:
     created_by: Créé par
@@ -60,7 +60,7 @@ fr:
       title: Modifier Voyage
   trip_card:
     done: Términé
-    doing: En court
+    doing: En cours
     planned: Prévu
     edit: Modifier Voyage
     delete: Supprimer Voyage
@@ -108,7 +108,7 @@ fr:
     comment: commentaire
     created: "A créé %{number} %{trip}"
     completed: "A terminé %{number} %{trip}"
-    current: "A %{number} %{trip} en court"
+    current: "A %{number} %{trip} en cours"
     to_do: "A %{number} %{trip} à faire"
     leaved: "A publié %{number} %{comment}"
     edit: Modifier
@@ -119,7 +119,7 @@ fr:
       name_info: Ce nom d'utilisateur a été créé automatiquement. Pour le changer, mets à jour ton profile.
       trips_created: Voyages créés
       trips_todo: Voyages à faire
-      trips_current: Voyages en court
+      trips_current: Voyages en cours
       trips_done: Voyages terminés
     edit:
       title: Actualiser votre compte
@@ -131,7 +131,7 @@ fr:
     to_dos:
       index:
         title_todolist: Ta ToDo Liste
-        title_travels: Tes Voyages en court
+        title_travels: Tes Voyages en cours
         title_success: Tes Voyages terminés
         not_found: Tu n'as pas de voyage dans ta liste.
   sessions:
@@ -335,7 +335,7 @@ fr:
     user_updated: Utilisateur mis à jour avec succès!
     user_destroyed: Utilisateur supprimé avec succès!
     todo_created: Voyage ajouté à ta ToDo Liste avec succès!
-    todo_started: Voyage ajouté à tes Voyages en court avec succès!
+    todo_started: Voyage ajouté à tes Voyages en cours avec succès!
     todo_finished: Voyage ajouté à tes Voyages terminés avec succès!
     todo_reset: Voyage renvoyé vers ta ToDo Liste.
     todo_deleted: Voyage supprimé de ta liste avec succès!
