@@ -23,7 +23,9 @@ Alert.render = function(alert) {
 Alert.dismiss = function(id) {
   const alert = this.getAlert(id);
   if (alert) {
-    alert.parentNode.removeChild(alert);
+    AnimateCSS.animate(alert, 'fadeOut', () => {
+      alert.parentNode.removeChild(alert);
+    });
   }
 };
 

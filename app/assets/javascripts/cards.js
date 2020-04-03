@@ -26,8 +26,23 @@ Card.replaceListWithNotFound = function(message) {
 };
 
 Card.remove = function(id, message) {
-  this.getCardsList().removeChild(this.getCard(id));
-  if (this.getCardsList().children.length === 0) {
-    this.replaceListWithNotFound(message);
+  const card = this.getCard(id);
+  let cardPosition;
+  for (let i = 0; i < this.getCardsList().children.length; i++) {
+    const item = this.getCardsList().children[i];
+    if (item === card) {
+      cardPosition = i;
+      break;
+    }
   }
+
+  AnimateCSS.animate(card, 'fadeOut', () => {
+    this.getCardsList().removeChild(this.getCard(id));
+    if (this.getCardsList().children.length === 0) {
+      this.replaceListWithNotFound(message);
+    } else {
+      AnimateCSS.moveList(this.getCardsList(), 'slideInRight', cardPosition)
+    }
+  });
+  
 };
