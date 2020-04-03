@@ -10,9 +10,10 @@
   padding: $base-margin * 0.75;
   margin: 0;
   box-sizing: border-box;
+  -webkit-appearance: none;                     // Try to render box-shadow in iOS for iPad
+  -webkit-box-shadow: 0 5px 10px 1px $brown-4;  //
   box-shadow: 0 5px 10px 1px $brown-4;
   border: 1px solid $white;
-  // border: 1px solid $brown-4;
   border-radius: 3px;
   width: 100%;
 
