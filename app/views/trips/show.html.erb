@@ -1,7 +1,9 @@
 <% if @trip.stages.any? %>
   <% content_for :meta_tag do %>
     <meta name="directions" value="<%= merge_stages_directions(@trip) %>" />
-    <meta name="travelMode" value="<%= @trip.stages.second.travel_type %>" />
+    <% if @trip.stages.count > 1 %>
+      <meta name="travelMode" value="<%= @trip.stages.second.travel_type %>" />
+    <% end %>
   <% end %>
 <% end %>
 
@@ -21,10 +23,13 @@
                       sizes: '100vw', alt: "Trip #{@trip.id} image", class: 'image' %>
     <div class="map" id="map">
       <% if logged_in? %>
-        <% if @trip.stages.any? %>
-          <%= render partial: 'js_map', locals: { callback: 'initTripMap' } %>
-        <% else %>
+        <% case @trip.stages.count
+           when 0 %>
           <%= render partial: 'map_unavailable', locals: { message: t('.map_no_stage') } %>
+        <% when 1 %>
+          <%= render partial: 'embeded_map', locals: { address: @trip.stages.first.address, width: '100%', height: '100%', class_name: nil } %>
+        <% else %>
+          <%= render partial: 'js_map', locals: { callback: 'initTripMap' } %>
         <% end %>
       <% else %>
         <%= render partial: 'map_unavailable', locals: { message: t('.map_not_logged_in') } %>
