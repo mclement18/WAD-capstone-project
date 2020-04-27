@@ -1,9 +1,7 @@
-<% if @trip.stages.any? %>
+<% if @trip.stages.count > 1  %>
   <% content_for :meta_tag do %>
     <meta name="directions" value="<%= merge_stages_directions(@trip) %>" />
-    <% if @trip.stages.count > 1 %>
-      <meta name="travelMode" value="<%= @trip.stages.second.travel_type %>" />
-    <% end %>
+    <meta name="travelMode" value="<%= @trip.stages.second.travel_type %>" />
   <% end %>
 <% end %>
 
