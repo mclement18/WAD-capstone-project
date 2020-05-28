@@ -6,7 +6,7 @@
 <% if flash.any? %>
   Alert.alert = {
     id: '<%=j alert_id %>',
-    message: '<%=j flash.alert || flash.notice %>',
+    message: '<%=raw j flash.alert || flash.notice %>',
     role: '<%=j flash.alert ? 'alert' : 'notice' %>'
   };
 

@@ -1,6 +1,6 @@
 <% unless @todo.errors.any? %>
   ToDo.button = {
-    text: '<%=j t('todos.delete') %>',
+    text: '<%=raw j t('todos.delete') %>',
     path: '<%=j user_to_do_path(current_user, @todo) %>',
     tripId: 0
   };
@@ -9,14 +9,15 @@
     <%= @todo.trip_id %>,
     buttonType='todo-create',
     button=ToDo.buildRemoveButton(ToDo.button),
-    tagText='<%=j t('tags.todo') %>'
+    tagText='<%=raw j t('tags.todo') %>',
+    message=''
   );
 <% end %>
 
 <% if flash.any? %>
   Alert.alert = {
     id: '<%=j alert_id %>',
-    message: '<%=j flash.alert || flash.notice %>',
+    message: '<%=raw j flash.alert || flash.notice %>',
     role: '<%=j flash.alert ? 'alert' : 'notice' %>'
   };
 

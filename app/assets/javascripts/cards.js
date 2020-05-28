@@ -15,7 +15,7 @@ Card.getCardsContainer = function() {
 Card.buildNotFound = function(message) {
   const p = document.createElement('p');
   p.className = 'not-found';
-  p.innerHTML = message;
+  p.textContent = message;
   
   return p;
 };
@@ -25,7 +25,7 @@ Card.replaceListWithNotFound = function(message) {
   this.getCardsContainer().appendChild(this.buildNotFound(message));
 };
 
-Card.remove = function(id, message) {
+Card.remove = function(id, message=null) {
   const card = this.getCard(id);
   let cardPosition;
   for (let i = 0; i < this.getCardsList().children.length; i++) {
@@ -44,5 +44,4 @@ Card.remove = function(id, message) {
       AnimateCSS.moveList(this.getCardsList(), 'slideInRight', cardPosition)
     }
   });
-  
 };

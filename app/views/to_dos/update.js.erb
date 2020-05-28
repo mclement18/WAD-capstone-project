@@ -1,11 +1,17 @@
 <% if @todo.saved_change_to_status? %>
-  ToDo.respond(<%= @todo.trip_id %>, message="<%=j t('account.to_dos.index.not_found') %>")
+  ToDo.respond(
+    <%= @todo.trip_id %>,
+    buttonType=null,
+    button=null,
+    tagText=null,
+    message="<%=raw j t('account.to_dos.index.not_found') %>"
+    );
 <% end %>
 
 <% if flash.any? %>
   Alert.alert = {
     id: '<%=j alert_id %>',
-    message: '<%=j flash.alert || flash.notice %>',
+    message: '<%=raw j flash.alert || flash.notice %>',
     role: '<%=j flash.alert ? 'alert' : 'notice' %>'
   };
 

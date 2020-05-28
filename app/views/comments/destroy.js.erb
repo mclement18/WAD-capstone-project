@@ -1,11 +1,11 @@
 <% if @comment.destroyed? %>
-  Comments.removeComment('<%= @comment.id %>', '<%=j t('comments.not_found') %>');
+  Comments.removeComment('<%= @comment.id %>', '<%=raw j t('comments.not_found') %>');
 <% end %>
 
 <% if flash.any? %>
   Alert.alert = {
       id: '<%=j alert_id %>',
-      message: '<%=j flash.alert || flash.notice %>',
+      message: '<%= raw j flash.alert || flash.notice %>',
       role: '<%=j flash.alert ? 'alert' : 'notice' %>'
     };
 

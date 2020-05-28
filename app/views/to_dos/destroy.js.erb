@@ -1,6 +1,6 @@
 <% if @todo.destroyed? %>
   ToDo.button = {
-    text: '<%=j t('todos.create') %>',
+    text: '<%=raw j t('todos.create') %>',
     path: '<%=j user_to_dos_path(current_user) %>',
     tripId: <%= @todo.trip_id %>
   };
@@ -9,15 +9,15 @@
     <%= @todo.trip_id %>,
     buttonType='todo-delete',
     button=ToDo.buildCreateButton(ToDo.button),
-    message="<%=j t('account.to_dos.index.not_found') %>",
-    tagText='<%=j t('tags.todo') %>'
+    tagText='<%=raw j t('tags.todo') %>',
+    message="<%=raw j t('account.to_dos.index.not_found') %>"
   );
 <% end %>
 
 <% if flash.any? %>
   Alert.alert = {
     id: '<%=j alert_id %>',
-    message: '<%=j flash.alert || flash.notice %>',
+    message: '<%=raw j flash.alert || flash.notice %>',
     role: '<%=j flash.alert ? 'alert' : 'notice' %>'
   };
 
