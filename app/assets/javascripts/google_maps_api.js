@@ -141,13 +141,8 @@ MapsAPI.renderStartEnd = function(route, map) {
   });
 };
 
-MapsAPI.renderWarnings = function(route) {
-  document.querySelector('#warnings-panel').innerHTML = '<b>' + route.warnings + '</b>';
-};
-
 MapsAPI.renderStageMap = function() {
   const map = this.createMap();
-  // this.renderWarnings(this.getStageDirections());
   this.renderRoutes(map, this.getStageDirections(), {
     travelMode: this.getStageTravelMode()
   });
