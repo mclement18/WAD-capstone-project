@@ -5,7 +5,7 @@ module ApplicationHelper
     if @alert_id.present?
       return @alert_id
     end
-    @alert_id = SecureRandom.hex
+    @alert_id = "alert-id-#{SecureRandom.hex}"
   end
 
   def image_set_tag(source, srcset = {}, options = {})

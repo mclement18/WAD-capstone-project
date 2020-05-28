@@ -49,7 +49,7 @@ LocationSelect.buildOption = function(value, text) {
 };
 
 LocationSelect.regionsSelect = function() {
-  return document.getElementById('region');
+  return document.querySelector('#region');
 };
 
 LocationSelect.citiesSelect = function() {

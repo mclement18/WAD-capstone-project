@@ -1,6 +1,6 @@
 App.comments = App.cable.subscriptions.create("CommentsChannel", {
   collection: function() {
-    return document.getElementById('comments');
+    return document.querySelector('#comments');
   },
   
   connected: function() {

@@ -1,11 +1,11 @@
 const Comments = {};
 
 Comments.getList = function() {
-  return document.getElementById('comments');
+  return document.querySelector('#comments');
 };
 
 Comments.getComment = function(commentId) {
-  return document.getElementById(`comment_id_${commentId}`);
+  return document.querySelector(`#comment_id_${commentId}`);
 };
 
 Comments.buildNotFound = function(message) {
@@ -35,7 +35,7 @@ Comments.insertComment = function(comment) {
 };
 
 Comments.resetCommentForm = function(form) {
-  document.getElementById('new_comment').outerHTML = form;
+  document.querySelector('#new_comment').outerHTML = form;
 };
 
 Comments.replaceComment = function(commentId, updatedComment) {

@@ -5,11 +5,11 @@ ToDo.getLocale = function() {
 };
 
 ToDo.getToDoList = function() {
-  return document.getElementById('todo-list');
+  return document.querySelector('#todo-list');
 };
 
 ToDo.getMyTrips = function() {
-  return document.getElementById('my-trips');
+  return document.querySelector('#my-trips');
 };
 
 ToDo.getButtonGroup = function(tripId, from) {

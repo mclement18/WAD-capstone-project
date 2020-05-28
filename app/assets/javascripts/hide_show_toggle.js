@@ -1,11 +1,11 @@
 const HideShow = {};
 
 HideShow.getToggle = function() {
- return document.getElementById('hide-show-toggle');
+ return document.querySelector('#hide-show-toggle');
 };
 
 HideShow.getContent = function() {
-  return document.getElementById('hide-show-content');
+  return document.querySelector('#hide-show-content');
 };
 
 HideShow.hideContent = function() {

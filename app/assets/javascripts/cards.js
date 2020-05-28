@@ -1,7 +1,7 @@
 const Card = {};
 
 Card.getCard = function(id) {
-  return document.getElementById(id);
+  return document.querySelector(`#${id}`);
 };
 
 Card.getCardsList = function() {

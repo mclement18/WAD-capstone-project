@@ -1,11 +1,11 @@
 const Alert = {};
 
 Alert.getHeader = function() {
-  return document.getElementById('alert-insertion');
+  return document.querySelector('#alert-insertion');
 };
 
 Alert.getAlert = function(id) {
-  return document.getElementById(id);
+  return document.querySelector(`#${id}`);
 };
 
 Alert.getAlerts = function() {

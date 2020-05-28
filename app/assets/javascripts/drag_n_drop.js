@@ -23,7 +23,7 @@ DragNDrop.getFormInput = function() {
 };
 
 DragNDrop.getDraggedField = function(event) {
-  return document.getElementById(event.dataTransfer.getData('text/plain'));
+  return document.querySelector(`#${event.dataTransfer.getData('text/plain')}`);
 };
 
 DragNDrop.validatesDropZone = function(target) {

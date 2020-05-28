@@ -5,11 +5,11 @@ MapsAPI.getAutocompleteField = function() {
 };
 
 MapsAPI.getAddressField = function() {
-  return document.getElementById('stage_address');
+  return document.querySelector('#stage_address');
 };
 
 MapsAPI.getStaticMap = function() {
-  return document.getElementById('staticMap');
+  return document.querySelector('#staticMap');
 };
 
 MapsAPI.setAddressField = function(address) {
@@ -59,7 +59,7 @@ MapsAPI.getStageTravelMode = function() {
 };
 
 MapsAPI.createMap = function() {
-  return new google.maps.Map(document.getElementById('map'));
+  return new google.maps.Map(document.querySelector('#map'));
 };
 
 MapsAPI.typecastRouteFromServer = function(routes){
@@ -142,7 +142,7 @@ MapsAPI.renderStartEnd = function(route, map) {
 };
 
 MapsAPI.renderWarnings = function(route) {
-  document.getElementById('warnings-panel').innerHTML = '<b>' + route.warnings + '</b>';
+  document.querySelector('#warnings-panel').innerHTML = '<b>' + route.warnings + '</b>';
 };
 
 MapsAPI.renderStageMap = function() {
