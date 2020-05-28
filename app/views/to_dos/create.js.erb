@@ -4,5 +4,11 @@
 <% end %>
 
 <% if flash.any? %>
-  Alert.render('<%=j render 'alert_and_notice', alert: flash.alert, notice: flash.notice %>')
+  Alert.alert = {
+    id: '<%=j alert_id %>',
+    message: '<%=j flash.alert || flash.notice %>',
+    role: '<%=j flash.alert ? 'alert' : 'notice' %>'
+  };
+
+  Alert.render(Alert.alert);
 <% end %>

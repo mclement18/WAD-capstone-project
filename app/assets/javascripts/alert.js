@@ -1,5 +1,11 @@
 const Alert = {};
 
+Alert.alert = {
+  id: '',
+  message: '',
+  role: ''
+};
+
 Alert.getHeader = function() {
   return document.querySelector('#alert-insertion');
 };
@@ -12,9 +18,32 @@ Alert.getAlerts = function() {
   return document.querySelectorAll('.alert');
 };
 
+Alert.build = function(alert) {
+  const cross = document.createElement('span');
+  cross.textContent = '\u00d7';
+
+  const dismissButton = document.createElement('button');
+  dismissButton.type = 'button';
+  dismissButton.className = 'alert__button';
+  dismissButton.appendChild(cross);
+
+  const message = document.createElement('span');
+  message.className = 'alert__text';
+  message.textContent = alert.message;
+
+  const alertElement = document.createElement('div');
+  alertElement.id = alert.id;
+  alertElement.className = `alert${alert.role === 'notice' ? ' alert--notice' : ''}`;
+  alertElement.role = alert.role;
+  alertElement.appendChild(message);
+  alertElement.appendChild(dismissButton);
+
+  return alertElement;
+};
+
 Alert.render = function(alert) {
-  this.getHeader().insertAdjacentHTML('afterend', alert);
-  const newAlert = this.getHeader().nextElementSibling;
+  const newAlert = this.build(alert);
+  Util.insertAfter(newAlert, this.getHeader());
   this.autoDismiss(newAlert.id);
   this.addDismissActionToButton(newAlert);
   this.setWindowScrollingEvent(newAlert.id, this.getAlertTop(newAlert.id));

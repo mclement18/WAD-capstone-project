@@ -1,1 +1,7 @@
-Alert.render('<%=j render 'alert_and_notice', alert: t('alerts.not_allowed'), notice: nil %>');
+Alert.alert = {
+  id: '<%=j alert_id %>',
+  message: '<%=j t('alerts.not_allowed') %>',
+  role: 'alert'
+};
+
+Alert.render(Alert.alert);
