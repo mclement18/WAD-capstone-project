@@ -17,6 +17,15 @@
           justify-content: center;
 }
 
+@mixin flex-item-center-content-center {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
 @mixin flex-column-content-stretch {
   display: -webkit-box;
   display: flex;
@@ -24,7 +33,7 @@
   -webkit-box-direction: normal;
           flex-direction: column;
   -webkit-box-pack: center;
-          justify-content: center;
+          justify-content: stretch;
 }
 
 @mixin flex-list-horizontal {

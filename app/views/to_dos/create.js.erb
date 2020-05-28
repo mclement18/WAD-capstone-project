@@ -1,6 +1,16 @@
 <% unless @todo.errors.any? %>
-  ToDo.respond(<%= @todo.trip_id %>, 'todo-create',
-               '<%=j render partial: 'todo_delete_button', locals: { user: current_user, todo: @todo } %>')
+  ToDo.button = {
+    text: '<%=j t('todos.delete') %>',
+    path: '<%=j user_to_do_path(current_user, @todo) %>',
+    tripId: 0
+  };
+
+  ToDo.respond(
+    <%= @todo.trip_id %>,
+    buttonType='todo-create',
+    button=ToDo.buildRemoveButton(ToDo.button),
+    tagText='<%=j t('tags.todo') %>'
+  );
 <% end %>
 
 <% if flash.any? %>

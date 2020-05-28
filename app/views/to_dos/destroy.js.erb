@@ -1,7 +1,17 @@
 <% if @todo.destroyed? %>
-  ToDo.respond(<%= @todo.trip_id %>, 'todo-delete',
-                '<%=j render partial: 'todo_create_button', locals: { user: current_user, trip_id: @todo.trip_id } %>',
-                "<%=j t('account.to_dos.index.not_found') %>")
+  ToDo.button = {
+    text: '<%=j t('todos.create') %>',
+    path: '<%=j user_to_dos_path(current_user) %>',
+    tripId: <%= @todo.trip_id %>
+  };
+
+  ToDo.respond(
+    <%= @todo.trip_id %>,
+    buttonType='todo-delete',
+    button=ToDo.buildCreateButton(ToDo.button),
+    message="<%=j t('account.to_dos.index.not_found') %>",
+    tagText='<%=j t('tags.todo') %>'
+  );
 <% end %>
 
 <% if flash.any? %>

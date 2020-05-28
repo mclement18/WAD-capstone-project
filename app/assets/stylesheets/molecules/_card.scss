@@ -80,6 +80,7 @@
 }
 
 .card__footer {
+  flex: 1 1 100%;
   .btn,
   .btn--form {
     margin: 0;
@@ -92,6 +93,7 @@
   }
   
   .btn {
+    @include flex-item-center-content-center;
     border-radius: 0;
     border: none;
   }
