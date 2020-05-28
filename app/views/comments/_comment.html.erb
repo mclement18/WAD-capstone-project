@@ -1,7 +1,7 @@
 <div id="comment_id_<%= comment.id %>" data-user-id="<%= comment.user_id %>" class="media comment">
   <div class="media__image">
     <%= link_to user_path(comment.user) do %>
-      <%= image_tag comment.user.avatar_url, class: 'avatar avatar--medium' %>
+      <%= image_tag comment.user.avatar_url, class: 'avatar avatar--medium', alt: "#{comment.user.name} avatar" %>
     <% end %>
   </div>
   <div class="media__content">

@@ -1,5 +1,30 @@
 <% unless @comment.errors.any? %>
-  Comments.replaceComment('<%= @comment.id %>', '<%=j render @comment %>');
+  Comments.comment = {
+    id: 'comment_id_<%= @comment.id %>',
+    body: '<%=raw j @comment.body %>',
+    isForm: false,
+    user: {
+      id: <%= @comment.user.id %>,
+      name: '<%=j @comment.user.name %>',
+      avatar_url: '<%=j @comment.user.avatar_url %>',
+      path: '<%=j user_path(@comment.user) %>'
+    },
+    date: {
+      formated: '<%=j @comment.created_at.strftime("%FT%T")%>',
+      text: '<%=raw j t('comments.date', time: time_ago_in_words(@comment.created_at)) %>'
+    },
+    edit: {
+      text: '<%=raw j t('links.edit') %>',
+      path: '<%=j edit_comment_path(@comment) %>'
+    },
+    delete: {
+      text: '<%=raw j t('links.delete') %>',
+      path: '<%=j comment_path(@comment) %>',
+      confirm: '<%=raw j t('notices.are_you_sure') %>'
+    }
+  };
+
+  Comments.replaceComment(Comments.comment);
 <% end %>
 
 <% if flash.any? %>

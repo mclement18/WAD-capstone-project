@@ -40,11 +40,13 @@
   }
 
   &__action {
+    @include flex-content-end;
     margin: .5em 0 0;
     text-align: right;
 
     .btn, .link  {
-      display: inline-block;
+      display: block;
+      margin: 0 0 0 .5em;
       padding: .5em;
       font-size: 1.1em;
     }

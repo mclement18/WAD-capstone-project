@@ -1,15 +1,40 @@
 class CommentRelayJob < ApplicationJob
+  include ActionView::Helpers::DateHelper
+  include CommentsHelper
+  
   queue_as :default
 
   def perform(comment, action)
-    comment_to_render = render_comment(comment) unless action == 'delete'
     ActionCable.server.broadcast "#{comment.article_type.downcase}s:#{comment.article_id}:comments",
-      comment: comment_to_render, comment_id: comment.id, user_id: comment.user_id, action: action
+      comment: parse_comment(comment), user_id: comment.user_id, action: action
   end
 
   private
 
-  def render_comment(comment)
-    CommentsController.render(partial: 'comments/comment', locals: { comment: comment })
+  def parse_comment(comment)
+    {
+      id: "comment_id_#{comment.id}",
+      body: comment.body,
+      isForm: false,
+      user: {
+        id: comment.user.id,
+        name: comment.user.name,
+        avatar_url: comment.user.avatar_url,
+        path: user_path(comment.user)
+      },
+      date: {
+        formated: comment.created_at.strftime("%FT%T"),
+        text: I18n.t('comments.date', time: time_ago_in_words(comment.created_at))
+      },
+      edit: {
+        text: I18n.t('links.edit'),
+        path: edit_comment_path(comment)
+      },
+      delete: {
+        text: I18n.t('links.delete'),
+        path: comment_path(comment),
+        confirm: I18n.t('notices.are_you_sure')
+      }
+    }
   end
 end

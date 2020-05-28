@@ -17,10 +17,10 @@ App.comments = App.cable.subscriptions.create("CommentsChannel", {
           Comments.insertComment(data.comment);
           break;
         case 'update':
-          Comments.replaceComment(data.comment_id, data.comment);
+          Comments.replaceComment(data.comment, true);
           break;
         case 'delete':
-          Comments.removeComment(data.comment_id, data.message);
+          Comments.removeComment(`comment_id_${data.comment_id}`, data.message);
           break;
       }
     }

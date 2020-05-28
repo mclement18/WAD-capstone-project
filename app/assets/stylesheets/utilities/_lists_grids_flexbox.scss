@@ -10,6 +10,13 @@
           align-items: center;
 }
 
+@mixin flex-content-end {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: end;
+          justify-content: flex-end;
+}
+
 @mixin flex-content-center {
   display: -webkit-box;
   display: flex;

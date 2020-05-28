@@ -1,6 +1,6 @@
 <%= form_for [article, Comment.new], html: { class: 'media comment-form' }, remote: true do |form| %>
   <div class="media__image">
-    <%= image_tag current_user.avatar_url, class: 'avatar avatar--medium' %>
+    <%= image_tag current_user.avatar_url, class: 'avatar avatar--medium', alt: "#{current_user.name} avatar" %>
   </div>
   <div class="media__content">
     <div class="media__title">

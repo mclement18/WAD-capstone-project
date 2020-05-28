@@ -1,1 +1,29 @@
-Comments.replaceComment('<%= @comment.id %>', '<%=j render 'comments/edit', comment: @comment, article: @article %>');
+Comments.comment = {
+  id: 'comment_id_<%= @comment.id %>',
+  body: '<%=raw j @comment.body %>',
+  isForm: true,
+  user: {
+    id: <%= @comment.user.id %>,
+    name: '<%=j @comment.user.name %>',
+    avatar_url: '<%=j @comment.user.avatar_url %>',
+    path: '<%=j user_path(@comment.user) %>'
+  },
+  date: {
+    formated: '<%=j @comment.created_at.strftime("%FT%T")%>',
+    text: '<%=raw j t('comments.date', time: time_ago_in_words(@comment.created_at)) %>'
+  },
+  update: {
+    text: '<%=raw j t('helpers.submit.comment.update') %>',
+    path: '<%=j comment_path(@comment) %>'
+  },
+  cancel: {
+    text: '<%=raw j t('links.cancel') %>',
+    path: '<%=j comment_path(@comment) %>'
+  },
+  label: {
+    text: '<%=raw j t('comments.edit_comment') %>',
+    id: 'edit-comment-<%= @comment.id %>'
+  }
+};
+
+Comments.replaceComment(Comments.comment);

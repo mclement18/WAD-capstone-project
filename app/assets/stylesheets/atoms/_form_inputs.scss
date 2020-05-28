@@ -16,6 +16,7 @@
   border: 1px solid $white;
   border-radius: 3px;
   width: 100%;
+  overflow: hidden;
 
   &:hover, &:focus {
     border: 1px solid $brown-3;
@@ -25,8 +26,9 @@
     font-size: 1.5em;
     height: $line-height * 6.1em;
     resize: none;
-    overflow: scroll;
+    overflow: hidden;
     word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   &--select {
@@ -40,6 +42,7 @@
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
+    overflow: hidden;
 
     &:disabled {
       background: lighten($brown-4, 22);
