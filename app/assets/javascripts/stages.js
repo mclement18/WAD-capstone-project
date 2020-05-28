@@ -8,12 +8,23 @@ Stage.getTravelTypeOptions = function() {
   return JSON.parse(document.querySelector('meta[name=travelTypesOptions]').getAttribute('value'));
 };
 
+Stage.buildOptionForSelect = function(option) {
+  const optionElement = document.createElement('option');
+  optionElement.textContent = option[0];
+  optionElement.value = option[1];
+  optionElement.selected = option[1] === 'None';
+
+  return optionElement;
+};
+
 Stage.buildTravelTypeSelect = function(stageNb) {
   const select = document.createElement('select');
   select.id = `stage_${stageNb}_travel_type`;
   select.className = 'input-field input-field--select';
   select.name = `trip[stages][stage_${stageNb}][travel_type]`;
-  select.innerHTML = this.getTravelTypeOptions();
+  this.getTravelTypeOptions().forEach(option => {
+    select.appendChild(this.buildOptionForSelect(option));
+  });
   return select;
 };
 

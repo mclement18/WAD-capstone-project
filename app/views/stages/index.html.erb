@@ -1,5 +1,5 @@
 <% content_for :meta_tag do %>
-  <meta name="travelTypesOptions" value="<%= travel_type_options('').to_json %>" />
+  <meta name="travelTypesOptions" value="<%= travel_type_options_array().to_json %>" />
   <meta name="travelTypeLabel" value="<%= t('activerecord.attributes.stage.travel_type') %>" />
 <% end %>
 
