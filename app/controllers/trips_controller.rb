@@ -24,9 +24,6 @@ class TripsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def new
     @trip = Trip.new
   end
@@ -41,6 +38,9 @@ class TripsController < ApplicationController
         format.html { render :new }
       end
     end
+  end
+
+  def show
   end
 
   def edit

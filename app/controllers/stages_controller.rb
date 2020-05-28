@@ -16,16 +16,6 @@ class StagesController < ApplicationController
     @stages = @trip.stages
   end
 
-  def reorder
-    respond_to do |format|
-      if reorder_stages(@trip, reorder_params[:stages])
-        format.html { redirect_to trip_path(@trip), notice: t('notices.stages_reordered') }
-      else
-        format.html { redirect_to trip_path(@trip), notice: t('alerts.stages_reorder_fail') }
-      end
-    end
-  end
-
   def new
     @stage = Stage.new
   end
@@ -55,6 +45,16 @@ class StagesController < ApplicationController
         format.html { redirect_to trip_stage_path(@trip, @stage), notice: t('notices.stage_updated') }
       else
         format.html { render :edit }
+      end
+    end
+  end
+
+  def reorder
+    respond_to do |format|
+      if reorder_stages(@trip, reorder_params[:stages])
+        format.html { redirect_to trip_path(@trip), notice: t('notices.stages_reordered') }
+      else
+        format.html { redirect_to trip_path(@trip), notice: t('alerts.stages_reorder_fail') }
       end
     end
   end
