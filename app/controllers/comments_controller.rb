@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         flash.now.notice = t('notices.comment_created')
+        CommentRelayJob.perform_later(@comment, current_user.id, 'create')
       else
         flash.now.alert = t('alerts.comment_creation_fail')
       end
@@ -31,6 +32,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.update(comment_params)
         flash.now.notice = t('notices.comment_updated')
+        CommentRelayJob.perform_later(@comment, current_user.id, 'update')
       else
         flash.now.alert = t('alerts.comment_update_fail')
       end
@@ -42,6 +44,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.destroy
         flash.now.notice = t('notices.comment_destroyed')
+        CommentDeleteJob.perform_later(@comment.id, @comment.article_id, @comment.article_type, current_user.id)
       else
         flash.now.alert = t('alerts.comment_deletion_fail')
       end

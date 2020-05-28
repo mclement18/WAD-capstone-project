@@ -11,22 +11,22 @@ App.comments = App.cable.subscriptions.create("CommentsChannel", {
   },
 
   received: function(data) {
-    if (!this.userIsCurrentUser(data.user_id)) {
+    if (!this.actionOwnerIsCurrentUser(data.user_id)) {
       switch (data.action) {
         case 'create':
-          Comments.insertComment(data.comment);
+          Comments.insertComment(this.parseData(data).comment);
           break;
         case 'update':
-          Comments.replaceComment(data.comment, true);
+          Comments.replaceComment(this.parseData(data).comment, true);
           break;
         case 'delete':
-          Comments.removeComment(`comment_id_${data.comment_id}`, data.message);
+          Comments.removeComment(`comment_id_${data.comment_id}`, I18n.t('comments.not_found'));
           break;
       }
     }
   },
 
-  userIsCurrentUser: function(user_id) {
+  actionOwnerIsCurrentUser: function(user_id) {
     return user_id === Number(document.querySelector('meta[name=current-user]').id);
   },
 
@@ -47,5 +47,37 @@ App.comments = App.cable.subscriptions.create("CommentsChannel", {
         App.comments.followCurrentArticle();
       });
     }
+  },
+
+  parseData: function(data) {
+    return {
+      ...data,
+      comment: {
+        ...data.comment,
+        user: {
+          ...data.comment.user,
+          path: this.localizePath(data.comment.user.path)
+        },
+        date: {
+          ...data.comment.date,
+          text: I18n.t('comments.date', { 
+            time: DateHelper.time_ago_in_words_with_parsing(data.comment.date.timeToParse)
+          })
+        },
+        edit: {
+          path: this.localizePath(data.comment.edit.path),
+          text: I18n.t('links.edit')
+        },
+        delete: {
+          path: this.localizePath(data.comment.delete.path),
+          text: I18n.t('links.delete'),
+          confirm: I18n.t('notices.are_you_sure')
+        }
+      }
+    };
+  },
+  
+  localizePath: function(path) {
+    return `/${I18n.locale}/${path.split('/').slice(2).join('/')}`;
   }
 });

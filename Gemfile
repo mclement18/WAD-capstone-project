@@ -94,3 +94,6 @@ gem 'kaminari', '~> 1.2'
 
 # To generate fake username
 gem 'faker', '~> 2.11'
+
+# Use I18n in client side
+gem "i18n-js"

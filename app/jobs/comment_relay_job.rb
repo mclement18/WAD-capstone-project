@@ -4,9 +4,9 @@ class CommentRelayJob < ApplicationJob
   
   queue_as :default
 
-  def perform(comment, action)
+  def perform(comment, action_owner, action)
     ActionCable.server.broadcast "#{comment.article_type.downcase}s:#{comment.article_id}:comments",
-      comment: parse_comment(comment), user_id: comment.user_id, action: action
+      comment: parse_comment(comment), user_id: action_owner, action: action
   end
 
   private
@@ -24,16 +24,13 @@ class CommentRelayJob < ApplicationJob
       },
       date: {
         formated: comment.created_at.strftime("%FT%T"),
-        text: I18n.t('comments.date', time: time_ago_in_words(comment.created_at))
+        timeToParse: comment.created_at.strftime("%b %d, %Y %H:%M:%S GMT")
       },
       edit: {
-        text: I18n.t('links.edit'),
         path: edit_comment_path(comment)
       },
       delete: {
-        text: I18n.t('links.delete'),
-        path: comment_path(comment),
-        confirm: I18n.t('notices.are_you_sure')
+        path: comment_path(comment)
       }
     }
   end

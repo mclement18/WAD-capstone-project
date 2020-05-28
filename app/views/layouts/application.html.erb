@@ -11,6 +11,10 @@
     <meta name="current-user" id="<%= current_user.try(:id) %>" />
     <meta name="current-user-role" id="<%= current_user.try(:role) %>" />
     <%= yield :meta_tag %>
+    <script type="text/javascript">
+      I18n.defaultLocale = "<%= I18n.default_locale %>";
+      I18n.locale = "<%= I18n.locale %>";
+    </script>
   </head>
 
   <body class="footer-to-bottom-container">
