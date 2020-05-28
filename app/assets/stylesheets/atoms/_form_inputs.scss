@@ -25,6 +25,8 @@
     font-size: 1.5em;
     height: $line-height * 6.1em;
     resize: none;
+    overflow: scroll;
+    word-wrap: break-word;
   }
 
   &--select {

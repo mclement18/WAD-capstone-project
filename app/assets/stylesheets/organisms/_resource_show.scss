@@ -68,6 +68,8 @@
   
   .description {
     text-align: justify;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .details {

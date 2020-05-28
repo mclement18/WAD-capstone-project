@@ -10,6 +10,7 @@
   &__content {
     -webkit-box-flex: 1;
             flex: 1 1 auto;
+    min-width: 70%;
   }
 
   &__title {
@@ -33,6 +34,8 @@
     .text {
       margin: 0;
       text-align: justify;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
   }
 
