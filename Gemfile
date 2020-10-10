@@ -97,3 +97,7 @@ gem 'faker', '~> 2.11'
 
 # Use I18n in client side
 gem "i18n-js"
+
+# Security updates
+gem "rack", ">= 2.2.3"
+gem "websocket-extensions", ">= 0.1.5"
